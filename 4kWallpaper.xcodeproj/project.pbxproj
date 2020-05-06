@@ -3,10 +3,24 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D1EE3D3C7D2D7A1173EB51C /* Pods_4kWallpaper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E70066CAE83A41D997B98B7 /* Pods_4kWallpaper.framework */; };
+		1B227761246085AE00036212 /* BannerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B227760246085AE00036212 /* BannerView.xib */; };
+		1B227763246085CD00036212 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B227762246085CD00036212 /* BannerView.swift */; };
+		1B2277672460865E00036212 /* BannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2277652460865E00036212 /* BannerCell.swift */; };
+		1B2277682460865E00036212 /* BannerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B2277662460865E00036212 /* BannerCell.xib */; };
+		1B22776A24608AD800036212 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B22776924608AD800036212 /* Extensions.swift */; };
+		1B39215824609B3600900F88 /* VerticalCatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B39215624609B3600900F88 /* VerticalCatCell.swift */; };
+		1B39215924609B3600900F88 /* VerticalCatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B39215724609B3600900F88 /* VerticalCatCell.xib */; };
+		1B572D612460931B0028566B /* CatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B572D602460931B0028566B /* CatView.swift */; };
+		1B572D63246093250028566B /* CatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B572D62246093250028566B /* CatView.xib */; };
+		1B572D68246093A20028566B /* CatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B572D66246093A20028566B /* CatCell.swift */; };
+		1B572D69246093A20028566B /* CatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B572D67246093A20028566B /* CatCell.xib */; };
+		1B572D6B246099620028566B /* VerticatCatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B572D6A246099620028566B /* VerticatCatView.swift */; };
+		1B572D6D246099750028566B /* VerticalCatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B572D6C246099750028566B /* VerticalCatView.xib */; };
 		1B5BDAB2245F218A00085928 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5BDAB1245F218A00085928 /* AppDelegate.swift */; };
 		1B5BDAB4245F218A00085928 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5BDAB3245F218A00085928 /* SceneDelegate.swift */; };
 		1B5BDAB6245F218A00085928 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5BDAB5245F218A00085928 /* ViewController.swift */; };
@@ -21,9 +35,30 @@
 		1B5BDAD3245F30B200085928 /* WallpaperCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B5BDAD1245F30B200085928 /* WallpaperCell.xib */; };
 		1B5BDAD8245F3BE700085928 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5BDAD7245F3BE700085928 /* iCarousel.m */; };
 		1B5BDADC245F3D4700085928 /* WallPaperGridVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5BDADB245F3D4700085928 /* WallPaperGridVC.swift */; };
+		1B785BAE24632EDF00EC8AB5 /* AddUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B785BAC24632EDF00EC8AB5 /* AddUser.swift */; };
+		1B785BAF24632EDF00EC8AB5 /* Trending.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B785BAD24632EDF00EC8AB5 /* Trending.swift */; };
+		1BBDC8972463263E00324234 /* Webservices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBDC8962463263E00324234 /* Webservices.swift */; };
+		1BBDC8992463265B00324234 /* AppUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBDC8982463265B00324234 /* AppUtilities.swift */; };
+		1BBDC89B246327C800324234 /* TrendingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBDC89A246327C800324234 /* TrendingVC.swift */; };
+		1BBDC89D246327D800324234 /* LiveWallpaperVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBDC89C246327D800324234 /* LiveWallpaperVC.swift */; };
+		1BBDC89F246327E200324234 /* CategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBDC89E246327E200324234 /* CategoryVC.swift */; };
+		1BBDC8A1246327ED00324234 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBDC8A0246327ED00324234 /* SettingsVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B227760246085AE00036212 /* BannerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BannerView.xib; sourceTree = "<group>"; };
+		1B227762246085CD00036212 /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
+		1B2277652460865E00036212 /* BannerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerCell.swift; sourceTree = "<group>"; };
+		1B2277662460865E00036212 /* BannerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BannerCell.xib; sourceTree = "<group>"; };
+		1B22776924608AD800036212 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		1B39215624609B3600900F88 /* VerticalCatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalCatCell.swift; sourceTree = "<group>"; };
+		1B39215724609B3600900F88 /* VerticalCatCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VerticalCatCell.xib; sourceTree = "<group>"; };
+		1B572D602460931B0028566B /* CatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatView.swift; sourceTree = "<group>"; };
+		1B572D62246093250028566B /* CatView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CatView.xib; sourceTree = "<group>"; };
+		1B572D66246093A20028566B /* CatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatCell.swift; sourceTree = "<group>"; };
+		1B572D67246093A20028566B /* CatCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CatCell.xib; sourceTree = "<group>"; };
+		1B572D6A246099620028566B /* VerticatCatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticatCatView.swift; sourceTree = "<group>"; };
+		1B572D6C246099750028566B /* VerticalCatView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VerticalCatView.xib; sourceTree = "<group>"; };
 		1B5BDAAE245F218A00085928 /* 4kWallpaper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 4kWallpaper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B5BDAB1245F218A00085928 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1B5BDAB3245F218A00085928 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -42,6 +77,17 @@
 		1B5BDAD6245F3BE700085928 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
 		1B5BDAD7245F3BE700085928 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
 		1B5BDADB245F3D4700085928 /* WallPaperGridVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallPaperGridVC.swift; sourceTree = "<group>"; };
+		1B785BAC24632EDF00EC8AB5 /* AddUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddUser.swift; sourceTree = "<group>"; };
+		1B785BAD24632EDF00EC8AB5 /* Trending.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trending.swift; sourceTree = "<group>"; };
+		1BBDC8962463263E00324234 /* Webservices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Webservices.swift; sourceTree = "<group>"; };
+		1BBDC8982463265B00324234 /* AppUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppUtilities.swift; sourceTree = "<group>"; };
+		1BBDC89A246327C800324234 /* TrendingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingVC.swift; sourceTree = "<group>"; };
+		1BBDC89C246327D800324234 /* LiveWallpaperVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveWallpaperVC.swift; sourceTree = "<group>"; };
+		1BBDC89E246327E200324234 /* CategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryVC.swift; sourceTree = "<group>"; };
+		1BBDC8A0246327ED00324234 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		5E70066CAE83A41D997B98B7 /* Pods_4kWallpaper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_4kWallpaper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6282DCA7B7B9B21104AF74B5 /* Pods-4kWallpaper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-4kWallpaper.debug.xcconfig"; path = "Target Support Files/Pods-4kWallpaper/Pods-4kWallpaper.debug.xcconfig"; sourceTree = "<group>"; };
+		B9AB8730D017FCF2C5AD67E9 /* Pods-4kWallpaper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-4kWallpaper.release.xcconfig"; path = "Target Support Files/Pods-4kWallpaper/Pods-4kWallpaper.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,17 +95,53 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D1EE3D3C7D2D7A1173EB51C /* Pods_4kWallpaper.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B2277642460863600036212 /* Banner */ = {
+			isa = PBXGroup;
+			children = (
+				1B227760246085AE00036212 /* BannerView.xib */,
+				1B227762246085CD00036212 /* BannerView.swift */,
+				1B2277652460865E00036212 /* BannerCell.swift */,
+				1B2277662460865E00036212 /* BannerCell.xib */,
+			);
+			path = Banner;
+			sourceTree = "<group>";
+		};
+		1B572D5F246092ED0028566B /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				1B572D602460931B0028566B /* CatView.swift */,
+				1B572D62246093250028566B /* CatView.xib */,
+				1B572D66246093A20028566B /* CatCell.swift */,
+				1B572D67246093A20028566B /* CatCell.xib */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		1B572D6E24609A050028566B /* VerticalCategory */ = {
+			isa = PBXGroup;
+			children = (
+				1B572D6A246099620028566B /* VerticatCatView.swift */,
+				1B572D6C246099750028566B /* VerticalCatView.xib */,
+				1B39215624609B3600900F88 /* VerticalCatCell.swift */,
+				1B39215724609B3600900F88 /* VerticalCatCell.xib */,
+			);
+			path = VerticalCategory;
+			sourceTree = "<group>";
+		};
 		1B5BDAA5245F218A00085928 = {
 			isa = PBXGroup;
 			children = (
 				1B5BDAB0245F218A00085928 /* 4kWallpaper */,
 				1B5BDAAF245F218A00085928 /* Products */,
+				A4B3C542200D7BFB6541EB6E /* Pods */,
+				2A910415CBE51DB988C90BB1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -93,6 +175,8 @@
 		1B5BDAC7245F296700085928 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1B785BAC24632EDF00EC8AB5 /* AddUser.swift */,
+				1B785BAD24632EDF00EC8AB5 /* Trending.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -100,6 +184,9 @@
 		1B5BDAC8245F297000085928 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1B572D6E24609A050028566B /* VerticalCategory */,
+				1B572D5F246092ED0028566B /* Category */,
+				1B2277642460863600036212 /* Banner */,
 				1B5BDACE245F2CBF00085928 /* DashboardCategoryCell.swift */,
 				1B5BDACA245F29B300085928 /* DashboardCollectionView.swift */,
 				1B5BDACC245F29C200085928 /* DashboardCollectionView.xib */,
@@ -114,6 +201,10 @@
 			children = (
 				1B5BDAB5245F218A00085928 /* ViewController.swift */,
 				1B5BDADB245F3D4700085928 /* WallPaperGridVC.swift */,
+				1BBDC89A246327C800324234 /* TrendingVC.swift */,
+				1BBDC89C246327D800324234 /* LiveWallpaperVC.swift */,
+				1BBDC89E246327E200324234 /* CategoryVC.swift */,
+				1BBDC8A0246327ED00324234 /* SettingsVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -123,8 +214,28 @@
 			children = (
 				1B5BDAD6245F3BE700085928 /* iCarousel.h */,
 				1B5BDAD7245F3BE700085928 /* iCarousel.m */,
+				1B22776924608AD800036212 /* Extensions.swift */,
+				1BBDC8962463263E00324234 /* Webservices.swift */,
+				1BBDC8982463265B00324234 /* AppUtilities.swift */,
 			);
 			path = Resaurces;
+			sourceTree = "<group>";
+		};
+		2A910415CBE51DB988C90BB1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5E70066CAE83A41D997B98B7 /* Pods_4kWallpaper.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A4B3C542200D7BFB6541EB6E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6282DCA7B7B9B21104AF74B5 /* Pods-4kWallpaper.debug.xcconfig */,
+				B9AB8730D017FCF2C5AD67E9 /* Pods-4kWallpaper.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -134,9 +245,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1B5BDAC2245F218C00085928 /* Build configuration list for PBXNativeTarget "4kWallpaper" */;
 			buildPhases = (
+				7D8AF1F25FB3E8591FD08BDE /* [CP] Check Pods Manifest.lock */,
 				1B5BDAAA245F218A00085928 /* Sources */,
 				1B5BDAAB245F218A00085928 /* Frameworks */,
 				1B5BDAAC245F218A00085928 /* Resources */,
+				724B9ACB9AC54224CEAC9998 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -186,30 +299,93 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B39215924609B3600900F88 /* VerticalCatCell.xib in Resources */,
+				1B227761246085AE00036212 /* BannerView.xib in Resources */,
 				1B5BDABE245F218C00085928 /* LaunchScreen.storyboard in Resources */,
 				1B5BDABB245F218C00085928 /* Assets.xcassets in Resources */,
+				1B572D63246093250028566B /* CatView.xib in Resources */,
+				1B2277682460865E00036212 /* BannerCell.xib in Resources */,
+				1B572D69246093A20028566B /* CatCell.xib in Resources */,
 				1B5BDAB9245F218A00085928 /* Main.storyboard in Resources */,
 				1B5BDAD3245F30B200085928 /* WallpaperCell.xib in Resources */,
 				1B5BDACD245F29C200085928 /* DashboardCollectionView.xib in Resources */,
+				1B572D6D246099750028566B /* VerticalCatView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		724B9ACB9AC54224CEAC9998 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-4kWallpaper/Pods-4kWallpaper-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-4kWallpaper/Pods-4kWallpaper-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-4kWallpaper/Pods-4kWallpaper-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7D8AF1F25FB3E8591FD08BDE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-4kWallpaper-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1B5BDAAA245F218A00085928 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BBDC89F246327E200324234 /* CategoryVC.swift in Sources */,
+				1BBDC89B246327C800324234 /* TrendingVC.swift in Sources */,
+				1BBDC8972463263E00324234 /* Webservices.swift in Sources */,
+				1B572D6B246099620028566B /* VerticatCatView.swift in Sources */,
+				1B227763246085CD00036212 /* BannerView.swift in Sources */,
+				1B39215824609B3600900F88 /* VerticalCatCell.swift in Sources */,
 				1B5BDACF245F2CBF00085928 /* DashboardCategoryCell.swift in Sources */,
 				1B5BDACB245F29B300085928 /* DashboardCollectionView.swift in Sources */,
 				1B5BDAB6245F218A00085928 /* ViewController.swift in Sources */,
+				1B785BAE24632EDF00EC8AB5 /* AddUser.swift in Sources */,
 				1B5BDAB2245F218A00085928 /* AppDelegate.swift in Sources */,
+				1BBDC89D246327D800324234 /* LiveWallpaperVC.swift in Sources */,
+				1B785BAF24632EDF00EC8AB5 /* Trending.swift in Sources */,
+				1BBDC8A1246327ED00324234 /* SettingsVC.swift in Sources */,
 				1B5BDAB4245F218A00085928 /* SceneDelegate.swift in Sources */,
 				1B5BDAD8245F3BE700085928 /* iCarousel.m in Sources */,
+				1BBDC8992463265B00324234 /* AppUtilities.swift in Sources */,
+				1B22776A24608AD800036212 /* Extensions.swift in Sources */,
 				1B5BDAD2245F30B200085928 /* WallpaperCell.swift in Sources */,
 				1B5BDADC245F3D4700085928 /* WallPaperGridVC.swift in Sources */,
+				1B572D68246093A20028566B /* CatCell.swift in Sources */,
 				1B5BDAC6245F289900085928 /* Constants.swift in Sources */,
+				1B2277672460865E00036212 /* BannerCell.swift in Sources */,
+				1B572D612460931B0028566B /* CatView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,10 +527,13 @@
 		};
 		1B5BDAC3245F218C00085928 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6282DCA7B7B9B21104AF74B5 /* Pods-4kWallpaper.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = DYFFWMNHV6;
 				INFOPLIST_FILE = 4kWallpaper/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -363,6 +542,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dr.-kWallpaper";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = AllApp_Dev;
 				SWIFT_OBJC_BRIDGING_HEADER = "$PROJECT_DIR/$PROJECT_NAME/4kWallpaper-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -372,10 +552,13 @@
 		};
 		1B5BDAC4245F218C00085928 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B9AB8730D017FCF2C5AD67E9 /* Pods-4kWallpaper.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = DYFFWMNHV6;
 				INFOPLIST_FILE = 4kWallpaper/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -384,6 +567,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dr.-kWallpaper";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = AllApp_Dev;
 				SWIFT_OBJC_BRIDGING_HEADER = "$PROJECT_DIR/$PROJECT_NAME/4kWallpaper-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

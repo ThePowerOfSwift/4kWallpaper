@@ -7,15 +7,38 @@
 //
 
 import UIKit
+import Kingfisher
+import KingfisherWebP
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
-
+     var window: UIWindow?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         manageNavigationBar()
+//        print(UIDevice().type, UIDevice.current.systemVersion, (UIDevice.current.identifierForVendor?.uuidString ?? ""))
+        KingfisherManager.shared.defaultOptions += [
+          .processor(WebPProcessor.default),
+          .cacheSerializer(WebPSerializer.default)
+        ]
+        
+        let modifier = AnyModifier { request in
+            var req = request
+            req.addValue("image/webp */*", forHTTPHeaderField: "Accept")
+            return req
+        }
+
+        KingfisherManager.shared.defaultOptions += [
+            .requestModifier(modifier),
+            // ... other options
+        ]
+        
+        if let id = UserDefaults.standard.value(forKey: DefaultKeys.userId) as? Int{
+            userId = id
+        }
+        else{
+            Webservices().serviceForAddUser()
+        }
         return true
     }
     

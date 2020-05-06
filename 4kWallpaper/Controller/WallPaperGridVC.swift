@@ -41,19 +41,6 @@ extension WallPaperGridVC:iCarouselDelegate, iCarouselDataSource{
         view.backgroundColor = .white
         view.layer.masksToBounds = true
         return view
-        
-        
-//        let imageView: UIImageView
-//
-//        if view != nil {
-//            imageView = view as! UIImageView
-//        } else {
-//            imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 128, height: 128))
-//        }
-//
-//        imageView.image = UIImage(named: "example")
-//
-//        return imageView
     }
     
     func carouselItemWidth(_ carousel: iCarousel) -> CGFloat {

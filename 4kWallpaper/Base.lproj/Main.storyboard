@@ -147,6 +147,84 @@
             </objects>
             <point key="canvasLocation" x="2363" y="-710"/>
         </scene>
+        <!--CategoryVC-->
+        <scene sceneID="XeR-qx-aGC">
+            <objects>
+                <viewController id="Vhd-kV-HSx" customClass="CategoryVC" customModule="_kWallpaper" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8mj-ql-zUd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AV1-KO-okO">
+                                <rect key="frame" x="0.0" y="44" width="320" height="475"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="xP5-8A-PQz">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="59.5"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fP3-Ja-s1V">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="59.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Live Wallpaper" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IdG-dO-Of5">
+                                                        <rect key="frame" x="10" y="10" width="112" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Explore all currently live wallpaper categories here" textAlignment="natural" lineBreakMode="tailTruncation" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="XVI-vk-itf">
+                                                        <rect key="frame" x="10" y="32.5" width="220" height="17"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aqp-kr-e6X">
+                                                        <rect key="frame" x="235" y="16" width="75" height="28"/>
+                                                        <inset key="contentEdgeInsets" minX="10" minY="5" maxX="10" maxY="5"/>
+                                                        <state key="normal" title="View All">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="Aqp-kr-e6X" secondAttribute="trailing" constant="10" id="4DZ-ZB-bN1"/>
+                                                    <constraint firstItem="XVI-vk-itf" firstAttribute="leading" secondItem="IdG-dO-Of5" secondAttribute="leading" id="9JL-Rw-FKv"/>
+                                                    <constraint firstItem="Aqp-kr-e6X" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="XVI-vk-itf" secondAttribute="trailing" constant="5" id="CCu-sO-Uob"/>
+                                                    <constraint firstItem="IdG-dO-Of5" firstAttribute="top" secondItem="fP3-Ja-s1V" secondAttribute="top" constant="10" id="Jp4-h9-RQ2"/>
+                                                    <constraint firstItem="Aqp-kr-e6X" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="IdG-dO-Of5" secondAttribute="trailing" constant="5" id="hhb-BX-Jtd"/>
+                                                    <constraint firstAttribute="bottom" secondItem="XVI-vk-itf" secondAttribute="bottom" constant="10" id="mb1-zi-RAd"/>
+                                                    <constraint firstItem="IdG-dO-Of5" firstAttribute="leading" secondItem="fP3-Ja-s1V" secondAttribute="leading" constant="10" id="nZU-9g-lbJ"/>
+                                                    <constraint firstItem="XVI-vk-itf" firstAttribute="top" secondItem="IdG-dO-Of5" secondAttribute="bottom" constant="2" id="vcO-kz-Zz5"/>
+                                                    <constraint firstItem="Aqp-kr-e6X" firstAttribute="centerY" secondItem="fP3-Ja-s1V" secondAttribute="centerY" id="zZJ-xY-Qod"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="xP5-8A-PQz" secondAttribute="trailing" id="6p3-Pu-Ktu"/>
+                                    <constraint firstItem="xP5-8A-PQz" firstAttribute="leading" secondItem="AV1-KO-okO" secondAttribute="leading" id="BZI-xa-UTF"/>
+                                    <constraint firstAttribute="bottom" secondItem="xP5-8A-PQz" secondAttribute="bottom" id="Pbd-1K-KcG"/>
+                                    <constraint firstItem="xP5-8A-PQz" firstAttribute="top" secondItem="AV1-KO-okO" secondAttribute="top" id="eDe-xl-TTy"/>
+                                    <constraint firstItem="xP5-8A-PQz" firstAttribute="width" secondItem="AV1-KO-okO" secondAttribute="width" id="giA-HA-J6b"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="AV1-KO-okO" firstAttribute="top" secondItem="iHj-zd-yEk" secondAttribute="top" id="CPw-Xq-heo"/>
+                            <constraint firstItem="iHj-zd-yEk" firstAttribute="bottom" secondItem="AV1-KO-okO" secondAttribute="bottom" id="Gsi-WS-SWQ"/>
+                            <constraint firstItem="AV1-KO-okO" firstAttribute="leading" secondItem="iHj-zd-yEk" secondAttribute="leading" id="gEA-hX-dsO"/>
+                            <constraint firstItem="iHj-zd-yEk" firstAttribute="trailing" secondItem="AV1-KO-okO" secondAttribute="trailing" id="r14-w6-mdd"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="iHj-zd-yEk"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="VHr-SY-9re"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xcY-eX-Amq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1839" y="1540"/>
+        </scene>
         <!--Home-->
         <scene sceneID="3n3-CH-01o">
             <objects>
@@ -193,17 +271,43 @@
             </objects>
             <point key="canvasLocation" x="-358" y="931"/>
         </scene>
-        <!--View Controller-->
+        <!--Trending-->
         <scene sceneID="zOd-qg-qmr">
             <objects>
-                <viewController id="VAh-14-o8M" sceneMemberID="viewController">
+                <viewController id="VAh-14-o8M" customClass="TrendingVC" customModule="_kWallpaper" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mWZ-Jm-Jlh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cNO-Vs-psQ">
+                                <rect key="frame" x="0.0" y="44" width="320" height="475"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="d0t-OH-LNS">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="VAh-14-o8M" id="uSF-CK-EGf"/>
+                                    <outlet property="delegate" destination="VAh-14-o8M" id="T9J-JQ-QZA"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="cNO-Vs-psQ" firstAttribute="top" secondItem="LEr-qZ-5Ip" secondAttribute="top" id="2hh-b4-afk"/>
+                            <constraint firstItem="LEr-qZ-5Ip" firstAttribute="bottom" secondItem="cNO-Vs-psQ" secondAttribute="bottom" id="TYE-0d-Hl7"/>
+                            <constraint firstItem="cNO-Vs-psQ" firstAttribute="leading" secondItem="LEr-qZ-5Ip" secondAttribute="leading" id="YRU-UA-XOr"/>
+                            <constraint firstItem="LEr-qZ-5Ip" firstAttribute="trailing" secondItem="cNO-Vs-psQ" secondAttribute="trailing" id="hKf-Ia-YWz"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="LEr-qZ-5Ip"/>
                     </view>
-                    <navigationItem key="navigationItem" id="bkH-st-xFj"/>
+                    <navigationItem key="navigationItem" title="Trending" id="bkH-st-xFj"/>
+                    <connections>
+                        <outlet property="collectionWallPapers" destination="cNO-Vs-psQ" id="oss-Oc-lKL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h8c-AU-hbb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -218,6 +322,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="VVX-y1-Ddq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -228,10 +333,10 @@
             </objects>
             <point key="canvasLocation" x="855" y="85"/>
         </scene>
-        <!--View Controller-->
+        <!--Live WallpaperVC-->
         <scene sceneID="YIu-fd-hX6">
             <objects>
-                <viewController id="drU-yX-hVQ" sceneMemberID="viewController">
+                <viewController id="drU-yX-hVQ" customClass="LiveWallpaperVC" customModule="_kWallpaper" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5sX-6D-4Ii">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -263,22 +368,6 @@
             </objects>
             <point key="canvasLocation" x="840" y="806"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="DXt-FB-A0X">
-            <objects>
-                <viewController id="IYQ-wH-nrQ" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="sLq-gT-WGN">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="g9e-Kw-Ifk"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="2em-07-hFn"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vgF-nq-beh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1854" y="1529"/>
-        </scene>
         <!--Category-->
         <scene sceneID="Hcs-OL-syt">
             <objects>
@@ -288,20 +377,21 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="yMJ-II-OEt">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="IYQ-wH-nrQ" kind="relationship" relationship="rootViewController" id="czZ-pR-Rqz"/>
+                        <segue destination="Vhd-kV-HSx" kind="relationship" relationship="rootViewController" id="olO-Vh-bg5"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5TO-jX-ngh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="853" y="1529"/>
         </scene>
-        <!--View Controller-->
+        <!--SettingsVC-->
         <scene sceneID="vcK-6k-arX">
             <objects>
-                <viewController id="CD0-ym-XfT" sceneMemberID="viewController">
+                <viewController id="CD0-ym-XfT" customClass="SettingsVC" customModule="_kWallpaper" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="G7c-Fk-oTe">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
