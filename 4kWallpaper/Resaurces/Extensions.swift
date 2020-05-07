@@ -218,3 +218,181 @@ var type: Model {
     return Model.unrecognized
   }
 }
+
+//MARK: - UIVIEW EXTENSION
+extension UIView
+{
+    func setRounded() {
+        self.layer.cornerRadius = self.getHeight()/2
+    }
+    
+    func setBorder(with color:UIColor, width:CGFloat) {
+        self.layer.borderColor = color.cgColor
+        self.layer.borderWidth = width
+    }
+    
+    func getHeight() -> CGFloat
+    {
+        return self.frame.size.height
+    }
+    
+    func getWidth() -> CGFloat
+    {
+        return self.frame.size.width
+    }
+    func dropShadow(color: UIColor, opacity: Float = 0.5, offSet: CGSize = CGSize(width: 0.0, height: 0.0), radius: CGFloat = 5.0, scale: Bool = true) {
+        layer.masksToBounds = false
+        layer.shadowColor = color.cgColor
+        layer.shadowOpacity = opacity
+        layer.shadowOffset = offSet
+        layer.shadowRadius = radius
+        
+        updateShadowPath()
+        layer.shouldRasterize = true
+        layer.rasterizationScale = scale ? UIScreen.main.scale : 1
+    }
+    
+    func updateShadowPath(){
+        layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.layer.cornerRadius).cgPath
+    }
+}
+
+//MARK: - DATE
+extension Date {
+
+    func getWeekDates() -> (thisWeek:[Date],nextWeek:[Date]) {
+        var tuple: (thisWeek:[Date],nextWeek:[Date])
+        var arrThisWeek: [Date] = []
+        for i in 0..<7 {
+            arrThisWeek.append(Calendar.current.date(byAdding: .day, value: i, to: startOfWeek)!)
+        }
+        var arrNextWeek: [Date] = []
+        for i in 1...7 {
+            arrNextWeek.append(Calendar.current.date(byAdding: .day, value: i, to: arrThisWeek.last!)!)
+        }
+        tuple = (thisWeek: arrThisWeek,nextWeek: arrNextWeek)
+        return tuple
+    }
+
+    var tomorrow: Date {
+        return Calendar.current.date(byAdding: .day, value: 1, to: noon)!
+    }
+    
+    func dateAfterDays(day:Int) -> Date{
+        return Calendar.current.date(byAdding: .day, value: day, to: noon)!
+    }
+    
+    var noon: Date {
+        return Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: self)!
+    }
+
+    var startOfWeek: Date {
+        let gregorian = Calendar(identifier: .gregorian)
+        let sunday = gregorian.date(from: gregorian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self))
+        return gregorian.date(byAdding: .day, value: 1, to: sunday!)!
+    }
+
+    func toDate(format: String) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
+        return formatter.string(from: self)
+    }
+}
+
+//MARK: - STRING
+extension String{
+    func isValidEmail() -> Bool {
+        let emailRegEx = "^[A-Z0-9a-z._%+-]+@[A-Za-z0-9-]+[.][A-Za-z]{2,64}$"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: self)
+    }
+    
+    func hasAlphabets() -> Bool{
+        let letters = NSCharacterSet.letters
+
+        let range = self.rangeOfCharacter(from: letters)
+
+        // range will be nil if no letters is found
+        if range  != nil{
+            return true
+        }
+        else {
+            return false
+        }
+    }
+    
+    func isEmpty() -> Bool
+    {
+        if self.trimmingCharacters(in: .whitespaces).count == 0
+        {
+            return true
+        }
+        return false
+    }
+    
+    var isValidName: Bool {
+        let RegEx = "^[a-zA-Z \\_]{2,25}$"
+        let Test = NSPredicate(format:"SELF MATCHES %@", RegEx)
+        return Test.evaluate(with: self)
+    }
+    
+    func convertDate(format:String) -> Date {
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
+        return formatter.date(from: self) ?? Date()
+    }
+    
+    func trim() -> String {
+        return self.trimmingCharacters(in : CharacterSet.whitespacesAndNewlines)
+    }
+}
+
+extension Data {
+    var html2AttributedString: NSAttributedString? {
+        do {
+            return try NSAttributedString(data: self, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue], documentAttributes: nil)
+        } catch {
+            print("error:", error)
+            return  nil
+        }
+    }
+    var html2String: String {
+        return html2AttributedString?.string ?? ""
+    }
+}
+
+extension String {
+    var html2AttributedString: NSAttributedString? {
+        return Data(utf8).html2AttributedString
+    }
+    var html2String: String {
+        return html2AttributedString?.string ?? ""
+    }
+    
+    var htmlToString:String{
+        let str = self.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
+        let mainStr =  str.replacingOccurrences(of: "&[^;]+;", with: "", options: .regularExpression, range: nil)
+        let trimmed = mainStr.trimmingCharacters(in: .whitespacesAndNewlines)
+        return trimmed.count > 50 ? "\(trimmed.prefix(50)).." : trimmed
+    }
+    
+    var htmlToCompleteString:String{
+        let str = self.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
+        let mainStr =  str.replacingOccurrences(of: "&[^;]+;", with: "", options: .regularExpression, range: nil)
+        return mainStr.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+}
+
+
+extension UIViewController {
+
+    var isModal: Bool {
+
+        let presentingIsModal = presentingViewController != nil
+        let presentingIsNavigation = navigationController?.presentingViewController?.presentedViewController == navigationController
+        let presentingIsTabBar = tabBarController?.presentingViewController is UITabBarController
+
+        return presentingIsModal || presentingIsNavigation || presentingIsTabBar
+    }
+}

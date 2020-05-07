@@ -40,6 +40,8 @@ struct CellIdentifier {
 
 struct ControllerIds {
     static let wallPaperGrid = "WallPaperGridVC"
+    static let previewVC = "PreviewVC"
+    static let loadingView = "LoadingView"
 }
 
 struct StoryboardIds {

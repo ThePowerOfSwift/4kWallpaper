@@ -17,6 +17,8 @@ struct Parameters {
     static let fcm_id = "fcm_id"
     static let model_number = "model_number"
     static let app_version = "app_version"
+    static let user_id = "user_id"
+    static let page = "page"
 }
 
 struct EndPoints {

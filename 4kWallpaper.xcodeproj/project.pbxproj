@@ -13,6 +13,7 @@
 		1B2277672460865E00036212 /* BannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2277652460865E00036212 /* BannerCell.swift */; };
 		1B2277682460865E00036212 /* BannerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B2277662460865E00036212 /* BannerCell.xib */; };
 		1B22776A24608AD800036212 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B22776924608AD800036212 /* Extensions.swift */; };
+		1B2560C7246487520090A7E4 /* PreviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2560C6246487520090A7E4 /* PreviewVC.swift */; };
 		1B39215824609B3600900F88 /* VerticalCatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B39215624609B3600900F88 /* VerticalCatCell.swift */; };
 		1B39215924609B3600900F88 /* VerticalCatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B39215724609B3600900F88 /* VerticalCatCell.xib */; };
 		1B572D612460931B0028566B /* CatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B572D602460931B0028566B /* CatView.swift */; };
@@ -37,6 +38,8 @@
 		1B5BDADC245F3D4700085928 /* WallPaperGridVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5BDADB245F3D4700085928 /* WallPaperGridVC.swift */; };
 		1B785BAE24632EDF00EC8AB5 /* AddUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B785BAC24632EDF00EC8AB5 /* AddUser.swift */; };
 		1B785BAF24632EDF00EC8AB5 /* Trending.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B785BAD24632EDF00EC8AB5 /* Trending.swift */; };
+		1B7F40C124647C5D00C8BEC8 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7F40C024647C5D00C8BEC8 /* LoadingView.swift */; };
+		1B7F40C324647C6800C8BEC8 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B7F40C224647C6800C8BEC8 /* LoadingView.xib */; };
 		1BBDC8972463263E00324234 /* Webservices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBDC8962463263E00324234 /* Webservices.swift */; };
 		1BBDC8992463265B00324234 /* AppUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBDC8982463265B00324234 /* AppUtilities.swift */; };
 		1BBDC89B246327C800324234 /* TrendingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBDC89A246327C800324234 /* TrendingVC.swift */; };
@@ -51,6 +54,7 @@
 		1B2277652460865E00036212 /* BannerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerCell.swift; sourceTree = "<group>"; };
 		1B2277662460865E00036212 /* BannerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BannerCell.xib; sourceTree = "<group>"; };
 		1B22776924608AD800036212 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		1B2560C6246487520090A7E4 /* PreviewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewVC.swift; sourceTree = "<group>"; };
 		1B39215624609B3600900F88 /* VerticalCatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalCatCell.swift; sourceTree = "<group>"; };
 		1B39215724609B3600900F88 /* VerticalCatCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VerticalCatCell.xib; sourceTree = "<group>"; };
 		1B572D602460931B0028566B /* CatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatView.swift; sourceTree = "<group>"; };
@@ -79,6 +83,8 @@
 		1B5BDADB245F3D4700085928 /* WallPaperGridVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallPaperGridVC.swift; sourceTree = "<group>"; };
 		1B785BAC24632EDF00EC8AB5 /* AddUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddUser.swift; sourceTree = "<group>"; };
 		1B785BAD24632EDF00EC8AB5 /* Trending.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trending.swift; sourceTree = "<group>"; };
+		1B7F40C024647C5D00C8BEC8 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		1B7F40C224647C6800C8BEC8 /* LoadingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
 		1BBDC8962463263E00324234 /* Webservices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Webservices.swift; sourceTree = "<group>"; };
 		1BBDC8982463265B00324234 /* AppUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppUtilities.swift; sourceTree = "<group>"; };
 		1BBDC89A246327C800324234 /* TrendingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingVC.swift; sourceTree = "<group>"; };
@@ -192,6 +198,7 @@
 				1B5BDACC245F29C200085928 /* DashboardCollectionView.xib */,
 				1B5BDAD0245F30B200085928 /* WallpaperCell.swift */,
 				1B5BDAD1245F30B200085928 /* WallpaperCell.xib */,
+				1B7F40C424647C7300C8BEC8 /* Loading */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -205,6 +212,7 @@
 				1BBDC89C246327D800324234 /* LiveWallpaperVC.swift */,
 				1BBDC89E246327E200324234 /* CategoryVC.swift */,
 				1BBDC8A0246327ED00324234 /* SettingsVC.swift */,
+				1B2560C6246487520090A7E4 /* PreviewVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -219,6 +227,15 @@
 				1BBDC8982463265B00324234 /* AppUtilities.swift */,
 			);
 			path = Resaurces;
+			sourceTree = "<group>";
+		};
+		1B7F40C424647C7300C8BEC8 /* Loading */ = {
+			isa = PBXGroup;
+			children = (
+				1B7F40C024647C5D00C8BEC8 /* LoadingView.swift */,
+				1B7F40C224647C6800C8BEC8 /* LoadingView.xib */,
+			);
+			path = Loading;
 			sourceTree = "<group>";
 		};
 		2A910415CBE51DB988C90BB1 /* Frameworks */ = {
@@ -308,6 +325,7 @@
 				1B572D69246093A20028566B /* CatCell.xib in Resources */,
 				1B5BDAB9245F218A00085928 /* Main.storyboard in Resources */,
 				1B5BDAD3245F30B200085928 /* WallpaperCell.xib in Resources */,
+				1B7F40C324647C6800C8BEC8 /* LoadingView.xib in Resources */,
 				1B5BDACD245F29C200085928 /* DashboardCollectionView.xib in Resources */,
 				1B572D6D246099750028566B /* VerticalCatView.xib in Resources */,
 			);
@@ -373,6 +391,7 @@
 				1B5BDAB6245F218A00085928 /* ViewController.swift in Sources */,
 				1B785BAE24632EDF00EC8AB5 /* AddUser.swift in Sources */,
 				1B5BDAB2245F218A00085928 /* AppDelegate.swift in Sources */,
+				1B2560C7246487520090A7E4 /* PreviewVC.swift in Sources */,
 				1BBDC89D246327D800324234 /* LiveWallpaperVC.swift in Sources */,
 				1B785BAF24632EDF00EC8AB5 /* Trending.swift in Sources */,
 				1BBDC8A1246327ED00324234 /* SettingsVC.swift in Sources */,
@@ -380,6 +399,7 @@
 				1B5BDAD8245F3BE700085928 /* iCarousel.m in Sources */,
 				1BBDC8992463265B00324234 /* AppUtilities.swift in Sources */,
 				1B22776A24608AD800036212 /* Extensions.swift in Sources */,
+				1B7F40C124647C5D00C8BEC8 /* LoadingView.swift in Sources */,
 				1B5BDAD2245F30B200085928 /* WallpaperCell.swift in Sources */,
 				1B5BDADC245F3D4700085928 /* WallPaperGridVC.swift in Sources */,
 				1B572D68246093A20028566B /* CatCell.swift in Sources */,

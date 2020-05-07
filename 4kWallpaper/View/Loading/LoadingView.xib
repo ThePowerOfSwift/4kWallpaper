@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" restorationIdentifier="LoadingView" id="iN0-l3-epB" customClass="LoadingView" customModule="_kWallpaper" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="177"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <visualEffectView opaque="NO" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZBx-GZ-lAH">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="177"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="3Ij-Lk-1qo">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="177"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <blurEffect style="dark"/>
+                </visualEffectView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading Preview..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MAi-S1-Ff4">
+                    <rect key="frame" x="91" y="38" width="138.5" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="TZo-Np-Bbn">
+                    <rect key="frame" x="16" y="73.5" width="288" height="30"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tKG-Yj-LXA">
+                            <rect key="frame" x="0.0" y="0.0" width="253.5" height="30"/>
+                            <subviews>
+                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nX5-ce-bzW">
+                                    <rect key="frame" x="0.0" y="14" width="253.5" height="2"/>
+                                    <color key="progressTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </progressView>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="nX5-ce-bzW" secondAttribute="trailing" id="P0J-XI-2ZH"/>
+                                <constraint firstAttribute="height" constant="30" id="bjY-Jm-FgI"/>
+                                <constraint firstItem="nX5-ce-bzW" firstAttribute="leading" secondItem="tKG-Yj-LXA" secondAttribute="leading" id="pJg-ts-TwK"/>
+                                <constraint firstItem="nX5-ce-bzW" firstAttribute="centerY" secondItem="tKG-Yj-LXA" secondAttribute="centerY" id="zJx-L6-gam"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KPM-a2-BEN">
+                            <rect key="frame" x="263.5" y="0.0" width="24.5" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="100kb/1 MB" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mJV-Va-0Ja">
+                    <rect key="frame" x="115" y="118.5" width="90" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="ZBx-GZ-lAH" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="BCH-Gg-b86"/>
+                <constraint firstItem="mJV-Va-0Ja" firstAttribute="top" secondItem="TZo-Np-Bbn" secondAttribute="bottom" constant="15" id="EfH-yA-8xB"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="ZBx-GZ-lAH" secondAttribute="bottom" id="HfB-jj-znb"/>
+                <constraint firstItem="MAi-S1-Ff4" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="UHF-QS-i6U"/>
+                <constraint firstItem="mJV-Va-0Ja" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="bxB-a7-kxy"/>
+                <constraint firstItem="TZo-Np-Bbn" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="oZo-0R-d4d"/>
+                <constraint firstItem="ZBx-GZ-lAH" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="pY2-xM-1gJ"/>
+                <constraint firstItem="TZo-Np-Bbn" firstAttribute="top" secondItem="MAi-S1-Ff4" secondAttribute="bottom" constant="15" id="uYK-fc-qvz"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ZBx-GZ-lAH" secondAttribute="trailing" id="v79-27-jIS"/>
+                <constraint firstItem="TZo-Np-Bbn" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="wWw-T3-Zcq"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="TZo-Np-Bbn" secondAttribute="trailing" constant="16" id="y6C-CT-yJZ"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="lblPercentage" destination="KPM-a2-BEN" id="Yb5-Wa-ujF"/>
+                <outlet property="lblSize" destination="mJV-Va-0Ja" id="847-QE-cbW"/>
+                <outlet property="progress" destination="nX5-ce-bzW" id="Hsp-J7-JoQ"/>
+                <outlet property="viewVisualEffect" destination="ZBx-GZ-lAH" id="fD5-Sr-hef"/>
+            </connections>
+            <point key="canvasLocation" x="-67.5" y="186.44366197183098"/>
+        </view>
+    </objects>
+</document>

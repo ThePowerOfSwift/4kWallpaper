@@ -11,14 +11,24 @@ import KingfisherWebP
 
 class TrendingVC: UIViewController {
     @IBOutlet weak var collectionWallPapers:UICollectionView!
+    @IBOutlet weak var viewIndicator:UIView!
+    @IBOutlet weak var indicator:UIActivityIndicatorView!
     
     var arrTrendings:[Post] = []
+    var currentPage = 1
+    var loadMore = true
+    var refreshController = UIRefreshControl()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         let nib = UINib(nibName: CellIdentifier.wallpaper, bundle: nil)
         collectionWallPapers.register(nib, forCellWithReuseIdentifier: CellIdentifier.wallpaper)
         serviceForTrendingList()
+        refreshController.attributedTitle = NSAttributedString(string: "Pull to refresh", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
+        refreshController.addTarget(self, action: #selector(didRefreshCollection(_:)), for: .valueChanged)
+        refreshController.tintColor = .white
+        
+        self.collectionWallPapers.refreshControl = refreshController
         // Do any additional setup after loading the view.
     }
     
@@ -28,6 +38,11 @@ class TrendingVC: UIViewController {
 
 //MARK: - CUSTOM METHODS
 extension TrendingVC{
+    @objc fileprivate func didRefreshCollection(_ sender:UIRefreshControl){
+        currentPage = 1
+        serviceForTrendingList()
+    }
+    
     fileprivate func getBaseFromType(type:String) -> String{
         if type == "wallpaper"{
             return ImageBase.wpsmallWebP
@@ -49,8 +64,8 @@ extension TrendingVC:UICollectionViewDelegate,UICollectionViewDataSource,UIColle
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellIdentifier.wallpaper, for: indexPath) as! WallpaperCell
         let obj = arrTrendings[indexPath.row]
         
-        let base = getBaseFromType(type: obj.type ?? "")
-        if let strUrl = obj.webp, let url = URL(string: base + strUrl){
+//        let base = getBaseFromType(type: obj.type ?? "")
+        if let strUrl = obj.smallWebp, let url = URL(string: strUrl){
             cell.imgWallPaper.kf.setImage(with: url, placeholder: #imageLiteral(resourceName: "placeholder"))
         }
         
@@ -63,25 +78,65 @@ extension TrendingVC:UICollectionViewDelegate,UICollectionViewDataSource,UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        let vc = PreviewVC.controller()
+        vc.post = arrTrendings[indexPath.item]
+        self.navigationController?.pushViewController(vc, animated: true)
     }
+    
     
 }
 
 //MARK: - WEBSERVICES
 extension TrendingVC{
     fileprivate func serviceForTrendingList(){
-        let params:[String:Any] = [:]
-        Webservices().request(with: params, method: .post, endPoint: EndPoints.trending, type: Trending.self, success: {[weak self] (success) in
+        let params:[String:Any] = [
+            Parameters.user_id:userId,
+            Parameters.page:currentPage
+        ]
+        loadMore = false
+        UIView.animate(withDuration: 0.2) { [unowned self] in
+            self.viewIndicator.isHidden = false
+            self.indicator.startAnimating()
+        }
+        Webservices().request(with: params, method: .post, endPoint: EndPoints.trending, type: Trending.self, loader: false, success: {[weak self] (success) in
+            self?.refreshController.endRefreshing()
+            UIView.animate(withDuration: 0.2) {
+                self?.viewIndicator.isHidden = true
+                self?.indicator.stopAnimating()
+            }
             guard let response = success as? Trending else {return}
             if let trendings = response.post{
-                self?.arrTrendings = trendings
+                if self?.currentPage == 1{
+                    self?.arrTrendings = []
+                }
+                if trendings.count != 0{
+                    self?.loadMore = true
+                }
+                
+                self?.arrTrendings.append(contentsOf: trendings)
                 self?.collectionWallPapers.reloadData()
             }
             
         }) {[weak self] (failer) in
+            UIView.animate(withDuration: 0.2) {
+                self?.viewIndicator.isHidden = true
+                self?.indicator.stopAnimating()
+            }
             guard let vc = self else {return}
             AppUtilities.shared().showAlert(with: failer, viewController: vc)
+        }
+    }
+}
+
+
+//MARK: - SCROLLVIEW DELEGATES
+extension TrendingVC{
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView == collectionWallPapers{
+            if scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.bounds.size.height, loadMore{
+                currentPage += 1
+                serviceForTrendingList()
+            }
         }
     }
 }
