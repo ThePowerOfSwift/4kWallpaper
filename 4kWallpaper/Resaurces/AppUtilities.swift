@@ -36,6 +36,55 @@ class AppUtilities{
         viewController.present(alert, animated: true, completion: nil)
     }
     
+    func addLoaderView(view:UIView){
+        view.viewWithTag(10)?.removeFromSuperview()
+        let loading = LoadingView.mainView()
+        view.addSubview(loading)
+        loading.translatesAutoresizingMaskIntoConstraints = false
+        loading.tag = 10
+        NSLayoutConstraint.activate([
+            loading.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            loading.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            loading.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            loading.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+        ])
+    }
+    
+    func setLoaderProgress(view:UIView, downloaded:Double, total:Double, isProgress:Bool = false){
+        guard let loading = view.viewWithTag(10) as? LoadingView else {return}
+        
+        if !isProgress{
+            let progress = (downloaded*100)/total
+            loading.lblPercentage.text = String(format: "%.1f", progress)
+            loading.progress.progress = Float(progress/100)
+            
+            loading.lblSize.text = getSizeText(size: downloaded) + "/" + getSizeText(size: total)
+        }
+        else{
+            let progress = downloaded/total
+            loading.lblPercentage.text = String(format: "%.1f", progress)
+            loading.progress.progress = Float(progress)
+            loading.lblSize.text = ""
+        }
+    }
+    
+    func getSizeText(size:Double) -> String{
+        if size > 1048576{
+            return String(format: "%.2f MB", size/1048576)
+        }
+        else if size > 1024{
+            return String(format: "%.2f KB", size/1024)
+        }
+        else{
+            return String(format: "%.2f Byte", size)
+        }
+    }
+    
+    func removeLoaderView(view:UIView){
+        view.viewWithTag(10)?.removeFromSuperview()
+    }
+    
+    
     func resetAllValues(){
     }
     

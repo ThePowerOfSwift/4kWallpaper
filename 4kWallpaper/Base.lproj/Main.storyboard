@@ -513,6 +513,7 @@
                         <outlet property="imgWallpaper" destination="Hxc-h9-NPR" id="4ly-vU-qoX"/>
                         <outlet property="lblCategory" destination="lqN-S3-y1d" id="J1D-sI-LnO"/>
                         <outlet property="lblReport" destination="M48-fI-RlW" id="b0Z-rF-xoG"/>
+                        <outlet property="livePhotos" destination="Hxc-h9-NPR" id="mEz-Mj-MFz"/>
                         <outlet property="stackMore" destination="Hix-gb-lpQ" id="xzg-Fq-l90"/>
                         <outlet property="viewCategory" destination="Uas-OB-whF" id="UZo-wf-caG"/>
                         <outlet property="viewReport" destination="zl3-lF-Vt5" id="UUV-dP-5bN"/>

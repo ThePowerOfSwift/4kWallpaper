@@ -48,6 +48,10 @@ struct Post : Codable {
         let vid : String?
         let webp : String?
         let width : String?
+    let liveImg:String?
+    let liveVideo:String?
+    let liveWebP:String?
+    
 
         enum CodingKeys: String, CodingKey {
                 case category = "category"
@@ -70,6 +74,9 @@ struct Post : Codable {
                 case vid = "vid"
                 case webp = "webp"
                 case width = "width"
+            case liveImg = "liv_img"
+            case liveVideo = "liv_vid"
+            case liveWebP = "liv_wep"
         }
     
         init(from decoder: Decoder) throws {
@@ -94,6 +101,9 @@ struct Post : Codable {
                 vid = try values.decodeIfPresent(String.self, forKey: .vid)
                 webp = try values.decodeIfPresent(String.self, forKey: .webp)
                 width = try values.decodeIfPresent(String.self, forKey: .width)
+            liveImg = try values.decodeIfPresent(String.self, forKey: .liveImg)
+            liveVideo = try values.decodeIfPresent(String.self, forKey: .liveVideo)
+            liveWebP = try values.decodeIfPresent(String.self, forKey: .liveWebP)
         }
 
 }

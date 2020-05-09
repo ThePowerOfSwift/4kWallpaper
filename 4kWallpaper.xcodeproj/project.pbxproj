@@ -36,6 +36,9 @@
 		1B5BDAD3245F30B200085928 /* WallpaperCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B5BDAD1245F30B200085928 /* WallpaperCell.xib */; };
 		1B5BDAD8245F3BE700085928 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5BDAD7245F3BE700085928 /* iCarousel.m */; };
 		1B5BDADC245F3D4700085928 /* WallPaperGridVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5BDADB245F3D4700085928 /* WallPaperGridVC.swift */; };
+		1B73AF202466B43700C5E94C /* PLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B73AF1F2466B43700C5E94C /* PLView.swift */; };
+		1B73AF232466BB0000C5E94C /* JPEG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B73AF212466BB0000C5E94C /* JPEG.swift */; };
+		1B73AF242466BB0000C5E94C /* QuickTimeMov.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B73AF222466BB0000C5E94C /* QuickTimeMov.swift */; };
 		1B785BAE24632EDF00EC8AB5 /* AddUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B785BAC24632EDF00EC8AB5 /* AddUser.swift */; };
 		1B785BAF24632EDF00EC8AB5 /* Trending.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B785BAD24632EDF00EC8AB5 /* Trending.swift */; };
 		1B7F40C124647C5D00C8BEC8 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7F40C024647C5D00C8BEC8 /* LoadingView.swift */; };
@@ -81,6 +84,9 @@
 		1B5BDAD6245F3BE700085928 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
 		1B5BDAD7245F3BE700085928 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
 		1B5BDADB245F3D4700085928 /* WallPaperGridVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallPaperGridVC.swift; sourceTree = "<group>"; };
+		1B73AF1F2466B43700C5E94C /* PLView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLView.swift; sourceTree = "<group>"; };
+		1B73AF212466BB0000C5E94C /* JPEG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JPEG.swift; sourceTree = "<group>"; };
+		1B73AF222466BB0000C5E94C /* QuickTimeMov.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickTimeMov.swift; sourceTree = "<group>"; };
 		1B785BAC24632EDF00EC8AB5 /* AddUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddUser.swift; sourceTree = "<group>"; };
 		1B785BAD24632EDF00EC8AB5 /* Trending.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trending.swift; sourceTree = "<group>"; };
 		1B7F40C024647C5D00C8BEC8 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
@@ -220,11 +226,14 @@
 		1B5BDAD4245F3BD200085928 /* Resaurces */ = {
 			isa = PBXGroup;
 			children = (
+				1B73AF212466BB0000C5E94C /* JPEG.swift */,
+				1B73AF222466BB0000C5E94C /* QuickTimeMov.swift */,
 				1B5BDAD6245F3BE700085928 /* iCarousel.h */,
 				1B5BDAD7245F3BE700085928 /* iCarousel.m */,
 				1B22776924608AD800036212 /* Extensions.swift */,
 				1BBDC8962463263E00324234 /* Webservices.swift */,
 				1BBDC8982463265B00324234 /* AppUtilities.swift */,
+				1B73AF1F2466B43700C5E94C /* PLView.swift */,
 			);
 			path = Resaurces;
 			sourceTree = "<group>";
@@ -387,6 +396,7 @@
 				1B227763246085CD00036212 /* BannerView.swift in Sources */,
 				1B39215824609B3600900F88 /* VerticalCatCell.swift in Sources */,
 				1B5BDACF245F2CBF00085928 /* DashboardCategoryCell.swift in Sources */,
+				1B73AF232466BB0000C5E94C /* JPEG.swift in Sources */,
 				1B5BDACB245F29B300085928 /* DashboardCollectionView.swift in Sources */,
 				1B5BDAB6245F218A00085928 /* ViewController.swift in Sources */,
 				1B785BAE24632EDF00EC8AB5 /* AddUser.swift in Sources */,
@@ -396,8 +406,10 @@
 				1B785BAF24632EDF00EC8AB5 /* Trending.swift in Sources */,
 				1BBDC8A1246327ED00324234 /* SettingsVC.swift in Sources */,
 				1B5BDAB4245F218A00085928 /* SceneDelegate.swift in Sources */,
+				1B73AF242466BB0000C5E94C /* QuickTimeMov.swift in Sources */,
 				1B5BDAD8245F3BE700085928 /* iCarousel.m in Sources */,
 				1BBDC8992463265B00324234 /* AppUtilities.swift in Sources */,
+				1B73AF202466B43700C5E94C /* PLView.swift in Sources */,
 				1B22776A24608AD800036212 /* Extensions.swift in Sources */,
 				1B7F40C124647C5D00C8BEC8 /* LoadingView.swift in Sources */,
 				1B5BDAD2245F30B200085928 /* WallpaperCell.swift in Sources */,
@@ -560,7 +572,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.dr.-kWallpaper";
+				PRODUCT_BUNDLE_IDENTIFIER = com.gruhini.4kwallpaper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = AllApp_Dev;
 				SWIFT_OBJC_BRIDGING_HEADER = "$PROJECT_DIR/$PROJECT_NAME/4kWallpaper-Bridging-Header.h";
@@ -585,7 +597,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.dr.-kWallpaper";
+				PRODUCT_BUNDLE_IDENTIFIER = com.gruhini.4kwallpaper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = AllApp_Dev;
 				SWIFT_OBJC_BRIDGING_HEADER = "$PROJECT_DIR/$PROJECT_NAME/4kWallpaper-Bridging-Header.h";

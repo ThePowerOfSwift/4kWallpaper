@@ -1,5 +1,8 @@
 PODS:
   - Alamofire (5.1.0)
+  - FBAudienceNetwork (5.8.0):
+    - FBSDKCoreKit/Basics (>= 5.6.0)
+  - FBSDKCoreKit/Basics (6.5.0)
   - Kingfisher (5.13.4):
     - Kingfisher/Core (= 5.13.4)
   - Kingfisher/Core (5.13.4)
@@ -18,21 +21,26 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - FBAudienceNetwork
   - KingfisherWebP
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - FBAudienceNetwork
+    - FBSDKCoreKit
     - Kingfisher
     - KingfisherWebP
     - libwebp
 
 SPEC CHECKSUMS:
   Alamofire: 9d5c5f602928e512395b30950c5984eca840093c
+  FBAudienceNetwork: 98c125767300048ad46c756680644f4ecb7c4040
+  FBSDKCoreKit: bc8ba4b97454bc722823e72584547770b8b48030
   Kingfisher: d2279a7abece3c7f25a80cd2b7f363ca5cf3f44c
   KingfisherWebP: 50d8389a48a9004c36e655470ccbff96de1ced9c
   libwebp: 946cb3063cea9236285f7e9a8505d806d30e07f3
 
-PODFILE CHECKSUM: ccb8df00d901a1eb8c83c0a3aeb343bd66ff640a
+PODFILE CHECKSUM: 670cbd50e157b5f116e3930e813332cd98bb64c1
 
 COCOAPODS: 1.9.1

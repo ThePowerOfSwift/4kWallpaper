@@ -166,6 +166,29 @@ class Webservices {
             
         }
     }
+    
+    func download(with url:String,  loader:Bool = true, downloaded:@escaping(Double) -> Void, success:@escaping(Any) -> Void, failer:@escaping(String) -> Void){
+        
+//        let view = AppUtilities.shared().getMainWindow()
+//
+//        if loader, view != nil{
+//            AppUtilities.shared().showLoader(in: view!)
+//        }
+        AF.download(url)
+        .downloadProgress { progress in
+            downloaded(progress.fractionCompleted)
+//            print("Download Progress: \(progress.fractionCompleted)")
+        }
+        .responseData { response in
+//            AppUtilities.shared().hideLoader(from: view!)
+            if let data = response.value {
+                success(data)
+            }
+            else{
+                failer(response.error?.localizedDescription ?? "")
+            }
+        }
+    }
 }
 
 //MARK: - COMMON METHODS

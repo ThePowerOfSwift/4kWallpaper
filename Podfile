@@ -7,6 +7,6 @@ target '4kWallpaper' do
 
   pod 'Alamofire'
   pod "KingfisherWebP"
-
+  pod 'FBAudienceNetwork'
 
 end

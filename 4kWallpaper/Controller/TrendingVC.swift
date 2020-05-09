@@ -8,6 +8,7 @@
 
 import UIKit
 import KingfisherWebP
+import FBAudienceNetwork
 
 class TrendingVC: UIViewController {
     @IBOutlet weak var collectionWallPapers:UICollectionView!
@@ -18,6 +19,7 @@ class TrendingVC: UIViewController {
     var currentPage = 1
     var loadMore = true
     var refreshController = UIRefreshControl()
+    var interstitialAd = FBInterstitialAd()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +31,10 @@ class TrendingVC: UIViewController {
         refreshController.tintColor = .white
         
         self.collectionWallPapers.refreshControl = refreshController
+        
+//        interstitialAd = FBInterstitialAd(placementID: "840781913082757_840787429748872")
+//        interstitialAd.delegate = self
+//        interstitialAd.load()
         // Do any additional setup after loading the view.
     }
     
@@ -64,8 +70,7 @@ extension TrendingVC:UICollectionViewDelegate,UICollectionViewDataSource,UIColle
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellIdentifier.wallpaper, for: indexPath) as! WallpaperCell
         let obj = arrTrendings[indexPath.row]
         
-//        let base = getBaseFromType(type: obj.type ?? "")
-        if let strUrl = obj.smallWebp, let url = URL(string: strUrl){
+        if let strUrl = obj.type == "live_wallpaper" ? obj.liveWebP : obj.smallWebp, let url = URL(string: strUrl){
             cell.imgWallPaper.kf.setImage(with: url, placeholder: #imageLiteral(resourceName: "placeholder"))
         }
         
@@ -140,3 +145,33 @@ extension TrendingVC{
         }
     }
 }
+
+////MARK: - INTERSTITAL DELEGATES
+//extension TrendingVC:FBInterstitialAdDelegate{
+//    func interstitialAdDidLoad(_ interstitialAd: FBInterstitialAd) {
+//        if interstitialAd.isAdValid{
+//            interstitialAd.show(fromRootViewController: self)
+//        }
+//    }
+//
+//    func interstitialAdWillLogImpression(_ interstitialAd: FBInterstitialAd) {
+//        print("interstitialAdWillLogImpression")
+//    }
+//
+//    func interstitialAd(_ interstitialAd: FBInterstitialAd, didFailWithError error: Error) {
+//        print("didFailWithError : \(error)")
+//    }
+//
+//    func interstitialAdDidClick(_ interstitialAd: FBInterstitialAd) {
+//        print("interstitialAdWillLogImpression")
+//    }
+//
+//    func interstitialAdDidClose(_ interstitialAd: FBInterstitialAd) {
+//        print("interstitialAdDidClose")
+//        interstitialAd.load()
+//    }
+//
+//    func interstitialAdWillClose(_ interstitialAd: FBInterstitialAd) {
+//        print("interstitialAdWillClose")
+//    }
+//}
