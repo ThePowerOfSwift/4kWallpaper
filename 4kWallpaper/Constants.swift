@@ -44,6 +44,8 @@ var kAdsDifference = 12
 var appStoreId = "284882215"
 let appStoreLink = "https://apps.apple.com/in/app/facebook/id\(appStoreId)"
 
+let kReportMailId = "4kwallpaper18@gmail.com"
+
 struct ImageBase {
     static let wpSmall =        "https://cdn.4kwallpaper.online/small/"
     static let wpThumb =        "https://cdn.4kwallpaper.online/thumb/"
@@ -79,6 +81,7 @@ struct ControllerIds {
     static let previewVC = "PreviewVC"
     static let loadingView = "LoadingView"
     static let similarCategory = "SimilarCatVC"
+    static let report = "ReportVC"
 }
 
 struct StoryboardIds {

@@ -21,6 +21,12 @@ struct Parameters {
     static let page = "page"
     static let used_ids = "used_ids"
     static let category = "category"
+    static let download = "download"
+    static let like = "like"
+    static let unlike = "unlike"
+    static let live_w_download = "live_w_download"
+    static let live_w_like = "live_w_like"
+    static let live_w_unlike = "live_w_unlike"
 }
 
 struct EndPoints {

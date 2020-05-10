@@ -16,6 +16,7 @@
 		1B2560C7246487520090A7E4 /* PreviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2560C6246487520090A7E4 /* PreviewVC.swift */; };
 		1B39215824609B3600900F88 /* VerticalCatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B39215624609B3600900F88 /* VerticalCatCell.swift */; };
 		1B39215924609B3600900F88 /* VerticalCatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B39215724609B3600900F88 /* VerticalCatCell.xib */; };
+		1B4311DD24686ECC00A7D71C /* ReportVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4311DC24686ECC00A7D71C /* ReportVC.swift */; };
 		1B48962A2467C9700056CD5F /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4896292467C9700056CD5F /* AppConfig.swift */; };
 		1B48962C2467DE5B0056CD5F /* UnifiedNativeAdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B48962B2467DE5B0056CD5F /* UnifiedNativeAdView.xib */; };
 		1B572D612460931B0028566B /* CatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B572D602460931B0028566B /* CatView.swift */; };
@@ -64,6 +65,7 @@
 		1B2560C6246487520090A7E4 /* PreviewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewVC.swift; sourceTree = "<group>"; };
 		1B39215624609B3600900F88 /* VerticalCatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalCatCell.swift; sourceTree = "<group>"; };
 		1B39215724609B3600900F88 /* VerticalCatCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VerticalCatCell.xib; sourceTree = "<group>"; };
+		1B4311DC24686ECC00A7D71C /* ReportVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportVC.swift; sourceTree = "<group>"; };
 		1B4896292467C9700056CD5F /* AppConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		1B48962B2467DE5B0056CD5F /* UnifiedNativeAdView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UnifiedNativeAdView.xib; sourceTree = "<group>"; };
 		1B572D602460931B0028566B /* CatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatView.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				1B2560C6246487520090A7E4 /* PreviewVC.swift */,
 				1B92D5B024681F4200AF6E09 /* SimilarCatVC.swift */,
 				1B92D5B22468225C00AF6E09 /* SearchVC.swift */,
+				1B4311DC24686ECC00A7D71C /* ReportVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 				1B92D5B124681F4200AF6E09 /* SimilarCatVC.swift in Sources */,
 				1BBDC89D246327D800324234 /* LiveWallpaperVC.swift in Sources */,
 				1B785BAF24632EDF00EC8AB5 /* Trending.swift in Sources */,
+				1B4311DD24686ECC00A7D71C /* ReportVC.swift in Sources */,
 				1BBDC8A1246327ED00324234 /* SettingsVC.swift in Sources */,
 				1B5BDAB4245F218A00085928 /* SceneDelegate.swift in Sources */,
 				1B73AF242466BB0000C5E94C /* QuickTimeMov.swift in Sources */,

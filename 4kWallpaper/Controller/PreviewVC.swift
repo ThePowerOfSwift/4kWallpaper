@@ -11,6 +11,7 @@ import Kingfisher
 import Photos
 import PhotosUI
 import AVFoundation
+import MessageUI
 
 class PreviewVC: UIViewController {
     @IBOutlet weak var imgWallpaper:UIImageView!
@@ -52,6 +53,7 @@ extension PreviewVC{
         btnDownload.setRounded()
         btnMore.setRounded()
         btnCategory.setRounded()
+        btnFavourite.setRounded()
         viewCategory.layer.cornerRadius = 5.0
         viewReport.layer.cornerRadius = 5.0
         if let type = post?.type{
@@ -66,6 +68,7 @@ extension PreviewVC{
             ac.addAction(UIAlertAction(title: "OK", style: .default))
             present(ac, animated: true)
         } else {
+            self.serviceForAddAll(key: Parameters.download)
             let ac = UIAlertController(title: "Saved!", message: "Your altered image has been saved to your photos.", preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "OK", style: .default))
             present(ac, animated: true)
@@ -75,6 +78,8 @@ extension PreviewVC{
     fileprivate func setupData(){
         if let wallpaper = post{
             lblCategory.text = wallpaper.category
+            btnFavourite.tintColor = wallpaper.isFav == "1" ? .red : .black
+            btnFavourite.isSelected = wallpaper.isFav == "1"
             if self.type == PostType.live.rawValue{
                 if let strImg = wallpaper.liveImg, let live = wallpaper.liveVideo, let imgUrl = URL(string: strImg), let vidURL = URL(string: live){
 
@@ -217,11 +222,31 @@ extension PreviewVC{
     }
     
     @IBAction func btnFavourite(_ sender:UIButton){
-        
+        sender.isSelected = !sender.isSelected
+        sender.tintColor = sender.isSelected ? .red : .black
+        if type == PostType.live.rawValue{
+            if sender.isSelected{
+                serviceForAddAll(key: Parameters.live_w_like)
+            }
+            else{
+                serviceForAddAll(key: Parameters.live_w_unlike)
+            }
+        }
+        else{
+            if sender.isSelected{
+                serviceForAddAll(key: Parameters.like)
+            }
+            else{
+                serviceForAddAll(key: Parameters.unlike)
+            }
+        }
     }
     
     @IBAction func btnReport(_ sender:UIButton){
-        
+        let vc = ReportVC.controller()
+        vc.postId = post?.postId ?? "-"
+        vc.delegate = self
+        self.present(vc, animated: true, completion: nil)
     }
     
     @IBAction func btnCategory(_ sender:UIButton){
@@ -234,6 +259,7 @@ extension PreviewVC{
     @IBAction func btnDownload(_ sender:UIButton){
         if self.type == PostType.live.rawValue{
             self.exportLivePhoto()
+            self.serviceForAddAll(key: Parameters.live_w_download)
             return
         }
         let controller = UIAlertController(title: "Select quality of image to download", message: nil, preferredStyle: .actionSheet)
@@ -288,5 +314,54 @@ struct FilePaths {
     static let documentsPath : AnyObject = NSSearchPathForDirectoriesInDomains(.cachesDirectory,.userDomainMask,true)[0] as AnyObject
     struct VidToLive {
         static var livePath = FilePaths.documentsPath.appending("/")
+    }
+}
+
+//MARK: - REPORT DELEGATES
+extension PreviewVC:ReportDelegate,MFMailComposeViewControllerDelegate{
+    func didFinishWithReport(reasone: String) {
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients([kReportMailId])
+            mail.setSubject("Report Item Id : \(post?.postId ?? "-") - iOS")
+            mail.setMessageBody("Please explain why you found it \(reasone)", isHTML: false)
+            present(mail, animated: true, completion: nil)
+        } else {
+            print("Cannot send mail")
+            // give feedback to the user
+        }
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        switch result.rawValue {
+        case MFMailComposeResult.cancelled.rawValue:
+            print("Cancelled")
+        case MFMailComposeResult.saved.rawValue:
+            print("Saved")
+        case MFMailComposeResult.sent.rawValue:
+            print("Sent")
+        case MFMailComposeResult.failed.rawValue:
+            print("Error: \(String(describing: error?.localizedDescription))")
+        default:
+            break
+        }
+        controller.dismiss(animated: true, completion: nil)
+    }
+}
+
+//MARK: - WEBSERVICES
+extension PreviewVC{
+    fileprivate func serviceForAddAll(key:String){
+        let params:[String:Any] = [
+            Parameters.user_id:userId,
+            key:post?.postId ?? ""
+        ]
+        Webservices().request(with: params, method: .post, endPoint: EndPoints.addAll, type: Trending.self, loader: false, success: { (success) in
+            
+        }) {[weak self] (failer) in
+            guard let vc = self else {return}
+            AppUtilities.shared().showAlert(with: failer, viewController: vc)
+        }
     }
 }

@@ -225,6 +225,111 @@
             </objects>
             <point key="canvasLocation" x="1839" y="1540"/>
         </scene>
+        <!--ReportVC-->
+        <scene sceneID="PLX-oj-qaN">
+            <objects>
+                <viewController storyboardIdentifier="ReportVC" modalPresentationStyle="overCurrentContext" id="m9O-Zj-QcR" customClass="ReportVC" customModule="_kWallpaper" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Iif-Az-fhD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yyN-JP-U9I">
+                                <rect key="frame" x="16" y="161" width="288" height="246.5"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="cBe-4r-t15">
+                                        <rect key="frame" x="16" y="16" width="256" height="214.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Report Item Id :" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2q5-gS-x7j">
+                                                <rect key="frame" x="0.0" y="0.0" width="256" height="26.5"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lSo-fm-s4F">
+                                                <rect key="frame" x="0.0" y="31.5" width="256" height="42"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                <state key="normal" title="Sexually Explicit">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="btnReportPressed:" destination="m9O-Zj-QcR" eventType="touchUpInside" id="N4u-TS-OeV"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="afI-Rp-Ig9">
+                                                <rect key="frame" x="0.0" y="78.5" width="256" height="42"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                <state key="normal" title="Offensive">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="btnReportPressed:" destination="m9O-Zj-QcR" eventType="touchUpInside" id="j0f-n6-kfx"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VRY-p7-FbI">
+                                                <rect key="frame" x="0.0" y="125.5" width="256" height="42"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                <state key="normal" title="Bad Quality">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="btnReportPressed:" destination="m9O-Zj-QcR" eventType="touchUpInside" id="Aeb-Gv-N2i"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a5q-kJ-yk7">
+                                                <rect key="frame" x="0.0" y="172.5" width="256" height="42"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                <state key="normal" title="Copyrighted">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="btnReportPressed:" destination="m9O-Zj-QcR" eventType="touchUpInside" id="WEf-e9-SxP"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="a5q-kJ-yk7" firstAttribute="width" secondItem="VRY-p7-FbI" secondAttribute="width" id="6bK-XF-gSj"/>
+                                            <constraint firstItem="VRY-p7-FbI" firstAttribute="width" secondItem="afI-Rp-Ig9" secondAttribute="width" id="BX1-i3-fEM"/>
+                                            <constraint firstItem="lSo-fm-s4F" firstAttribute="width" secondItem="2q5-gS-x7j" secondAttribute="width" id="WIl-Lk-IaF"/>
+                                            <constraint firstItem="afI-Rp-Ig9" firstAttribute="width" secondItem="lSo-fm-s4F" secondAttribute="width" id="pvn-eO-LWP"/>
+                                            <constraint firstItem="2q5-gS-x7j" firstAttribute="width" secondItem="cBe-4r-t15" secondAttribute="width" id="xhd-8n-U7v"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="cBe-4r-t15" firstAttribute="leading" secondItem="yyN-JP-U9I" secondAttribute="leading" constant="16" id="3Vr-BF-9ff"/>
+                                    <constraint firstAttribute="trailing" secondItem="cBe-4r-t15" secondAttribute="trailing" constant="16" id="Kl9-HB-EMd"/>
+                                    <constraint firstAttribute="bottom" secondItem="cBe-4r-t15" secondAttribute="bottom" constant="16" id="puJ-wC-fQ1"/>
+                                    <constraint firstItem="cBe-4r-t15" firstAttribute="top" secondItem="yyN-JP-U9I" secondAttribute="top" constant="16" id="u1n-gv-dyI"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="yyN-JP-U9I" firstAttribute="leading" secondItem="DO0-Rg-rJ7" secondAttribute="leading" constant="16" id="BAj-qc-upG"/>
+                            <constraint firstItem="yyN-JP-U9I" firstAttribute="centerX" secondItem="Iif-Az-fhD" secondAttribute="centerX" id="cBp-rZ-F2L"/>
+                            <constraint firstItem="DO0-Rg-rJ7" firstAttribute="trailing" secondItem="yyN-JP-U9I" secondAttribute="trailing" constant="16" id="cZF-Ng-3BR"/>
+                            <constraint firstItem="yyN-JP-U9I" firstAttribute="centerY" secondItem="Iif-Az-fhD" secondAttribute="centerY" id="vWf-cC-kUk"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="DO0-Rg-rJ7"/>
+                    </view>
+                    <connections>
+                        <outlet property="btnBadQuality" destination="VRY-p7-FbI" id="vb7-4G-YPN"/>
+                        <outlet property="btnCopyrighted" destination="a5q-kJ-yk7" id="f1N-IF-CjV"/>
+                        <outlet property="btnOffensive" destination="afI-Rp-Ig9" id="0Ew-ir-TQK"/>
+                        <outlet property="btnSexuallyExplicit" destination="lSo-fm-s4F" id="NJf-d5-D3f"/>
+                        <outlet property="lblReportId" destination="2q5-gS-x7j" id="Kby-hy-bTX"/>
+                        <outlet property="viewBg" destination="yyN-JP-U9I" id="W0n-ge-rG4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G1k-i1-oaK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2793.75" y="1545.4225352112676"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="3n3-CH-01o">
             <objects>
@@ -477,11 +582,13 @@
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mHf-Qf-Bbf">
                                 <rect key="frame" x="16" y="502" width="50" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="mHf-Qf-Bbf" secondAttribute="height" multiplier="1:1" id="V4M-jz-4hL"/>
+                                    <constraint firstAttribute="width" constant="50" id="rlb-rv-Plr"/>
                                 </constraints>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" image="heart"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="favourite"/>
                                 <connections>
                                     <action selector="btnFavourite:" destination="Tfa-wz-kgo" eventType="touchUpInside" id="nI6-Ue-f4C"/>
                                 </connections>
@@ -767,7 +874,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="heart" width="50" height="50"/>
+        <image name="favourite" width="30" height="30"/>
         <image name="home" width="30" height="30"/>
         <image name="photo" width="20" height="20"/>
         <image name="placeholder" width="600" height="640"/>
