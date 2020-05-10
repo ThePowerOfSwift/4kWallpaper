@@ -225,11 +225,11 @@
             </objects>
             <point key="canvasLocation" x="1839" y="1540"/>
         </scene>
-        <!--Home-->
+        <!--Navigation Controller-->
         <scene sceneID="3n3-CH-01o">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="crS-43-h2u" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" id="OVW-gA-RuH"/>
+                    <tabBarItem key="tabBarItem" title="" image="home" id="OVW-gA-RuH"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="71F-xo-KLK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -256,8 +256,10 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="EoQ-Cy-KGv">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="crS-43-h2u" kind="relationship" relationship="viewControllers" id="Dqf-hT-8MB"/>
@@ -338,7 +340,7 @@
         <!--PreviewVC-->
         <scene sceneID="I9G-At-HmD">
             <objects>
-                <viewController storyboardIdentifier="PreviewVC" id="Tfa-wz-kgo" customClass="PreviewVC" customModule="_kWallpaper" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PreviewVC" hidesBottomBarWhenPushed="YES" id="Tfa-wz-kgo" customClass="PreviewVC" customModule="_kWallpaper" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="o2k-kO-5Mc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -363,6 +365,9 @@
                                                 <state key="normal" image="photo">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="btnCategory:" destination="Tfa-wz-kgo" eventType="touchUpInside" id="NFW-zs-kH1"/>
+                                                </connections>
                                             </button>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uas-OB-whF">
                                                 <rect key="frame" x="10" y="3.5" width="85" height="28"/>
@@ -406,6 +411,9 @@
                                                 <state key="normal" image="report">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="btnReport:" destination="Tfa-wz-kgo" eventType="touchUpInside" id="lLJ-Ll-QGj"/>
+                                                </connections>
                                             </button>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zl3-lF-Vt5">
                                                 <rect key="frame" x="10" y="3.5" width="85" height="28"/>
@@ -474,6 +482,9 @@
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" image="heart"/>
+                                <connections>
+                                    <action selector="btnFavourite:" destination="Tfa-wz-kgo" eventType="touchUpInside" id="nI6-Ue-f4C"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aKf-u7-EUv">
                                 <rect key="frame" x="135" y="502" width="50" height="50"/>
@@ -523,16 +534,20 @@
             </objects>
             <point key="canvasLocation" x="2690.625" y="92.957746478873247"/>
         </scene>
-        <!--Trending-->
+        <!--Navigation Controller-->
         <scene sceneID="lOO-T1-Sna">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bbY-vo-b2v" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Trending" id="Ynp-zh-u8r"/>
+                    <tabBarItem key="tabBarItem" title="" image="trending" id="Ynp-zh-u8r"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="VVX-y1-Ddq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -543,46 +558,35 @@
             </objects>
             <point key="canvasLocation" x="855" y="85"/>
         </scene>
-        <!--Live WallpaperVC-->
-        <scene sceneID="YIu-fd-hX6">
-            <objects>
-                <viewController id="drU-yX-hVQ" customClass="LiveWallpaperVC" customModule="_kWallpaper" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5sX-6D-4Ii">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="RZ2-Aa-2WE"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="IHo-ZU-7TU"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="WYr-nI-8w1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1841" y="806"/>
-        </scene>
-        <!--Live Wallpaper-->
+        <!--Navigation Controller-->
         <scene sceneID="ocP-4B-gBZ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pUh-qe-xcD" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Live Wallpaper" id="SRe-O5-6et"/>
+                    <tabBarItem key="tabBarItem" title="" image="video" id="SRe-O5-6et"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="jQc-Wh-rM5">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="drU-yX-hVQ" kind="relationship" relationship="rootViewController" id="L6i-fC-G0C"/>
+                        <segue destination="Cev-WR-gZz" kind="relationship" relationship="rootViewController" id="Nlg-Af-klE"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nKN-AP-LPH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="840" y="806"/>
         </scene>
-        <!--Category-->
+        <!--Navigation Controller-->
         <scene sceneID="Hcs-OL-syt">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="C3B-nJ-f6g" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Category" id="Ttt-cJ-Bww"/>
+                    <tabBarItem key="tabBarItem" title="" image="trending" id="Ttt-cJ-Bww"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="yMJ-II-OEt">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -614,11 +618,11 @@
             </objects>
             <point key="canvasLocation" x="1854" y="2228"/>
         </scene>
-        <!--Settings-->
+        <!--Navigation Controller-->
         <scene sceneID="vGg-qB-iJJ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pHn-Lj-cxm" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" id="Mhb-So-F6f"/>
+                    <tabBarItem key="tabBarItem" title="" image="settings" id="Mhb-So-F6f"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Hz2-l8-KLh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -633,11 +637,143 @@
             </objects>
             <point key="canvasLocation" x="853" y="2228"/>
         </scene>
+        <!--Live Wallpaper-->
+        <scene sceneID="l3z-RJ-H7R">
+            <objects>
+                <viewController storyboardIdentifier="LiveWallpaperVC" id="Cev-WR-gZz" customClass="LiveWallpaperVC" customModule="_kWallpaper" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yT4-Nf-vAG">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="8f9-zj-W70">
+                                <rect key="frame" x="0.0" y="44" width="320" height="475"/>
+                                <subviews>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zUS-wY-EKx">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="435"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="r8U-hS-vDR">
+                                            <size key="itemSize" width="128" height="128"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="Cev-WR-gZz" id="VtY-Nj-4vD"/>
+                                            <outlet property="delegate" destination="Cev-WR-gZz" id="QxK-9Z-rjE"/>
+                                        </connections>
+                                    </collectionView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K9M-nY-NNV">
+                                        <rect key="frame" x="0.0" y="435" width="320" height="40"/>
+                                        <subviews>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="gNL-pX-uy4">
+                                                <rect key="frame" x="150" y="10" width="20" height="20"/>
+                                                <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </activityIndicatorView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="gNL-pX-uy4" firstAttribute="centerX" secondItem="K9M-nY-NNV" secondAttribute="centerX" id="9oZ-df-G0U"/>
+                                            <constraint firstItem="gNL-pX-uy4" firstAttribute="centerY" secondItem="K9M-nY-NNV" secondAttribute="centerY" id="YDY-gh-Fdn"/>
+                                            <constraint firstAttribute="height" constant="40" id="szf-pc-mcT"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="8f9-zj-W70" firstAttribute="bottom" secondItem="YmM-8K-9P2" secondAttribute="bottom" id="8Gc-HW-kKz"/>
+                            <constraint firstItem="8f9-zj-W70" firstAttribute="trailing" secondItem="YmM-8K-9P2" secondAttribute="trailing" id="JOC-iR-zuu"/>
+                            <constraint firstItem="8f9-zj-W70" firstAttribute="leading" secondItem="YmM-8K-9P2" secondAttribute="leading" id="N3v-ZB-rby"/>
+                            <constraint firstItem="8f9-zj-W70" firstAttribute="top" secondItem="YmM-8K-9P2" secondAttribute="top" id="QeU-Hy-l5y"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="YmM-8K-9P2"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Live Wallpaper" id="Ni9-aq-Z4e"/>
+                    <connections>
+                        <outlet property="collectionWallPapers" destination="zUS-wY-EKx" id="6TK-lO-t56"/>
+                        <outlet property="indicator" destination="gNL-pX-uy4" id="sXQ-wa-I3W"/>
+                        <outlet property="viewIndicator" destination="K9M-nY-NNV" id="dOV-iR-KD0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="weH-Rz-f2g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1853" y="806"/>
+        </scene>
+        <!--Similar CatVC-->
+        <scene sceneID="Zxc-Um-2Gu">
+            <objects>
+                <viewController storyboardIdentifier="SimilarCatVC" id="0Wh-ut-bPP" customClass="SimilarCatVC" customModule="_kWallpaper" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aNs-eY-1vj">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bzn-EO-Ptj">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <subviews>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="51c-jW-zDQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="528"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Aep-tL-tqf">
+                                            <size key="itemSize" width="128" height="128"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="0Wh-ut-bPP" id="xnZ-4C-dtX"/>
+                                            <outlet property="delegate" destination="0Wh-ut-bPP" id="zL5-yM-dDS"/>
+                                        </connections>
+                                    </collectionView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I2T-1p-Dw9">
+                                        <rect key="frame" x="0.0" y="528" width="320" height="40"/>
+                                        <subviews>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Vgx-X2-EwQ">
+                                                <rect key="frame" x="150" y="10" width="20" height="20"/>
+                                                <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </activityIndicatorView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="B1o-Co-6zQ"/>
+                                            <constraint firstItem="Vgx-X2-EwQ" firstAttribute="centerX" secondItem="I2T-1p-Dw9" secondAttribute="centerX" id="gnk-PU-7LM"/>
+                                            <constraint firstItem="Vgx-X2-EwQ" firstAttribute="centerY" secondItem="I2T-1p-Dw9" secondAttribute="centerY" id="kHv-cg-qMz"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="bzn-EO-Ptj" firstAttribute="trailing" secondItem="qMR-Ye-nBU" secondAttribute="trailing" id="213-Tt-WFL"/>
+                            <constraint firstItem="bzn-EO-Ptj" firstAttribute="leading" secondItem="qMR-Ye-nBU" secondAttribute="leading" id="6lu-k9-VcA"/>
+                            <constraint firstItem="bzn-EO-Ptj" firstAttribute="top" secondItem="qMR-Ye-nBU" secondAttribute="top" id="IT9-0r-24j"/>
+                            <constraint firstItem="bzn-EO-Ptj" firstAttribute="bottom" secondItem="qMR-Ye-nBU" secondAttribute="bottom" id="PK5-vf-Q1f"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="qMR-Ye-nBU"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="cYT-iY-dji"/>
+                    <connections>
+                        <outlet property="collectionWallPapers" destination="51c-jW-zDQ" id="8y7-Xe-LXs"/>
+                        <outlet property="indicator" destination="Vgx-X2-EwQ" id="qUf-O4-GmR"/>
+                        <outlet property="viewIndicator" destination="I2T-1p-Dw9" id="Swr-CM-rNT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ziy-kX-V99" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2691" y="806"/>
+        </scene>
     </scenes>
     <resources>
         <image name="heart" width="50" height="50"/>
+        <image name="home" width="30" height="30"/>
         <image name="photo" width="20" height="20"/>
         <image name="placeholder" width="600" height="640"/>
         <image name="report" width="25" height="25"/>
+        <image name="settings" width="30" height="30"/>
+        <image name="trending" width="30" height="30"/>
+        <image name="video" width="30" height="30"/>
     </resources>
 </document>

@@ -19,6 +19,8 @@ struct Parameters {
     static let app_version = "app_version"
     static let user_id = "user_id"
     static let page = "page"
+    static let used_ids = "used_ids"
+    static let category = "category"
 }
 
 struct EndPoints {
@@ -206,6 +208,39 @@ extension Webservices{
             if let uid = user.userId{
                 userId = uid
                 UserDefaults.standard.set(uid, forKey: DefaultKeys.userId)
+            }
+            
+        }) { (failer) in
+            if let vc = AppUtilities.shared().getMainWindow()?.rootViewController{
+                AppUtilities.shared().showAlert(with: failer, viewController: vc)
+            }
+            
+        }
+    }
+    
+    open func serviceForAppConfig(){
+        let params:[String:Any] = [:]
+        self.request(with: params, method: .post, endPoint: EndPoints.appList, type: AppConfig.self, loader: false, success: { (success) in
+            guard let response = success as? AppConfig else {return}
+            if let status = response.status, status == 1, let data = response.appList{
+                
+                //Force Update
+                if let forceUpdate = data.forceUpdate, forceUpdate == "1"{
+                    guard let window = AppUtilities.shared().getMainWindow(), let controller = window.rootViewController else {
+                        return
+                    }
+                    AppUtilities.shared().showAlert(with: "Please update your application to get better experience and new features", viewController: controller){(action) in
+                        
+                        if let url = URL(string: appStoreLink), UIApplication.shared.canOpenURL(url){
+                            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                        }
+                    }
+                }
+                
+                //Interstital Condition
+                if let addFrequeny = data.adFreqCount, let count = Int(addFrequeny){
+                    kAddFrequency = count
+                }
             }
             
         }) { (failer) in

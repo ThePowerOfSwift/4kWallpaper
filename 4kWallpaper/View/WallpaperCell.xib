@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,13 +23,18 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VBb-4D-yoi">
                                 <rect key="frame" x="0.0" y="0.0" width="212" height="237"/>
                             </imageView>
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Live" translatesAutoresizingMaskIntoConstraints="NO" id="CyG-Dc-SuK">
+                                <rect key="frame" x="10" y="10" width="30" height="30"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="VBb-4D-yoi" secondAttribute="bottom" id="3fG-LB-urj"/>
+                            <constraint firstItem="CyG-Dc-SuK" firstAttribute="top" secondItem="NiA-dm-MrR" secondAttribute="top" constant="10" id="ABX-Ui-vwD"/>
                             <constraint firstAttribute="trailing" secondItem="VBb-4D-yoi" secondAttribute="trailing" id="ALe-Se-LNT"/>
                             <constraint firstItem="VBb-4D-yoi" firstAttribute="top" secondItem="NiA-dm-MrR" secondAttribute="top" id="een-8m-VsW"/>
                             <constraint firstItem="VBb-4D-yoi" firstAttribute="leading" secondItem="NiA-dm-MrR" secondAttribute="leading" id="en4-MA-RzF"/>
+                            <constraint firstItem="CyG-Dc-SuK" firstAttribute="leading" secondItem="NiA-dm-MrR" secondAttribute="leading" constant="10" id="uMb-Ov-vxP"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -43,10 +48,14 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="216" height="247"/>
             <connections>
+                <outlet property="imgLive" destination="CyG-Dc-SuK" id="C6p-Hf-Pxv"/>
                 <outlet property="imgWallPaper" destination="VBb-4D-yoi" id="5m0-6w-J9E"/>
                 <outlet property="viewBg" destination="NiA-dm-MrR" id="afW-II-7F5"/>
             </connections>
             <point key="canvasLocation" x="252.17391304347828" y="219.30803571428569"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="Live" width="30" height="30"/>
+    </resources>
 </document>

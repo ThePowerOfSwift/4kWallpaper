@@ -8,7 +8,7 @@
 
 import UIKit
 import KingfisherWebP
-import FBAudienceNetwork
+//import FBAudienceNetwork
 
 class TrendingVC: UIViewController {
     @IBOutlet weak var collectionWallPapers:UICollectionView!
@@ -19,22 +19,10 @@ class TrendingVC: UIViewController {
     var currentPage = 1
     var loadMore = true
     var refreshController = UIRefreshControl()
-    var interstitialAd = FBInterstitialAd()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let nib = UINib(nibName: CellIdentifier.wallpaper, bundle: nil)
-        collectionWallPapers.register(nib, forCellWithReuseIdentifier: CellIdentifier.wallpaper)
-        serviceForTrendingList()
-        refreshController.attributedTitle = NSAttributedString(string: "Pull to refresh", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
-        refreshController.addTarget(self, action: #selector(didRefreshCollection(_:)), for: .valueChanged)
-        refreshController.tintColor = .white
-        
-        self.collectionWallPapers.refreshControl = refreshController
-        
-//        interstitialAd = FBInterstitialAd(placementID: "840781913082757_840787429748872")
-//        interstitialAd.delegate = self
-//        interstitialAd.load()
+        setupData()
         // Do any additional setup after loading the view.
     }
     
@@ -44,8 +32,34 @@ class TrendingVC: UIViewController {
 
 //MARK: - CUSTOM METHODS
 extension TrendingVC{
+    fileprivate func setupData(){
+        //Collection Methods
+        self.collectionWallPapers.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "Header")
+        self.collectionWallPapers.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "Footer")
+        let nib = UINib(nibName: CellIdentifier.wallpaper, bundle: nil)
+        collectionWallPapers.register(nib, forCellWithReuseIdentifier: CellIdentifier.wallpaper)
+        
+        //API call
+        serviceForTrendingList()
+        
+        //Refresh Controlls
+        refreshController.attributedTitle = NSAttributedString(string: "Pull To Refresh.", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
+        refreshController.addTarget(self, action: #selector(didRefreshCollection(_:)), for: .valueChanged)
+        refreshController.tintColor = .white
+        self.collectionWallPapers.refreshControl = refreshController
+        
+        //Observers
+        NotificationCenter.default.addObserver(self, selector: #selector(updatedAds), name: Notification.Name(rawValue: NotificationKeys.updatedAds), object: nil)
+    }
+    
+    
+    @objc fileprivate func updatedAds(){
+        self.collectionWallPapers.reloadData()
+    }
+    
     @objc fileprivate func didRefreshCollection(_ sender:UIRefreshControl){
         currentPage = 1
+        refreshController.attributedTitle = NSAttributedString(string: "Refreshing...", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
         serviceForTrendingList()
     }
     
@@ -53,7 +67,7 @@ extension TrendingVC{
         if type == "wallpaper"{
             return ImageBase.wpsmallWebP
         }
-        else if type == "live_wallpaper"{
+        else if type == PostType.live.rawValue{
             return ImageBase.liveWebp
         }
         return ImageBase.categoryWebp
@@ -62,18 +76,24 @@ extension TrendingVC{
 
 //MARK: - COLLECTION DELEGATES
 extension TrendingVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return arrTrendings.count%kAdsDifference == 0 ? arrTrendings.count/kAdsDifference : (arrTrendings.count/kAdsDifference + 1)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return arrTrendings.count
+        let total = arrTrendings.count - kAdsDifference*section
+        return total > kAdsDifference ? kAdsDifference : total
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellIdentifier.wallpaper, for: indexPath) as! WallpaperCell
-        let obj = arrTrendings[indexPath.row]
+        let index = indexPath.section*kAdsDifference
+        let obj = arrTrendings[index + indexPath.row]
         
-        if let strUrl = obj.type == "live_wallpaper" ? obj.liveWebP : obj.smallWebp, let url = URL(string: strUrl){
+        if let strUrl = obj.type == PostType.live.rawValue ? obj.liveWebP : obj.smallWebp, let url = URL(string: strUrl){
             cell.imgWallPaper.kf.setImage(with: url, placeholder: #imageLiteral(resourceName: "placeholder"))
         }
-        
+        cell.imgLive.isHidden = obj.type != PostType.live.rawValue
         return cell
     }
     
@@ -83,9 +103,65 @@ extension TrendingVC:UICollectionViewDelegate,UICollectionViewDataSource,UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        kActivity += 1
+        let index = indexPath.section*kAdsDifference
+        let obj = arrTrendings[index + indexPath.row]
         let vc = PreviewVC.controller()
-        vc.post = arrTrendings[indexPath.item]
+        vc.post = obj
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize.zero
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.frame.size.width, height: 200)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Header", for: indexPath)
+            return header
+            
+        case UICollectionView.elementKindSectionFooter:
+            let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Footer", for: indexPath)
+            
+            footerView.clipsToBounds = true
+            if AppDelegate.shared.adsArr.count > indexPath.section
+            {
+                let add = AppDelegate.shared.adsArr[indexPath.section]
+                footerView.addSubview(add)
+                add.clipsToBounds = true
+                add.translatesAutoresizingMaskIntoConstraints = false
+                NSLayoutConstraint.activate([
+                    add.leadingAnchor.constraint(equalTo: footerView.leadingAnchor, constant: 0),
+                    add.trailingAnchor.constraint(equalTo: footerView.trailingAnchor, constant: 0),
+                    add.topAnchor.constraint(equalTo: footerView.topAnchor, constant: 10),
+                    add.bottomAnchor.constraint(equalTo: footerView.bottomAnchor, constant: -10)
+                ])
+            }
+            return footerView
+            
+        default:
+            let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Footer", for: indexPath)
+            
+            footerView.clipsToBounds = true
+            if AppDelegate.shared.adsArr.count > indexPath.section
+            {
+                let add = AppDelegate.shared.adsArr[indexPath.section]
+                footerView.addSubview(add)
+                add.clipsToBounds = true
+                add.translatesAutoresizingMaskIntoConstraints = false
+                NSLayoutConstraint.activate([
+                    add.leadingAnchor.constraint(equalTo: footerView.leadingAnchor, constant: 0),
+                    add.trailingAnchor.constraint(equalTo: footerView.trailingAnchor, constant: 0),
+                    add.topAnchor.constraint(equalTo: footerView.topAnchor, constant: 10),
+                    add.bottomAnchor.constraint(equalTo: footerView.bottomAnchor, constant: -10)
+                ])
+            }
+            return footerView
+        }
     }
     
     
@@ -105,6 +181,7 @@ extension TrendingVC{
         }
         Webservices().request(with: params, method: .post, endPoint: EndPoints.trending, type: Trending.self, loader: false, success: {[weak self] (success) in
             self?.refreshController.endRefreshing()
+            self?.refreshController.attributedTitle = NSAttributedString(string: "Pull To Refresh.", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
             UIView.animate(withDuration: 0.2) {
                 self?.viewIndicator.isHidden = true
                 self?.indicator.stopAnimating()
@@ -117,9 +194,10 @@ extension TrendingVC{
                 if trendings.count != 0{
                     self?.loadMore = true
                 }
-                
                 self?.arrTrendings.append(contentsOf: trendings)
+                AppDelegate.shared.totalData = self?.arrTrendings.count ?? 0
                 self?.collectionWallPapers.reloadData()
+                
             }
             
         }) {[weak self] (failer) in
@@ -145,33 +223,3 @@ extension TrendingVC{
         }
     }
 }
-
-////MARK: - INTERSTITAL DELEGATES
-//extension TrendingVC:FBInterstitialAdDelegate{
-//    func interstitialAdDidLoad(_ interstitialAd: FBInterstitialAd) {
-//        if interstitialAd.isAdValid{
-//            interstitialAd.show(fromRootViewController: self)
-//        }
-//    }
-//
-//    func interstitialAdWillLogImpression(_ interstitialAd: FBInterstitialAd) {
-//        print("interstitialAdWillLogImpression")
-//    }
-//
-//    func interstitialAd(_ interstitialAd: FBInterstitialAd, didFailWithError error: Error) {
-//        print("didFailWithError : \(error)")
-//    }
-//
-//    func interstitialAdDidClick(_ interstitialAd: FBInterstitialAd) {
-//        print("interstitialAdWillLogImpression")
-//    }
-//
-//    func interstitialAdDidClose(_ interstitialAd: FBInterstitialAd) {
-//        print("interstitialAdDidClose")
-//        interstitialAd.load()
-//    }
-//
-//    func interstitialAdWillClose(_ interstitialAd: FBInterstitialAd) {
-//        print("interstitialAdWillClose")
-//    }
-//}

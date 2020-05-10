@@ -11,6 +11,7 @@ import UIKit
 class WallpaperCell: UICollectionViewCell {
     @IBOutlet weak var imgWallPaper:UIImageView!
     @IBOutlet weak var viewBg:UIView!
+    @IBOutlet weak var imgLive:UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()

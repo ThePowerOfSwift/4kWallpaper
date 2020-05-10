@@ -9,12 +9,40 @@
 import Foundation
 
 var fcmToken = ""
+
+/**Interstitial Ads Id**/
+enum InterstitalIds:String{
+    case live = "ca-app-pub-1625565704226796/8146281541"
+    case test = "ca-app-pub-3940256099942544/4411468910"
+}
+
+/**Interstitial Ads Id**/
+enum NativeAdsId:String {
+    case live = "ca-app-pub-1625565704226796/9098123339"
+    case test = "ca-app-pub-3940256099942544/3986624511"
+}
+
+let googleAdmobAppId = "ca-app-pub-1625565704226796~7216343259"
+let interstitialAddUnitId = InterstitalIds.test.rawValue
+let nativeAdUnitId = NativeAdsId.test.rawValue
+
 let modelNumber = UIDevice().type
 let deviceId = UIDevice.current.identifierForVendor?.uuidString ?? ""
 let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
 let osVersion = UIDevice.current.systemVersion
 var userId = 0
-
+var kAddFrequency = 1
+var kActivity = 0{
+    didSet{
+        if kActivity >= kAddFrequency{
+            kActivity = 0
+            AppDelegate.shared.showInterstitial()
+        }
+    }
+}
+var kAdsDifference = 12
+var appStoreId = "284882215"
+let appStoreLink = "https://apps.apple.com/in/app/facebook/id\(appStoreId)"
 
 struct ImageBase {
     static let wpSmall =        "https://cdn.4kwallpaper.online/small/"
@@ -30,6 +58,11 @@ struct ImageBase {
     static let categoryWebp =   "https://cdn.4kwallpaper.online/category_webp/"
 }
 
+enum PostType:String {
+    case live = "live_wallpaper"
+    case wallpaper = "wallpaper"
+}
+
 struct CellIdentifier {
     static let dashWallpaperView = "DashboardCollectionView"
     static let dashCategory = "DashboardCategoryCell"
@@ -37,11 +70,15 @@ struct CellIdentifier {
     static let bannerCell = "BannerCell"
 }
 
+struct NotificationKeys {
+    static let updatedAds = "UpdatedAds"
+}
 
 struct ControllerIds {
     static let wallPaperGrid = "WallPaperGridVC"
     static let previewVC = "PreviewVC"
     static let loadingView = "LoadingView"
+    static let similarCategory = "SimilarCatVC"
 }
 
 struct StoryboardIds {

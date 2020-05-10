@@ -28,6 +28,7 @@ class PreviewVC: UIViewController {
     var player: AVPlayer?
     
     var post:Post?
+    var type:String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +54,9 @@ extension PreviewVC{
         btnCategory.setRounded()
         viewCategory.layer.cornerRadius = 5.0
         viewReport.layer.cornerRadius = 5.0
+        if let type = post?.type{
+            self.type = type
+        }
     }
     
     @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
@@ -71,7 +75,7 @@ extension PreviewVC{
     fileprivate func setupData(){
         if let wallpaper = post{
             lblCategory.text = wallpaper.category
-            if wallpaper.type == "live_wallpaper"{
+            if self.type == PostType.live.rawValue{
                 if let strImg = wallpaper.liveImg, let live = wallpaper.liveVideo, let imgUrl = URL(string: strImg), let vidURL = URL(string: live){
 
                     self.loadVideoWithVideoURL(vidURL)
@@ -81,7 +85,7 @@ extension PreviewVC{
                 
             }
             AppUtilities.shared().addLoaderView(view: self.view)
-            if let strUrl = wallpaper.thumbWebp, let url = URL(string: strUrl){
+            if let strUrl = wallpaper.thumb, let url = URL(string: strUrl){
                 KingfisherManager.shared.retrieveImage(with: url, progressBlock: { (downloaded, outOf) in
                     AppUtilities.shared().setLoaderProgress(view: self.view, downloaded: Double(downloaded), total: Double(outOf))
                 }, downloadTaskUpdated: nil) { (result) in
@@ -192,12 +196,47 @@ extension PreviewVC{
         })
     }
     
+    
+}
+
+//MARK: - ACTION METHODS
+extension PreviewVC{
+    @IBAction func btnMorePressed(_ sender:UIButton){
+        sender.isSelected = !sender.isSelected
+        UIView.animate(withDuration: 0.2) {
+            for view in self.stackMore.arrangedSubviews{
+                if view.tag == 2{
+                    view.isHidden = !sender.isSelected
+                }
+            }
+        }
+        
+        UIView.animate(withDuration: 0.2) {
+            sender.transform = sender.isSelected ? CGAffineTransform(rotationAngle: 45.0) : .identity
+        }
+    }
+    
+    @IBAction func btnFavourite(_ sender:UIButton){
+        
+    }
+    
+    @IBAction func btnReport(_ sender:UIButton){
+        
+    }
+    
+    @IBAction func btnCategory(_ sender:UIButton){
+        let vc = SimilarCatVC.controller()
+        vc.category = post?.category ?? ""
+        vc.postType = PostType(rawValue: type) ?? .wallpaper
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     @IBAction func btnDownload(_ sender:UIButton){
-        if post?.type == "live_wallpaper"{
+        if self.type == PostType.live.rawValue{
             self.exportLivePhoto()
             return
         }
-        let controller = UIAlertController(title: "Quality of image", message: nil, preferredStyle: .actionSheet)
+        let controller = UIAlertController(title: "Select quality of image to download", message: nil, preferredStyle: .actionSheet)
         controller.addAction(UIAlertAction(title: "HD", style: .default, handler: { (hd) in
             if let wallpaper = self.post{
                 AppUtilities.shared().addLoaderView(view: self.view)
@@ -242,21 +281,6 @@ extension PreviewVC{
         }))
         controller.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(controller, animated: true, completion: nil)
-    }
-}
-
-//MARK: - ACTION METHODS
-extension PreviewVC{
-    @IBAction func btnMorePressed(_ sender:UIButton){
-        sender.isSelected = !sender.isSelected
-        for view in stackMore.arrangedSubviews{
-            if view.tag == 2{
-                view.isHidden = !sender.isSelected
-            }
-        }
-        UIView.animate(withDuration: 0.2) {
-            sender.transform = sender.isSelected ? CGAffineTransform(rotationAngle: 45.0) : .identity
-        }
     }
 }
 
