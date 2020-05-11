@@ -16,7 +16,7 @@ protocol CategoryHeaderDelegate:AnyObject {
 
 class CategoryHeader: UICollectionReusableView {
     @IBOutlet weak var btnLiveViewAll:UIButton!
-    @IBOutlet weak var btnWallViewAll:UIButton!
+//    @IBOutlet weak var btnWallViewAll:UIButton!
     @IBOutlet weak var collectionBanner:UICollectionView!
     
     var timer = Timer()
@@ -43,9 +43,9 @@ class CategoryHeader: UICollectionReusableView {
         super.awakeFromNib()
         self.layoutIfNeeded()
         btnLiveViewAll.setRounded()
-        btnWallViewAll.setRounded()
+//        btnWallViewAll.setRounded()
         btnLiveViewAll.setBorder(with: .white, width: 1.0)
-        btnWallViewAll.setBorder(with: .white, width: 1.0)
+//        btnWallViewAll.setBorder(with: .white, width: 1.0)
         
         collectionBanner.register(UINib(nibName: CellIdentifier.bannerCell, bundle: nil), forCellWithReuseIdentifier: CellIdentifier.bannerCell)
         // Initialization code
