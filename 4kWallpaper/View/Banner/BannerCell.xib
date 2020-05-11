@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,15 +20,15 @@
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yYu-1x-ZBm">
                         <rect key="frame" x="5" y="5" width="341" height="160"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1Pn-eE-gom">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1Pn-eE-gom">
                                 <rect key="frame" x="0.0" y="0.0" width="341" height="160"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2GR-Ve-ovs">
                                 <rect key="frame" x="0.0" y="0.0" width="341" height="160"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="Lxs-sw-wg3">
-                                <rect key="frame" x="220" y="41.5" width="106" height="77"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Lxs-sw-wg3">
+                                <rect key="frame" x="220" y="46.5" width="106" height="67"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Space" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kU2-Nv-g6q">
                                         <rect key="frame" x="0.0" y="0.0" width="106" height="24"/>
@@ -37,11 +37,14 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z6o-Lq-IJn">
-                                        <rect key="frame" x="0.0" y="49" width="106" height="28"/>
+                                        <rect key="frame" x="0.0" y="39" width="106" height="28"/>
                                         <inset key="contentEdgeInsets" minX="10" minY="5" maxX="10" maxY="5"/>
                                         <state key="normal" title="Explore Now">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="btnExplore:" destination="gTV-IL-0wX" eventType="touchUpInside" id="YgL-zU-KFq"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -72,8 +75,10 @@
             <size key="customSize" width="351" height="170"/>
             <connections>
                 <outlet property="btnExplore" destination="z6o-Lq-IJn" id="z9M-zK-UOz"/>
+                <outlet property="imgBanner" destination="1Pn-eE-gom" id="jQh-u7-4QW"/>
                 <outlet property="lblName" destination="kU2-Nv-g6q" id="Eex-pX-M2T"/>
                 <outlet property="viewBg" destination="yYu-1x-ZBm" id="wjb-pj-8Oa"/>
+                <outlet property="viewShadow" destination="2GR-Ve-ovs" id="vlK-Dp-gvH"/>
             </connections>
             <point key="canvasLocation" x="350" y="175.44642857142856"/>
         </collectionViewCell>

@@ -81,7 +81,7 @@ extension PreviewVC{
             btnFavourite.tintColor = wallpaper.isFav == "1" ? .red : .black
             btnFavourite.isSelected = wallpaper.isFav == "1"
             if self.type == PostType.live.rawValue{
-                if let strImg = wallpaper.liveImg, let live = wallpaper.liveVideo, let imgUrl = URL(string: strImg), let vidURL = URL(string: live){
+                if let strImg = wallpaper.liveWebP, let live = wallpaper.liveVideo, let imgUrl = URL(string: strImg), let vidURL = URL(string: live){
 
                     self.loadVideoWithVideoURL(vidURL)
                     self.imgWallpaper.kf.setImage(with: imgUrl)
@@ -90,18 +90,24 @@ extension PreviewVC{
                 
             }
             AppUtilities.shared().addLoaderView(view: self.view)
-            if let strUrl = wallpaper.thumb, let url = URL(string: strUrl){
-                KingfisherManager.shared.retrieveImage(with: url, progressBlock: { (downloaded, outOf) in
-                    AppUtilities.shared().setLoaderProgress(view: self.view, downloaded: Double(downloaded), total: Double(outOf))
-                }, downloadTaskUpdated: nil) { (result) in
-                    AppUtilities.shared().removeLoaderView(view: self.view)
-                    switch result {
-                    case .success(let value):
-                        print("Image: \(value.image). Got from: \(value.cacheType)")
-                        self.imgWallpaper.image = value.image
-                    case .failure(let error):
-                        print("Error: \(error)")
-                    }
+            var wallURL:URL!
+            if let strUrl = wallpaper.thumbWebp, let url = URL(string: strUrl){
+                wallURL = url
+            }
+            else if let strUrl = wallpaper.webpThumb, let url = URL(string: strUrl){
+                wallURL = url
+            }
+            
+            KingfisherManager.shared.retrieveImage(with: wallURL, progressBlock: { (downloaded, outOf) in
+                AppUtilities.shared().setLoaderProgress(view: self.view, downloaded: Double(downloaded), total: Double(outOf))
+            }, downloadTaskUpdated: nil) { (result) in
+                AppUtilities.shared().removeLoaderView(view: self.view)
+                switch result {
+                case .success(let value):
+                    print("Image: \(value.image). Got from: \(value.cacheType)")
+                    self.imgWallpaper.image = value.image
+                case .failure(let error):
+                    print("Error: \(error)")
                 }
             }
             

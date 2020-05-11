@@ -89,7 +89,7 @@ extension LiveWallpaperVC:UICollectionViewDelegate,UICollectionViewDataSource,UI
         let index = indexPath.section*kAdsDifference
         let obj = arrWallPapers[index + indexPath.row]
         
-        if let strUrl = obj.liveImg, let url = URL(string: strUrl){
+        if let strUrl = obj.liveWebP, let url = URL(string: strUrl){
             cell.imgWallPaper.kf.setImage(with: url, placeholder: #imageLiteral(resourceName: "placeholder"))
         }
         

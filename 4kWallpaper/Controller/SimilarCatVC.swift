@@ -84,7 +84,7 @@ extension SimilarCatVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
         let index = indexPath.section*kAdsDifference
         let obj = arrTrendings[index + indexPath.row]
         
-        if let strUrl = postType == .live ? obj.liveImg : obj.small, let url = URL(string: strUrl){
+        if let strUrl = postType == .live ? obj.liveWebP : obj.smallWebp, let url = URL(string: strUrl){
             cell.imgWallPaper.kf.setImage(with: url, placeholder: #imageLiteral(resourceName: "placeholder"))
         }
         return cell
@@ -176,6 +176,8 @@ extension SimilarCatVC{
             self.indicator.startAnimating()
         }
         Webservices().request(with: params, method: .post, endPoint: postType == .live ? EndPoints.live : EndPoints.postList, type: Trending.self, loader: false, success: {[weak self] (success) in
+            AppUtilities.shared().removeNoDataLabelFrom(view: self?.view ?? UIView())
+            
             self?.refreshController.endRefreshing()
             self?.refreshController.attributedTitle = NSAttributedString(string: "Pull To Refresh.", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
             UIView.animate(withDuration: 0.2) {
@@ -191,6 +193,9 @@ extension SimilarCatVC{
                     self?.loadMore = true
                 }
                 self?.arrTrendings.append(contentsOf: trendings)
+                if self?.arrTrendings.count == 0{
+                    AppUtilities.shared().showNoDataLabelwith(message: "No data available for \(self?.category ?? "") category", in: self?.view ?? UIView())
+                }
                 AppDelegate.shared.totalData = self?.arrTrendings.count ?? 0
                 self?.collectionWallPapers.reloadData()
                 

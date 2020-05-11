@@ -10,10 +10,18 @@ import UIKit
 
 class CatCell: UICollectionViewCell {
     @IBOutlet weak var imgWallpaper:UIImageView!
+    @IBOutlet weak var viewBg:UIView!
+    @IBOutlet weak var viewGradient:UIView!
+    @IBOutlet weak var lblName:UILabel!
     
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        viewBg.layer.cornerRadius = 5.0
+        viewBg.layer.masksToBounds = true
+        
+        
         // Initialization code
     }
 

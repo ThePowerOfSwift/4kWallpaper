@@ -255,6 +255,25 @@ extension UIView
     func updateShadowPath(){
         layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.layer.cornerRadius).cgPath
     }
+    
+    func applyGradient(location:[NSNumber]?, startPoint:CGPoint, endPoint:CGPoint, colors:[CGColor]){
+        self.layer.sublayers?.forEach({
+            if $0.name == "Gradient"{
+                $0.removeFromSuperlayer()
+            }
+        })
+        
+        let gradient: CAGradientLayer = CAGradientLayer()
+
+        gradient.colors = colors
+        gradient.locations = location
+        gradient.startPoint = startPoint
+        gradient.endPoint = endPoint
+        gradient.name = "Gradient"
+        gradient.frame = CGRect(x: 0.0, y: 0.0, width: self.frame.size.width, height: self.frame.size.height)
+
+        self.layer.insertSublayer(gradient, at: 0)
+    }
 }
 
 //MARK: - DATE

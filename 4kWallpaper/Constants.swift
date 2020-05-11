@@ -70,6 +70,9 @@ struct CellIdentifier {
     static let dashCategory = "DashboardCategoryCell"
     static let wallpaper = "WallpaperCell"
     static let bannerCell = "BannerCell"
+    static let categoryHeader = "CategoryHeader"
+    static let categoryCell = "CatCell"
+    
 }
 
 struct NotificationKeys {
