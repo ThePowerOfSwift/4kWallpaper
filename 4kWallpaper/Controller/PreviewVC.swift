@@ -20,9 +20,11 @@ class PreviewVC: UIViewController {
     @IBOutlet weak var btnMore:UIButton!
     @IBOutlet weak var btnReport:UIButton!
     @IBOutlet weak var btnCategory:UIButton!
+    @IBOutlet weak var btnShare:UIButton!
     @IBOutlet weak var lblReport:UILabel!
     @IBOutlet weak var lblCategory:UILabel!
     @IBOutlet weak var viewCategory:UIView!
+    @IBOutlet weak var viewShare:UIView!
     @IBOutlet weak var viewReport:UIView!
     @IBOutlet weak var stackMore:UIStackView!
     @IBOutlet weak var livePhotos:PHLivePhotoView!
@@ -50,12 +52,14 @@ class PreviewVC: UIViewController {
 extension PreviewVC{
     fileprivate func setupView(){
         self.title = post?.category ?? ""
-        btnDownload.setRounded()
+        
         btnMore.setRounded()
+        btnReport.setRounded()
         btnCategory.setRounded()
-        btnFavourite.setRounded()
+        btnShare.setRounded()
         viewCategory.layer.cornerRadius = 5.0
         viewReport.layer.cornerRadius = 5.0
+        viewShare.layer.cornerRadius = 5.0
         if let type = post?.type{
             self.type = type
         }
@@ -78,7 +82,7 @@ extension PreviewVC{
     fileprivate func setupData(){
         if let wallpaper = post{
             lblCategory.text = wallpaper.category
-            btnFavourite.tintColor = wallpaper.isFav == "1" ? .red : .black
+//            btnFavourite.tintColor = wallpaper.isFav == "1" ? .red : .black
             btnFavourite.isSelected = wallpaper.isFav == "1"
             if self.type == PostType.live.rawValue{
                 if let strImg = wallpaper.liveWebP, let live = wallpaper.liveVideo, let imgUrl = URL(string: strImg), let vidURL = URL(string: live){
@@ -227,9 +231,24 @@ extension PreviewVC{
         }
     }
     
+    @IBAction func btnShare(_ sender:UIButton){
+        let image = imgWallpaper.image
+
+        // set up activity view controller
+        let imageToShare = [ image! ]
+        let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+
+        // exclude some activity types from the list (optional)
+//        activityViewController.excludedActivityTypes = [ UIActivityType.airDrop, UIActivityType.postToFacebook ]
+
+        // present the view controller
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+    
     @IBAction func btnFavourite(_ sender:UIButton){
         sender.isSelected = !sender.isSelected
-        sender.tintColor = sender.isSelected ? .red : .black
+//        sender.tintColor = sender.isSelected ? .red : .black
         if type == PostType.live.rawValue{
             if sender.isSelected{
                 serviceForAddAll(key: Parameters.live_w_like)

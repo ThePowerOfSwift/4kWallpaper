@@ -19,6 +19,14 @@ class CategoryVC: UIViewController {
         setupView()
         // Do any additional setup after loading the view.
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
 }
 
 //MARK: - CUSTOM METHODS
@@ -62,6 +70,7 @@ extension CategoryVC:UICollectionViewDelegate, UICollectionViewDataSource,UIColl
         if let str = wallpaper.webp, let url = URL(string:str){
             cell.imgWallpaper.kf.setImage(with: url)
         }
+        cell.lblName.font = UIFont.boldSystemFont(ofSize: 22)
         DispatchQueue.main.async {
             cell.layoutIfNeeded()
             cell.viewGradient.applyGradient(location: [0.0, 1.0], startPoint: CGPoint(x: 0.0, y: 0.4), endPoint: CGPoint(x: 0.0, y: 1.0), colors: [UIColor.clear.cgColor, UIColor.black.cgColor])
@@ -84,7 +93,7 @@ extension CategoryVC:UICollectionViewDelegate, UICollectionViewDataSource,UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.bounds.size.width, height: 300)
+        return CGSize(width: collectionView.bounds.size.width, height: 270)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
@@ -138,7 +147,9 @@ extension CategoryVC{
 //MARK: - BANNER DELEGATES
 extension CategoryVC:CategoryHeaderDelegate{
     func viewAllLiveWallpaper() {
-        self.tabBarController?.selectedIndex = 2
+        let vc = AllCategoryVC.controller()
+        vc.arrWallPapers = self.arrBanners
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func viewAllWallpaper() {

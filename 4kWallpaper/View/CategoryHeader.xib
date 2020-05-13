@@ -11,54 +11,41 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CategoryHeader" id="U6b-Vx-4bR" customClass="CategoryHeader" customModule="_kWallpaper" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="270"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="qny-DF-DHf">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="290"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="270"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DrZ-ky-Vmb">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Live Wallpaper" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dlf-fy-5If">
-                                    <rect key="frame" x="10" y="10" width="112" height="20.5"/>
+                                    <rect key="frame" x="15" y="15" width="112" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="Explore all currently live wallpaper categories here" textAlignment="natural" lineBreakMode="tailTruncation" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ABn-H3-MDd">
-                                    <rect key="frame" x="10" y="32.5" width="220" height="17.5"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FOw-eo-cwK">
-                                    <rect key="frame" x="235" y="16" width="75" height="28"/>
-                                    <inset key="contentEdgeInsets" minX="10" minY="5" maxX="10" maxY="5"/>
-                                    <state key="normal" title="View All">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="btnLiveViewAll:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="PWP-bs-t22"/>
-                                    </connections>
-                                </button>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W9O-iA-Hy3">
+                                    <rect key="frame" x="0.0" y="5" width="5" height="40"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="5" id="hsC-Dh-1sQ"/>
+                                    </constraints>
+                                </view>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstItem="FOw-eo-cwK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dlf-fy-5If" secondAttribute="trailing" constant="5" id="4nB-OQ-sVv"/>
-                                <constraint firstAttribute="height" constant="60" id="K8e-AE-rqR"/>
-                                <constraint firstAttribute="bottom" secondItem="ABn-H3-MDd" secondAttribute="bottom" constant="10" id="OFQ-1U-vbb"/>
-                                <constraint firstItem="ABn-H3-MDd" firstAttribute="top" secondItem="dlf-fy-5If" secondAttribute="bottom" constant="2" id="XZn-eO-iTm"/>
-                                <constraint firstItem="dlf-fy-5If" firstAttribute="leading" secondItem="DrZ-ky-Vmb" secondAttribute="leading" constant="10" id="dff-UU-fbO"/>
-                                <constraint firstItem="FOw-eo-cwK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ABn-H3-MDd" secondAttribute="trailing" constant="5" id="jA4-Tp-u9H"/>
-                                <constraint firstItem="FOw-eo-cwK" firstAttribute="centerY" secondItem="DrZ-ky-Vmb" secondAttribute="centerY" id="jvH-n2-PE0"/>
-                                <constraint firstItem="ABn-H3-MDd" firstAttribute="leading" secondItem="dlf-fy-5If" secondAttribute="leading" id="jy5-Uh-mJ3"/>
-                                <constraint firstItem="dlf-fy-5If" firstAttribute="top" secondItem="DrZ-ky-Vmb" secondAttribute="top" constant="10" id="pnY-lk-bHJ"/>
-                                <constraint firstAttribute="trailing" secondItem="FOw-eo-cwK" secondAttribute="trailing" constant="10" id="qov-9F-Q2w"/>
+                                <constraint firstItem="W9O-iA-Hy3" firstAttribute="leading" secondItem="DrZ-ky-Vmb" secondAttribute="leading" id="IgJ-Yf-nhm"/>
+                                <constraint firstAttribute="height" constant="50" id="K8e-AE-rqR"/>
+                                <constraint firstAttribute="bottom" secondItem="W9O-iA-Hy3" secondAttribute="bottom" constant="5" id="SfZ-7a-dYs"/>
+                                <constraint firstItem="dlf-fy-5If" firstAttribute="centerY" secondItem="DrZ-ky-Vmb" secondAttribute="centerY" id="T9y-Eb-f9v"/>
+                                <constraint firstItem="W9O-iA-Hy3" firstAttribute="top" secondItem="DrZ-ky-Vmb" secondAttribute="top" constant="5" id="dlm-cW-1cq"/>
+                                <constraint firstItem="dlf-fy-5If" firstAttribute="leading" secondItem="W9O-iA-Hy3" secondAttribute="trailing" constant="10" id="zQ3-7z-n3a"/>
                             </constraints>
                         </view>
-                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="b4s-Pe-eGJ">
-                            <rect key="frame" x="0.0" y="70" width="320" height="150"/>
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="b4s-Pe-eGJ">
+                            <rect key="frame" x="0.0" y="60" width="320" height="150"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="150" id="ui1-KB-ESJ"/>
@@ -74,30 +61,31 @@
                                 <outlet property="delegate" destination="U6b-Vx-4bR" id="5Jo-nP-3mY"/>
                             </connections>
                         </collectionView>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nuu-Wa-00j">
-                            <rect key="frame" x="0.0" y="230" width="320" height="60"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TO0-y1-5oP">
+                            <rect key="frame" x="0.0" y="220" width="320" height="50"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All Categories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CMh-gO-3ho">
-                                    <rect key="frame" x="10" y="10" width="106.5" height="20.5"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wallpaper" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e6l-un-pDN">
+                                    <rect key="frame" x="15" y="15" width="76.5" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="Explore all wallpaper categories here" textAlignment="natural" lineBreakMode="tailTruncation" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="q4n-bm-eJ0">
-                                    <rect key="frame" x="10" y="32.5" width="208" height="17.5"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qqf-I1-tAB">
+                                    <rect key="frame" x="0.0" y="5" width="5" height="40"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="5" id="X8e-ve-581"/>
+                                    </constraints>
+                                </view>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstItem="CMh-gO-3ho" firstAttribute="top" secondItem="Nuu-Wa-00j" secondAttribute="top" constant="10" id="NvK-ON-idj"/>
-                                <constraint firstItem="q4n-bm-eJ0" firstAttribute="top" secondItem="CMh-gO-3ho" secondAttribute="bottom" constant="2" id="TuE-el-xef"/>
-                                <constraint firstAttribute="bottom" secondItem="q4n-bm-eJ0" secondAttribute="bottom" constant="10" id="VZb-FK-Zhl"/>
-                                <constraint firstAttribute="height" constant="60" id="jc4-9H-NCY"/>
-                                <constraint firstItem="CMh-gO-3ho" firstAttribute="leading" secondItem="Nuu-Wa-00j" secondAttribute="leading" constant="10" id="kVX-7R-zLJ"/>
-                                <constraint firstItem="q4n-bm-eJ0" firstAttribute="leading" secondItem="CMh-gO-3ho" secondAttribute="leading" id="pUN-mg-fAM"/>
+                                <constraint firstItem="qqf-I1-tAB" firstAttribute="leading" secondItem="TO0-y1-5oP" secondAttribute="leading" id="8jL-fe-HNL"/>
+                                <constraint firstAttribute="bottom" secondItem="qqf-I1-tAB" secondAttribute="bottom" constant="5" id="Tom-0c-lOL"/>
+                                <constraint firstAttribute="height" constant="50" id="Xkn-Qz-56v"/>
+                                <constraint firstItem="qqf-I1-tAB" firstAttribute="top" secondItem="TO0-y1-5oP" secondAttribute="top" constant="5" id="Zs5-jP-nm0"/>
+                                <constraint firstItem="e6l-un-pDN" firstAttribute="leading" secondItem="qqf-I1-tAB" secondAttribute="trailing" constant="10" id="tbq-Z0-Q5x"/>
+                                <constraint firstItem="e6l-un-pDN" firstAttribute="centerY" secondItem="TO0-y1-5oP" secondAttribute="centerY" id="tnc-Ru-Qv3"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -112,10 +100,9 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
             <connections>
-                <outlet property="btnLiveViewAll" destination="FOw-eo-cwK" id="vFr-dP-ehJ"/>
                 <outlet property="collectionBanner" destination="b4s-Pe-eGJ" id="6ly-zE-a0J"/>
             </connections>
-            <point key="canvasLocation" x="131.8840579710145" y="180.13392857142856"/>
+            <point key="canvasLocation" x="131.8840579710145" y="170.08928571428569"/>
         </collectionReusableView>
     </objects>
 </document>

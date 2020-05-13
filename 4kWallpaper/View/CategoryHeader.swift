@@ -42,27 +42,12 @@ class CategoryHeader: UICollectionReusableView {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.layoutIfNeeded()
-        btnLiveViewAll.setRounded()
-//        btnWallViewAll.setRounded()
-        btnLiveViewAll.setBorder(with: .white, width: 1.0)
-//        btnWallViewAll.setBorder(with: .white, width: 1.0)
         
-        collectionBanner.register(UINib(nibName: CellIdentifier.bannerCell, bundle: nil), forCellWithReuseIdentifier: CellIdentifier.bannerCell)
+        
+        collectionBanner.register(UINib(nibName: CellIdentifier.categoryCell, bundle: nil), forCellWithReuseIdentifier: CellIdentifier.categoryCell)
         // Initialization code
     }
     
-}
-
-
-//MARK: - ACTION METHODS
-extension CategoryHeader{
-    @IBAction func btnLiveViewAll(_ sender:UIButton){
-        self.delegate?.viewAllLiveWallpaper()
-    }
-    
-    @IBAction func btnWallViewAll(_ sender:UIButton){
-        self.delegate?.viewAllWallpaper()
-    }
 }
 
 //MARK: - COLLECTION DELEGATES
@@ -72,24 +57,27 @@ extension CategoryHeader:UICollectionViewDelegate,UICollectionViewDataSource,UIC
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellIdentifier.bannerCell, for: indexPath) as! BannerCell
-        let wallPaper = arrBanners[indexPath.item]
-        cell.category = wallPaper.name ?? ""
-        cell.delegate = self
-        cell.lblName.text = wallPaper.name
-        if let str = wallPaper.webp, let url = URL(string:str){
-            cell.imgBanner.kf.setImage(with: url)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellIdentifier.categoryCell, for: indexPath) as! CatCell
+        let wallpaper = arrBanners[indexPath.item]
+        cell.lblName.text = wallpaper.name
+        if let str = wallpaper.webp, let url = URL(string:str){
+            cell.imgWallpaper.kf.setImage(with: url)
         }
-        
         DispatchQueue.main.async {
             cell.layoutIfNeeded()
-            cell.viewShadow.applyGradient(location: [0.0, 1.0], startPoint: CGPoint(x: 0.0, y: 0.0), endPoint: CGPoint(x: 1.0, y: 0.0), colors: [UIColor.clear.cgColor, UIColor.black.cgColor])
+            cell.viewGradient.applyGradient(location: [0.0, 1.0], startPoint: CGPoint(x: 0.0, y: 0.4), endPoint: CGPoint(x: 0.0, y: 1.0), colors: [UIColor.clear.cgColor, UIColor.black.cgColor])
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return collectionView.bounds.size
+        let height = collectionView.bounds.size.height
+        return CGSize(width: height/1.2, height: height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let wallpaper = arrBanners[indexPath.item]
+        self.delegate?.openCategory(category: wallpaper.name ?? "")
     }
 }
 

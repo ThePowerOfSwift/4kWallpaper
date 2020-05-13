@@ -18,7 +18,7 @@ class CatCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        viewBg.layer.cornerRadius = 5.0
+        viewBg.layer.cornerRadius = 10.0
         viewBg.layer.masksToBounds = true
         
         

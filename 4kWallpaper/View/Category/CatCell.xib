@@ -25,31 +25,27 @@
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9qY-de-FAS">
                                 <rect key="frame" x="0.0" y="0.0" width="170" height="208"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Faith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Trg-TE-61Y">
-                                        <rect key="frame" x="10" y="176.5" width="150" height="21.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="Trg-TE-61Y" secondAttribute="trailing" constant="10" id="Etk-Dv-z0h"/>
-                                    <constraint firstAttribute="bottom" secondItem="Trg-TE-61Y" secondAttribute="bottom" constant="10" id="GJ4-Nb-Aqn"/>
-                                    <constraint firstItem="Trg-TE-61Y" firstAttribute="leading" secondItem="9qY-de-FAS" secondAttribute="leading" constant="10" id="rjc-N3-Wns"/>
-                                </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Faith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Trg-TE-61Y">
+                                <rect key="frame" x="10" y="176.5" width="150" height="21.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Trg-TE-61Y" secondAttribute="bottom" constant="10" id="3ET-oV-ipt"/>
                             <constraint firstItem="9qY-de-FAS" firstAttribute="top" secondItem="UrK-ic-4MD" secondAttribute="top" id="59z-QV-fdY"/>
                             <constraint firstAttribute="trailing" secondItem="jJM-xZ-bWa" secondAttribute="trailing" id="DLb-aq-P41"/>
                             <constraint firstItem="jJM-xZ-bWa" firstAttribute="leading" secondItem="UrK-ic-4MD" secondAttribute="leading" id="WOE-ov-pzV"/>
                             <constraint firstAttribute="bottom" secondItem="jJM-xZ-bWa" secondAttribute="bottom" id="ZTk-m4-wTD"/>
+                            <constraint firstAttribute="trailing" secondItem="Trg-TE-61Y" secondAttribute="trailing" constant="10" id="dLS-k1-KHv"/>
                             <constraint firstAttribute="bottom" secondItem="9qY-de-FAS" secondAttribute="bottom" id="jJ6-dr-vXM"/>
                             <constraint firstAttribute="trailing" secondItem="9qY-de-FAS" secondAttribute="trailing" id="lDN-CN-CrX"/>
                             <constraint firstItem="9qY-de-FAS" firstAttribute="leading" secondItem="UrK-ic-4MD" secondAttribute="leading" id="pb5-az-Di9"/>
+                            <constraint firstItem="Trg-TE-61Y" firstAttribute="leading" secondItem="UrK-ic-4MD" secondAttribute="leading" constant="10" id="rfk-0q-Ync"/>
                             <constraint firstItem="jJM-xZ-bWa" firstAttribute="top" secondItem="UrK-ic-4MD" secondAttribute="top" id="tg4-4n-bLY"/>
                         </constraints>
                     </view>

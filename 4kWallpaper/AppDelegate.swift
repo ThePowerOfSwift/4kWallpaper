@@ -32,6 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+    let inAppManager = InAppManager()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -66,6 +67,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //Interstitial Ads Integration
         interstitial = createAndLoadInterstitial()
+        
+        //In App Purchase
+        inAppManager.fetchProducts()
         return true
     }
     
