@@ -107,8 +107,8 @@ class AppUtilities{
         activity.center = CGPoint(x: UIScreen.main.bounds.size.width/2, y: UIScreen.main.bounds.size.height/2)
         activity.hidesWhenStopped = true
         activity.tag = 32
-        activity.style = .gray
-        activity.transform = CGAffineTransform.init(scaleX: 2.5, y: 2.5)
+        activity.style = .whiteLarge
+//        activity.transform = CGAffineTransform.init(scaleX: 2.5, y: 2.5)
         activity.startAnimating()
         view.addSubview(activity)
     }

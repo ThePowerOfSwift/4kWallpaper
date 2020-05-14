@@ -30,27 +30,28 @@ extension HomeVC{
 extension HomeVC: SKPaymentTransactionObserver
 {
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+        guard let window = AppUtilities.shared().getMainWindow() else {return}
         for transaction in transactions {
             switch transaction.transactionState {
             case .failed:
-                AppUtilities.shared().hideLoader(from: self.view)
+                AppUtilities.shared().hideLoader(from: window)
                 queue.finishTransaction(transaction)
                 print("Transaction Failed")
             case .purchased:
-                AppUtilities.shared().hideLoader(from: self.view)
+                AppUtilities.shared().hideLoader(from: window)
                 queue.finishTransaction(transaction)
                 let _ = self.readReciept()
                 let transactionID = transaction.transactionIdentifier ?? ""
                 
                 print("Transaction purchased \(transactionID)")
             case .restored:
-                AppUtilities.shared().hideLoader(from: self.view)
+                AppUtilities.shared().hideLoader(from: window)
                 queue.finishTransaction(transaction)
                 let _ = self.readReciept()
                 let transactionID = transaction.transactionIdentifier ?? ""
                 print("Transaction restored: \(transactionID)")
             case .deferred, .purchasing:
-                AppUtilities.shared().showLoader(in: self.view)
+                AppUtilities.shared().showLoader(in: window)
                 print("Transaction in progress: \(transaction)")
             @unknown default:
                 print("Default")

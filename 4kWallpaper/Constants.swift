@@ -73,6 +73,7 @@ struct CellIdentifier {
     static let categoryHeader = "CategoryHeader"
     static let categoryCell = "CatCell"
     static let allCategory = "AllCategoryVC"
+    static let settingsCell = "SettingsCell"
 }
 
 struct NotificationKeys {
