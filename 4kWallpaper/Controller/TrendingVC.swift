@@ -18,6 +18,7 @@ class TrendingVC: UIViewController {
     var arrTrendings:[Post] = []
     var currentPage = 1
     var loadMore = true
+    var isFavourite = false
     var refreshController = UIRefreshControl()
 
     override func viewDidLoad() {
@@ -26,13 +27,23 @@ class TrendingVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    class func controller() -> TrendingVC{
+        let story = UIStoryboard(name: StoryboardIds.main, bundle: nil)
+        return story.instantiateViewController(withIdentifier: ControllerIds.trending) as! TrendingVC
+    }
     
-
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
 }
 
 //MARK: - CUSTOM METHODS
 extension TrendingVC{
     fileprivate func setupData(){
+        if isFavourite{
+            self.title = "Favourites"
+        }
+        
         //Collection Methods
         self.collectionWallPapers.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "Header")
         self.collectionWallPapers.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "Footer")
@@ -179,7 +190,8 @@ extension TrendingVC{
             self.viewIndicator.isHidden = false
             self.indicator.startAnimating()
         }
-        Webservices().request(with: params, method: .post, endPoint: EndPoints.trending, type: Trending.self, loader: false, success: {[weak self] (success) in
+        Webservices().request(with: params, method: .post, endPoint:isFavourite ? EndPoints.favourite : EndPoints.trending, type: Trending.self, loader: false, success: {[weak self] (success) in
+            AppUtilities.shared().removeNoDataLabelFrom(view: self?.view ?? UIView())
             self?.refreshController.endRefreshing()
             self?.refreshController.attributedTitle = NSAttributedString(string: "Pull To Refresh.", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
             UIView.animate(withDuration: 0.2) {
@@ -187,7 +199,7 @@ extension TrendingVC{
                 self?.indicator.stopAnimating()
             }
             guard let response = success as? Trending else {return}
-            if let trendings = response.post{
+            if let trendings = (self?.isFavourite ?? false) ? response.data : response.post{
                 if self?.currentPage == 1{
                     self?.arrTrendings = []
                 }
@@ -196,6 +208,9 @@ extension TrendingVC{
                 }
                 self?.arrTrendings.append(contentsOf: trendings)
                 AppDelegate.shared.totalData = self?.arrTrendings.count ?? 0
+                if self?.arrTrendings.count == 0{
+                    AppUtilities.shared().showNoDataLabelwith(message: "No Data available.", in: self?.view ?? UIView())
+                }
                 self?.collectionWallPapers.reloadData()
                 
             }

@@ -78,7 +78,15 @@ extension SettingsVC:UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let arr = arrMenu[indexPath.section]
+        switch arr[indexPath.row] {
+        case .favourite:
+            let vc = TrendingVC.controller()
+            vc.isFavourite = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        default:
+            print("default")
+        }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

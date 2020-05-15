@@ -74,6 +74,7 @@ struct CellIdentifier {
     static let categoryCell = "CatCell"
     static let allCategory = "AllCategoryVC"
     static let settingsCell = "SettingsCell"
+    static let homeHeader = "HomeHeader"
 }
 
 struct NotificationKeys {
@@ -86,6 +87,7 @@ struct ControllerIds {
     static let loadingView = "LoadingView"
     static let similarCategory = "SimilarCatVC"
     static let report = "ReportVC"
+    static let trending = "TrendingVC"
 }
 
 struct StoryboardIds {

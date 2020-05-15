@@ -127,7 +127,9 @@ class AppUtilities{
     {
         let lbl = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         lbl.text = message
+        lbl.textAlignment = .center
         lbl.textColor = UIColor.lightGray
+        lbl.numberOfLines = 0
         lbl.tag = 23
         view.addSubview(lbl)
         lbl.translatesAutoresizingMaskIntoConstraints = false

@@ -10,17 +10,20 @@ struct Trending : Codable {
     let msg : String?
     let post : [Post]?
     let status : Int?
+    let data : [Post]?
     
     enum CodingKeys: String, CodingKey {
         case msg = "msg"
         case post = "post"
         case status = "status"
+        case data = "data"
     }
     
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         msg = try values.decodeIfPresent(String.self, forKey: .msg)
         post = try values.decodeIfPresent([Post].self, forKey: .post)
+        data = try values.decodeIfPresent([Post].self, forKey: .data)
         status = try values.decodeIfPresent(Int.self, forKey: .status)
     }
     

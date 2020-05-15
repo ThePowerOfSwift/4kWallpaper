@@ -27,6 +27,7 @@ struct Parameters {
     static let live_w_download = "live_w_download"
     static let live_w_like = "live_w_like"
     static let live_w_unlike = "live_w_unlike"
+    static let search = "search"
 }
 
 struct EndPoints {
@@ -41,6 +42,7 @@ struct EndPoints {
     static let categoryList = "category_list.php"
     static let inAppPurchaseStatus = "in_app_purchase_status.php"
     static let appList = "app_list.php"
+    static let home = "home_like.php"
 }
 
 class Webservices {
