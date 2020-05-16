@@ -54,6 +54,7 @@ extension CategoryVC{
         
         //Observers
         NotificationCenter.default.addObserver(self, selector: #selector(updatedAds), name: Notification.Name(rawValue: NotificationKeys.updatedAds), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updatedAds), name: NSNotification.Name(rawValue: NotificationKeys.purchaseSuccess), object: nil)
         
         serviceForCategory()
     }
@@ -146,6 +147,9 @@ extension CategoryVC:UICollectionViewDelegate, UICollectionViewDataSource,UIColl
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         if isSearching{
+            if isSubscribed{
+                return CGSize.zero
+            }
             return CGSize(width: collectionView.frame.size.width, height: 200)
         }
         return CGSize.zero
@@ -162,11 +166,16 @@ extension CategoryVC:UICollectionViewDelegate, UICollectionViewDataSource,UIColl
             
         case UICollectionView.elementKindSectionFooter:
             let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Footer", for: indexPath)
+            if isSubscribed{
+                return footerView
+            }
             if isSearching{
                 footerView.clipsToBounds = true
                 if AppDelegate.shared.adsArr.count > indexPath.section
                 {
-                    let add = AppDelegate.shared.adsArr[indexPath.section]
+                    footerView.viewWithTag(25)?.removeFromSuperview()
+                let add = AppDelegate.shared.adsArr[indexPath.section]
+                add.tag = 25
                     footerView.addSubview(add)
                     add.clipsToBounds = true
                     add.translatesAutoresizingMaskIntoConstraints = false

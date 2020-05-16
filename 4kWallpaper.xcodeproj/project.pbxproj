@@ -25,6 +25,8 @@
 		1B4B286C246ABE5700B75612 /* InAppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4B286B246ABE5700B75612 /* InAppManager.swift */; };
 		1B4B286E246AC9E600B75612 /* SubscriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4B286D246AC9E600B75612 /* SubscriptionVC.swift */; };
 		1B4B2870246ACD4500B75612 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B4B286F246ACD4500B75612 /* StoreKit.framework */; };
+		1B4E330C246FF992002CD349 /* InAppPurchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4E330B246FF992002CD349 /* InAppPurchase.swift */; };
+		1B4E330E24700EEA002CD349 /* WebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4E330D24700EEA002CD349 /* WebVC.swift */; };
 		1B572D68246093A20028566B /* CatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B572D66246093A20028566B /* CatCell.swift */; };
 		1B572D69246093A20028566B /* CatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B572D67246093A20028566B /* CatCell.xib */; };
 		1B5BDAB2245F218A00085928 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5BDAB1245F218A00085928 /* AppDelegate.swift */; };
@@ -76,6 +78,8 @@
 		1B4B286B246ABE5700B75612 /* InAppManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InAppManager.swift; sourceTree = "<group>"; };
 		1B4B286D246AC9E600B75612 /* SubscriptionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionVC.swift; sourceTree = "<group>"; };
 		1B4B286F246ACD4500B75612 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		1B4E330B246FF992002CD349 /* InAppPurchase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InAppPurchase.swift; sourceTree = "<group>"; };
+		1B4E330D24700EEA002CD349 /* WebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebVC.swift; sourceTree = "<group>"; };
 		1B572D66246093A20028566B /* CatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatCell.swift; sourceTree = "<group>"; };
 		1B572D67246093A20028566B /* CatCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CatCell.xib; sourceTree = "<group>"; };
 		1B5BDAAE245F218A00085928 /* 4kWallpaper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 4kWallpaper.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -196,6 +200,7 @@
 		1B5BDAC7245F296700085928 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1B4E330B246FF992002CD349 /* InAppPurchase.swift */,
 				1B7E6026246F0D4C00A1319B /* Home.swift */,
 				1B49A7632469B9B900F04E30 /* Category.swift */,
 				1B785BAC24632EDF00EC8AB5 /* AddUser.swift */,
@@ -239,6 +244,7 @@
 				1B49A75D2469ABF000F04E30 /* HomeVC.swift */,
 				1B4B286D246AC9E600B75612 /* SubscriptionVC.swift */,
 				1B242BF1246C605D008D942E /* AllCategoryVC.swift */,
+				1B4E330D24700EEA002CD349 /* WebVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -418,6 +424,8 @@
 				1B49A75E2469ABF000F04E30 /* HomeVC.swift in Sources */,
 				1B39215824609B3600900F88 /* VerticalCatCell.swift in Sources */,
 				1B49A7642469B9B900F04E30 /* Category.swift in Sources */,
+				1B4E330C246FF992002CD349 /* InAppPurchase.swift in Sources */,
+				1B4E330E24700EEA002CD349 /* WebVC.swift in Sources */,
 				1B73AF232466BB0000C5E94C /* JPEG.swift in Sources */,
 				1B785BAE24632EDF00EC8AB5 /* AddUser.swift in Sources */,
 				1B5BDAB2245F218A00085928 /* AppDelegate.swift in Sources */,

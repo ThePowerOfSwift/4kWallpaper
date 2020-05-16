@@ -82,6 +82,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func showInterstitial(){
+        if isSubscribed{
+            return
+        }
         if self.interstitial.isReady {
             guard let window = AppUtilities.shared().getMainWindow(), let controller = window.rootViewController else {return}
             self.interstitial.present(fromRootViewController: controller)
@@ -92,6 +95,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func loadAds()
     {
+        if isSubscribed{
+            return
+        }
         let adsToLoad = totalData/kAdsDifference
         let remaining = adsToLoad - adsArr.count
         if remaining > 0{

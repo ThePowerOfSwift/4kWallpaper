@@ -25,7 +25,7 @@ class BannerCell: UICollectionViewCell {
         super.awakeFromNib()
         
         
-        viewBg.layer.cornerRadius = 5.0
+//        viewBg.layer.cornerRadius = 5.0
         // Initialization code
     }
 

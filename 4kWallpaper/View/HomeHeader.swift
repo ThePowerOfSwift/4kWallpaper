@@ -70,6 +70,9 @@ class HomeHeader: UICollectionReusableView {
         let like = UINib(nibName: CellIdentifier.categoryCell, bundle: nil)
         collectionLike.register(like, forCellWithReuseIdentifier: CellIdentifier.categoryCell)
         // Initialization code
+        if arrBanners.count == 0, arrLiveWallpaper.count == 0{
+            serviceForHomeData()
+        }
     }
 }
 
@@ -201,6 +204,33 @@ extension HomeHeader{
         if scrollView == collectionBanner{
             let indexPath = collectionBanner.indexPathsForVisibleItems.first
             pageController.currentPage = indexPath?.item ?? 0
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        if scrollView == collectionBanner {
+            let offset = scrollView.contentOffset.x/scrollView.bounds.size.width
+            pageController.currentPage = Int(offset)
+        }
+    }
+}
+
+//MARK: - WEBSERVICE
+extension HomeHeader{
+    fileprivate func serviceForHomeData(){
+        
+        Webservices().request(with: [:], method: .post, endPoint: EndPoints.home, type: Home.self, loader: true, success: {[weak self] (success) in
+            
+            guard let response = success as? Home else {return}
+            self?.arrLikes = response.youMayLikeWallpaper ?? []
+            self?.arrLiveWallpaper = response.livewallpaper ?? []
+            self?.arrBanners = response.banner ?? []
+            self?.arrMissed = response.youMayMisedWallpaper ?? []
+            
+        }) {(failer) in
+            guard let window = AppUtilities.shared().getMainWindow(), let vc = window.rootViewController else {return}
+            AppUtilities.shared().showAlert(with: failer, viewController: vc)
         }
     }
 }

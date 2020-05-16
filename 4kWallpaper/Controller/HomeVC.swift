@@ -8,14 +8,16 @@
 
 import UIKit
 import StoreKit
+import Kingfisher
 
 class HomeVC: UIViewController {
     @IBOutlet weak var collectionWallPapers:UICollectionView!
+    @IBOutlet weak var viewIndicator:UIView!
+    @IBOutlet weak var indicator:UIActivityIndicatorView!
     var arrTrendings:[Post] = []
-    var arrBanners:[Wallpaper] = []
-    var arrMissed:[Post] = []
-    var arrLiveWallpaper:[Post] = []
-    var arrLikes:[Post] = []
+    var currentPage = 1
+    var loadMore = true
+    var refreshController = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +31,11 @@ class HomeVC: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    override func didReceiveMemoryWarning() {
+        KingfisherManager.shared.cache.clearDiskCache()
+        KingfisherManager.shared.cache.clearMemoryCache()
     }
 }
 
@@ -45,14 +52,28 @@ extension HomeVC{
         let nib = UINib(nibName: CellIdentifier.wallpaper, bundle: nil)
         collectionWallPapers.register(nib, forCellWithReuseIdentifier: CellIdentifier.wallpaper)
         
+        //Refresh Controlls
+        refreshController.attributedTitle = NSAttributedString(string: "Pull To Refresh.", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
+        refreshController.addTarget(self, action: #selector(didRefreshCollection(_:)), for: .valueChanged)
+        refreshController.tintColor = .white
+        self.collectionWallPapers.refreshControl = refreshController
+        
         //Observers
         NotificationCenter.default.addObserver(self, selector: #selector(updatedAds), name: Notification.Name(rawValue: NotificationKeys.updatedAds), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updatedAds), name: NSNotification.Name(rawValue: NotificationKeys.purchaseSuccess), object: nil)
         
-        serviceForHomeData()
+        serviceForPostList()
+        serviceForInAppStatus()
     }
     
     @objc fileprivate func updatedAds(){
         self.collectionWallPapers.reloadData()
+    }
+    
+    @objc fileprivate func didRefreshCollection(_ sender:UIRefreshControl){
+        currentPage = 1
+        refreshController.attributedTitle = NSAttributedString(string: "Refreshing...", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
+        serviceForPostList()
     }
 }
 
@@ -99,6 +120,9 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        if isSubscribed{
+            return CGSize.zero
+        }
         return CGSize(width: collectionView.frame.size.width, height: 200)
     }
     
@@ -107,19 +131,19 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
         case UICollectionView.elementKindSectionHeader:
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CellIdentifier.homeHeader, for: indexPath) as! HomeHeader
             header.delegate = self
-            header.arrBanners = self.arrBanners
-            header.arrMissed = self.arrMissed
-            header.arrLiveWallpaper = self.arrLiveWallpaper
-            header.arrLikes = self.arrLikes
             return header
             
         case UICollectionView.elementKindSectionFooter:
             let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Footer", for: indexPath)
-            
+            if isSubscribed{
+                return footerView
+            }
             footerView.clipsToBounds = true
             if AppDelegate.shared.adsArr.count > indexPath.section
             {
+                footerView.viewWithTag(25)?.removeFromSuperview()
                 let add = AppDelegate.shared.adsArr[indexPath.section]
+                add.tag = 25
                 footerView.addSubview(add)
                 add.clipsToBounds = true
                 add.translatesAutoresizingMaskIntoConstraints = false
@@ -141,22 +165,80 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
 
 //MARK: - WEBSERVICES
 extension HomeVC{
-    fileprivate func serviceForHomeData(){
-        
-        Webservices().request(with: [:], method: .post, endPoint: EndPoints.home, type: Home.self, loader: true, success: {[weak self] (success) in
-            
-            guard let response = success as? Home else {return}
-            self?.arrTrendings = response.youMayLikeWallpaper ?? []
-            self?.arrLikes = response.youMayLikeWallpaper ?? []
-            self?.arrLiveWallpaper = response.livewallpaper ?? []
-            self?.arrBanners = response.banner ?? []
-            self?.arrMissed = response.youMayMisedWallpaper ?? []
-            self?.collectionWallPapers.reloadData()
-            AppDelegate.shared.totalData = self?.arrTrendings.count ?? 0
+    fileprivate func serviceForPostList(){
+        let params:[String:Any] = [
+            Parameters.user_id:userId,
+            Parameters.page:currentPage,
+            Parameters.used_ids:arrTrendings.compactMap({$0.postId}).joined(separator: ",")
+        ]
+        loadMore = false
+        UIView.animate(withDuration: 0.2) { [unowned self] in
+            self.viewIndicator.isHidden = false
+            self.indicator.startAnimating()
+        }
+        Webservices().request(with: params, method: .post, endPoint:EndPoints.postList, type: Trending.self, loader: false, success: {[weak self] (success) in
+            AppUtilities.shared().removeNoDataLabelFrom(view: self?.view ?? UIView())
+            self?.refreshController.endRefreshing()
+            self?.refreshController.attributedTitle = NSAttributedString(string: "Pull To Refresh.", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
+            UIView.animate(withDuration: 0.2) {
+                self?.viewIndicator.isHidden = true
+                self?.indicator.stopAnimating()
+            }
+            guard let response = success as? Trending else {return}
+            if let trendings =  response.post{
+                if self?.currentPage == 1{
+                    self?.arrTrendings = []
+                }
+                if trendings.count != 0{
+                    self?.loadMore = true
+                }
+                self?.arrTrendings.append(contentsOf: trendings)
+                AppDelegate.shared.totalData = self?.arrTrendings.count ?? 0
+                if self?.arrTrendings.count == 0{
+                    AppUtilities.shared().showNoDataLabelwith(message: "No Data available.", in: self?.view ?? UIView())
+                }
+                self?.collectionWallPapers.reloadData()
+            }
             
         }) {[weak self] (failer) in
+            UIView.animate(withDuration: 0.2) {
+                self?.viewIndicator.isHidden = true
+                self?.indicator.stopAnimating()
+            }
             guard let vc = self else {return}
             AppUtilities.shared().showAlert(with: failer, viewController: vc)
+        }
+    }
+    
+    private func serviceForUpdatePurchase(params:[String:Any]){
+        Webservices().request(with: params, method: .post, endPoint: EndPoints.addInApp, type: AddUser.self, success: { (success) in
+            guard let response = success as? AddUser else {return}
+            if let status = response.status, status == 1{
+//                guard let window = AppUtilities.shared().getMainWindow(), let vc = window.rootViewController else {return}
+                self.serviceForInAppStatus()
+            }
+        }) { (failer) in
+            AppUtilities.shared().showAlert(with: failer, viewController: self)
+        }
+    }
+    
+    private func serviceForInAppStatus(){
+        let params:[String:Any] = [
+            Parameters.user_id:userId
+        ]
+        Webservices().request(with: params, method: .post, endPoint: EndPoints.inAppPurchaseStatus, type: InAppPurchase.self, success: { (success) in
+            guard let response = success as? InAppPurchase else {return}
+            if let status = response.status, status == 1, let purchase = response.inAppPurchase{
+                let time = Double(purchase.inAppPurchaseTime ?? "")
+                let date = Date().addingTimeInterval(time ?? 0.0)
+                print(date.toDate(format: "dd-MM-yyyy"))
+                if purchase.inAppPurchase == "1"{
+                    isSubscribed = true
+                    NotificationCenter.default.post(name: Notification.Name(NotificationKeys.purchaseSuccess), object: nil)
+                }
+            }
+        }) { (failer) in
+            AppUtilities.shared().showAlert(with: failer, viewController: self)
         }
     }
 }
@@ -165,6 +247,18 @@ extension HomeVC{
 extension HomeVC:HomeHeaderDelegate{
     func openController(vc: UIViewController) {
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+//MARK: - SCROLLVIEW DELEGATE
+extension HomeVC{
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView == collectionWallPapers{
+            if scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.bounds.size.height, loadMore{
+                currentPage += 1
+                serviceForPostList()
+            }
+        }
     }
 }
 
@@ -182,15 +276,32 @@ extension HomeVC: SKPaymentTransactionObserver
             case .purchased:
                 AppUtilities.shared().hideLoader(from: window)
                 queue.finishTransaction(transaction)
-                let _ = self.readReciept()
+                
+                let reciept = self.readReciept()
                 let transactionID = transaction.transactionIdentifier ?? ""
                 
+                //API call
+                let params:[String:Any] = [
+                    Parameters.in_app_purchase_id:reciept,
+                    Parameters.purchaseToken:transactionID,
+                    Parameters.user_id:userId
+                ]
+                serviceForUpdatePurchase(params: params)
                 print("Transaction purchased \(transactionID)")
             case .restored:
                 AppUtilities.shared().hideLoader(from: window)
                 queue.finishTransaction(transaction)
-                let _ = self.readReciept()
+                
+                //API call
+                let reciept = self.readReciept()
                 let transactionID = transaction.transactionIdentifier ?? ""
+                
+                let params:[String:Any] = [
+                    Parameters.in_app_purchase_id:reciept,
+                    Parameters.purchaseToken:transactionID,
+                    Parameters.user_id:userId
+                ]
+                serviceForUpdatePurchase(params: params)
                 print("Transaction restored: \(transactionID)")
             case .deferred, .purchasing:
                 AppUtilities.shared().showLoader(in: window)

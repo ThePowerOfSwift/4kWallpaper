@@ -8,9 +8,11 @@
 
 import Foundation
 import UIKit
+import WebKit
 
 class AppUtilities{
     let kAppName = "4kWallpaper"
+    let webviewController = UIViewController()
     
     class func shared() -> AppUtilities{
         return AppUtilities()
@@ -138,7 +140,7 @@ class AppUtilities{
             lbl.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 0)
             ])
     }
-
+    
     func removeNoDataLabelFrom(view:UIView)
     {
         view.viewWithTag(23)?.removeFromSuperview()

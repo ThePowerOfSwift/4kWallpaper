@@ -26,7 +26,6 @@ class InAppManager: NSObject {
             request = SKProductsRequest(productIdentifiers: monthlySubID)
             request.delegate = self
             request.start()
-            restorePurchases()
 
         } else {
             guard let window = AppUtilities.shared().getMainWindow(), let vc = window.rootViewController else {return}

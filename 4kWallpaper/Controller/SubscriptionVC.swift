@@ -35,6 +35,16 @@ class SubscriptionVC: UIViewController {
         setupView()
         // Do any additional setup after loading the view.
     }
+    
+    class func controller() -> SubscriptionVC{
+        let story = UIStoryboard(name: StoryboardIds.main, bundle: nil)
+        return story.instantiateViewController(withIdentifier: ControllerIds.subscription) as! SubscriptionVC
+    }
+    
+    deinit {
+        print("Deinit subscription")
+        NotificationCenter.default.removeObserver(self)
+    }
 }
 
 //MARK: - CUSTOM METHODS
@@ -45,6 +55,11 @@ extension SubscriptionVC{
         btnWeekly(btnWeekly)
         viewSave.setRounded()
         btnContinue.setRounded()
+        NotificationCenter.default.addObserver(self, selector: #selector(subscriptionCompleted), name: Notification.Name(NotificationKeys.purchaseSuccess), object: nil)
+    }
+    
+    @objc private func subscriptionCompleted(){
+        AppUtilities.shared().showAlert(with: "You have subscribed successfully with our premium plan.", viewController: self)
     }
 }
 
@@ -102,10 +117,20 @@ extension SubscriptionVC{
     }
     
     @IBAction func btnTerms(_ sender:UIButton){
-        
+//        if let url = URL(string: kTermsUrl), UIApplication.shared.canOpenURL(url){
+//            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+//        }
+        let vc = WebVC.controller()
+        vc.urlString = kTermsUrl
+        self.present(vc, animated: true, completion: nil)
     }
     
     @IBAction func btnPrivacy(_ sender:UIButton){
-        
+//        if let url = URL(string: kPrivacyUrl), UIApplication.shared.canOpenURL(url){
+//            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+//        }
+        let vc = WebVC.controller()
+        vc.urlString = kPrivacyUrl
+        self.present(vc, animated: true, completion: nil)
     }
 }

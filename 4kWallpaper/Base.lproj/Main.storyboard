@@ -16,21 +16,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vpd-MK-vo9">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="mcp-xj-2TS">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="MoF-BS-E5h">
-                                    <size key="itemSize" width="128" height="128"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells/>
-                                <connections>
-                                    <outlet property="dataSource" destination="9mn-xi-zQu" id="s14-FM-Z2r"/>
-                                    <outlet property="delegate" destination="9mn-xi-zQu" id="JjM-J0-baG"/>
-                                </connections>
-                            </collectionView>
+                                <subviews>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vpd-MK-vo9">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="479"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="MoF-BS-E5h">
+                                            <size key="itemSize" width="128" height="128"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="9mn-xi-zQu" id="s14-FM-Z2r"/>
+                                            <outlet property="delegate" destination="9mn-xi-zQu" id="JjM-J0-baG"/>
+                                        </connections>
+                                    </collectionView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fNc-PP-xwQ">
+                                        <rect key="frame" x="0.0" y="479" width="320" height="40"/>
+                                        <subviews>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="LpO-yk-mlN">
+                                                <rect key="frame" x="150" y="10" width="20" height="20"/>
+                                                <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </activityIndicatorView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="B9H-7W-Wuh"/>
+                                            <constraint firstItem="LpO-yk-mlN" firstAttribute="centerX" secondItem="fNc-PP-xwQ" secondAttribute="centerX" id="aq9-VY-PB8"/>
+                                            <constraint firstItem="LpO-yk-mlN" firstAttribute="centerY" secondItem="fNc-PP-xwQ" secondAttribute="centerY" id="reD-9h-LtW"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                            </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kEu-4G-TPq">
                                 <rect key="frame" x="279" y="16" width="25" height="25"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -42,11 +62,11 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="8Ef-6b-mHO" firstAttribute="bottom" secondItem="vpd-MK-vo9" secondAttribute="bottom" id="9Dz-zy-g8Q"/>
+                            <constraint firstItem="mcp-xj-2TS" firstAttribute="top" secondItem="8Ef-6b-mHO" secondAttribute="top" id="E7L-Lm-qit"/>
                             <constraint firstItem="kEu-4G-TPq" firstAttribute="top" secondItem="8Ef-6b-mHO" secondAttribute="top" constant="16" id="I20-KT-Zha"/>
-                            <constraint firstItem="vpd-MK-vo9" firstAttribute="top" secondItem="8Ef-6b-mHO" secondAttribute="top" id="WEI-Y6-NFC"/>
-                            <constraint firstItem="8Ef-6b-mHO" firstAttribute="trailing" secondItem="vpd-MK-vo9" secondAttribute="trailing" id="dQG-fW-oT9"/>
-                            <constraint firstItem="vpd-MK-vo9" firstAttribute="leading" secondItem="8Ef-6b-mHO" secondAttribute="leading" id="k6V-Vx-vz8"/>
+                            <constraint firstItem="mcp-xj-2TS" firstAttribute="trailing" secondItem="8Ef-6b-mHO" secondAttribute="trailing" id="Otu-eJ-zLb"/>
+                            <constraint firstItem="8Ef-6b-mHO" firstAttribute="bottom" secondItem="mcp-xj-2TS" secondAttribute="bottom" id="auZ-bT-YMK"/>
+                            <constraint firstItem="mcp-xj-2TS" firstAttribute="leading" secondItem="8Ef-6b-mHO" secondAttribute="leading" id="lsK-CM-Jul"/>
                             <constraint firstItem="8Ef-6b-mHO" firstAttribute="trailing" secondItem="kEu-4G-TPq" secondAttribute="trailing" constant="16" id="rVs-gU-B7w"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8Ef-6b-mHO"/>
@@ -54,6 +74,8 @@
                     <navigationItem key="navigationItem" id="sjG-yf-zs8"/>
                     <connections>
                         <outlet property="collectionWallPapers" destination="vpd-MK-vo9" id="3gK-WW-4CU"/>
+                        <outlet property="indicator" destination="LpO-yk-mlN" id="Q06-1F-ajL"/>
+                        <outlet property="viewIndicator" destination="fNc-PP-xwQ" id="tLU-Ml-lhT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nyx-D1-xrx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -74,6 +96,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jg4-MJ-A2b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3257" y="-875"/>
+        </scene>
+        <!--WebVC-->
+        <scene sceneID="OgT-4i-dM6">
+            <objects>
+                <viewController storyboardIdentifier="WebVC" id="KIP-aw-vk9" customClass="WebVC" customModule="_kWallpaper" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MB9-O5-Kkz">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="zJW-GQ-tDA"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7No-nI-DzQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4052" y="-876"/>
         </scene>
         <!--Category-->
         <scene sceneID="XeR-qx-aGC">
@@ -258,7 +295,7 @@
         <!--SubscriptionVC-->
         <scene sceneID="erK-Pq-RQ0">
             <objects>
-                <viewController storyboardIdentifier="SubscriptionVC" hidesBottomBarWhenPushed="YES" id="1kN-Aw-abT" customClass="SubscriptionVC" customModule="_kWallpaper" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SubscriptionVC" modalPresentationStyle="fullScreen" hidesBottomBarWhenPushed="YES" id="1kN-Aw-abT" customClass="SubscriptionVC" customModule="_kWallpaper" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Egm-br-hFr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

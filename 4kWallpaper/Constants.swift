@@ -32,9 +32,10 @@ let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! S
 let osVersion = UIDevice.current.systemVersion
 var userId = 0
 var kAddFrequency = 1
+var isSubscribed = false
 var kActivity = 0{
     didSet{
-        if kActivity >= kAddFrequency{
+        if kActivity >= kAddFrequency, !isSubscribed{
             kActivity = 0
             AppDelegate.shared.showInterstitial()
         }
@@ -45,6 +46,8 @@ var appStoreId = "284882215"
 let appStoreLink = "https://apps.apple.com/in/app/facebook/id\(appStoreId)"
 
 let kReportMailId = "4kwallpaper18@gmail.com"
+let kTermsUrl = "https://4kwallpaper.online/terms.html"
+let kPrivacyUrl = "https://4kwallpaper.online/privacy_policy.html"
 
 struct ImageBase {
     static let wpSmall =        "https://cdn.4kwallpaper.online/small/"
@@ -79,6 +82,7 @@ struct CellIdentifier {
 
 struct NotificationKeys {
     static let updatedAds = "UpdatedAds"
+    static let purchaseSuccess = "PurchaseSuccess"
 }
 
 struct ControllerIds {
@@ -88,6 +92,8 @@ struct ControllerIds {
     static let similarCategory = "SimilarCatVC"
     static let report = "ReportVC"
     static let trending = "TrendingVC"
+    static let subscription = "SubscriptionVC"
+    static let webvVC = "WebVC"
 }
 
 struct StoryboardIds {

@@ -54,6 +54,7 @@ extension SimilarCatVC{
         
         //Observers
         NotificationCenter.default.addObserver(self, selector: #selector(updatedAds), name: Notification.Name(rawValue: NotificationKeys.updatedAds), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updatedAds), name: NSNotification.Name(rawValue: NotificationKeys.purchaseSuccess), object: nil)
     }
     
     
@@ -109,6 +110,9 @@ extension SimilarCatVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        if isSubscribed{
+            return CGSize.zero
+        }
         return CGSize(width: collectionView.frame.size.width, height: 200)
     }
     
@@ -120,11 +124,15 @@ extension SimilarCatVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
             
         case UICollectionView.elementKindSectionFooter:
             let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Footer", for: indexPath)
-            
+            if isSubscribed{
+                return footerView
+            }
             footerView.clipsToBounds = true
             if AppDelegate.shared.adsArr.count > indexPath.section
             {
+                footerView.viewWithTag(25)?.removeFromSuperview()
                 let add = AppDelegate.shared.adsArr[indexPath.section]
+                add.tag = 25
                 footerView.addSubview(add)
                 add.clipsToBounds = true
                 add.translatesAutoresizingMaskIntoConstraints = false
@@ -140,20 +148,6 @@ extension SimilarCatVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
         default:
             let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Footer", for: indexPath)
             
-            footerView.clipsToBounds = true
-            if AppDelegate.shared.adsArr.count > indexPath.section
-            {
-                let add = AppDelegate.shared.adsArr[indexPath.section]
-                footerView.addSubview(add)
-                add.clipsToBounds = true
-                add.translatesAutoresizingMaskIntoConstraints = false
-                NSLayoutConstraint.activate([
-                    add.leadingAnchor.constraint(equalTo: footerView.leadingAnchor, constant: 0),
-                    add.trailingAnchor.constraint(equalTo: footerView.trailingAnchor, constant: 0),
-                    add.topAnchor.constraint(equalTo: footerView.topAnchor, constant: 10),
-                    add.bottomAnchor.constraint(equalTo: footerView.bottomAnchor, constant: -10)
-                ])
-            }
             return footerView
         }
     }

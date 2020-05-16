@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import WebKit
 
 class SettingsVC: UIViewController {
     @IBOutlet weak var tblSettings:UITableView!
@@ -56,7 +57,7 @@ extension SettingsVC:UITableViewDelegate,UITableViewDataSource{
         let title = arr[indexPath.row].rawValue
         cell.lblTitle.text = title
         if indexPath.section == 0{
-            cell.lblVersion.text = appVersion
+            cell.lblVersion.text = "V" + appVersion
         }
         else{
             cell.lblVersion.text = ""
@@ -66,7 +67,7 @@ extension SettingsVC:UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0{
-            return CGFloat.zero
+            return 0.01
         }
         else{
             return 40.0
@@ -74,7 +75,7 @@ extension SettingsVC:UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return CGFloat.zero
+        return 0.01
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -84,6 +85,38 @@ extension SettingsVC:UITableViewDelegate,UITableViewDataSource{
             let vc = TrendingVC.controller()
             vc.isFavourite = true
             self.navigationController?.pushViewController(vc, animated: true)
+        case .rateApp:
+            if let url = URL(string: appStoreLink), UIApplication.shared.canOpenURL(url){
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        case .sharing:
+            let link = [URL(string: appStoreLink)!]
+            let activityViewController = UIActivityViewController(activityItems: link, applicationActivities: nil)
+            activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+            
+            // present the view controller
+            self.present(activityViewController, animated: true, completion: nil)
+        case .feedback:
+            if let url = URL(string: "mailto:\(kReportMailId)"), UIApplication.shared.canOpenURL(url){
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        case .terms:
+//            if let url = URL(string: kTermsUrl), UIApplication.shared.canOpenURL(url){
+//                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+//            }
+            let vc = WebVC.controller()
+            vc.urlString = kTermsUrl
+            self.present(vc, animated: true, completion: nil)
+        case .privacy:
+//            if let url = URL(string: kPrivacyUrl), UIApplication.shared.canOpenURL(url){
+//                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+//            }
+            let vc = WebVC.controller()
+            vc.urlString = kPrivacyUrl
+            self.present(vc, animated: true, completion: nil)
+        case .upgrade:
+            let vc = SubscriptionVC.controller()
+            self.present(vc, animated: true, completion: nil)
         default:
             print("default")
         }
@@ -113,3 +146,5 @@ extension SettingsVC:UITableViewDelegate,UITableViewDataSource{
         tableViewHeaderFooterView.textLabel?.text = title
     }
 }
+
+

@@ -28,6 +28,8 @@ struct Parameters {
     static let live_w_like = "live_w_like"
     static let live_w_unlike = "live_w_unlike"
     static let search = "search"
+    static let in_app_purchase_id = "in_app_purchase_id"
+    static let purchaseToken = "purchaseToken"
 }
 
 struct EndPoints {
