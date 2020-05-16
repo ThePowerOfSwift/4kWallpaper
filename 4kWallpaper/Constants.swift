@@ -94,6 +94,7 @@ struct ControllerIds {
     static let trending = "TrendingVC"
     static let subscription = "SubscriptionVC"
     static let webvVC = "WebVC"
+    static let about = "AboutUsVC"
 }
 
 struct StoryboardIds {

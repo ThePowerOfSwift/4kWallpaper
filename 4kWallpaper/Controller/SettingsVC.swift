@@ -33,10 +33,6 @@ class SettingsVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
-    }
 }
 
 //MARK: - TABLEVIEW DELEGATES
@@ -101,22 +97,21 @@ extension SettingsVC:UITableViewDelegate,UITableViewDataSource{
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
         case .terms:
-//            if let url = URL(string: kTermsUrl), UIApplication.shared.canOpenURL(url){
-//                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-//            }
             let vc = WebVC.controller()
             vc.urlString = kTermsUrl
-            self.present(vc, animated: true, completion: nil)
+            vc.name = "Terms & Condition"
+            self.navigationController?.pushViewController(vc, animated: true)
         case .privacy:
-//            if let url = URL(string: kPrivacyUrl), UIApplication.shared.canOpenURL(url){
-//                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-//            }
             let vc = WebVC.controller()
             vc.urlString = kPrivacyUrl
-            self.present(vc, animated: true, completion: nil)
+            vc.name = "Privacy Policy"
+            self.navigationController?.pushViewController(vc, animated: true)
         case .upgrade:
             let vc = SubscriptionVC.controller()
-            self.present(vc, animated: true, completion: nil)
+            self.navigationController?.pushViewController(vc, animated: true)
+        case .about:
+            let vc = AboutUsVC.controller()
+            self.navigationController?.pushViewController(vc, animated: true)
         default:
             print("default")
         }

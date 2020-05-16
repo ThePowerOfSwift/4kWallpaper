@@ -16,6 +16,7 @@
 		1B39215824609B3600900F88 /* VerticalCatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B39215624609B3600900F88 /* VerticalCatCell.swift */; };
 		1B39215924609B3600900F88 /* VerticalCatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B39215724609B3600900F88 /* VerticalCatCell.xib */; };
 		1B4311DD24686ECC00A7D71C /* ReportVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4311DC24686ECC00A7D71C /* ReportVC.swift */; };
+		1B441B22247061E2005717AF /* AboutUsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B441B21247061E2005717AF /* AboutUsVC.swift */; };
 		1B48962A2467C9700056CD5F /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4896292467C9700056CD5F /* AppConfig.swift */; };
 		1B48962C2467DE5B0056CD5F /* UnifiedNativeAdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B48962B2467DE5B0056CD5F /* UnifiedNativeAdView.xib */; };
 		1B49A75E2469ABF000F04E30 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B49A75D2469ABF000F04E30 /* HomeVC.swift */; };
@@ -69,6 +70,7 @@
 		1B39215624609B3600900F88 /* VerticalCatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalCatCell.swift; sourceTree = "<group>"; };
 		1B39215724609B3600900F88 /* VerticalCatCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VerticalCatCell.xib; sourceTree = "<group>"; };
 		1B4311DC24686ECC00A7D71C /* ReportVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportVC.swift; sourceTree = "<group>"; };
+		1B441B21247061E2005717AF /* AboutUsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsVC.swift; sourceTree = "<group>"; };
 		1B4896292467C9700056CD5F /* AppConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		1B48962B2467DE5B0056CD5F /* UnifiedNativeAdView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UnifiedNativeAdView.xib; sourceTree = "<group>"; };
 		1B49A75D2469ABF000F04E30 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 				1B4B286D246AC9E600B75612 /* SubscriptionVC.swift */,
 				1B242BF1246C605D008D942E /* AllCategoryVC.swift */,
 				1B4E330D24700EEA002CD349 /* WebVC.swift */,
+				1B441B21247061E2005717AF /* AboutUsVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -453,6 +456,7 @@
 				1B572D68246093A20028566B /* CatCell.swift in Sources */,
 				1B5BDAC6245F289900085928 /* Constants.swift in Sources */,
 				1B2277672460865E00036212 /* BannerCell.swift in Sources */,
+				1B441B22247061E2005717AF /* AboutUsVC.swift in Sources */,
 				1B242BF2246C605D008D942E /* AllCategoryVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

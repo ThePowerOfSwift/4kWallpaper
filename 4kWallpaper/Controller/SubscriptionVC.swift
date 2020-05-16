@@ -41,6 +41,14 @@ class SubscriptionVC: UIViewController {
         return story.instantiateViewController(withIdentifier: ControllerIds.subscription) as! SubscriptionVC
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
     deinit {
         print("Deinit subscription")
         NotificationCenter.default.removeObserver(self)
@@ -113,7 +121,8 @@ extension SubscriptionVC{
     }
     
     @IBAction func btnClose(_ sender:UIButton){
-        self.dismiss(animated: true, completion: nil)
+//        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func btnTerms(_ sender:UIButton){
@@ -122,7 +131,8 @@ extension SubscriptionVC{
 //        }
         let vc = WebVC.controller()
         vc.urlString = kTermsUrl
-        self.present(vc, animated: true, completion: nil)
+        vc.name = "Terms & Condition"
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func btnPrivacy(_ sender:UIButton){
@@ -131,6 +141,7 @@ extension SubscriptionVC{
 //        }
         let vc = WebVC.controller()
         vc.urlString = kPrivacyUrl
-        self.present(vc, animated: true, completion: nil)
+        vc.name = "Privacy Policy"
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }

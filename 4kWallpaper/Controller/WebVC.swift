@@ -12,6 +12,7 @@ import WebKit
 class WebVC: UIViewController {
     
     var urlString = ""
+    var name = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,12 +24,17 @@ class WebVC: UIViewController {
         let story = UIStoryboard(name: StoryboardIds.main, bundle: nil)
         return story.instantiateViewController(withIdentifier: ControllerIds.webvVC) as! WebVC
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
 
 }
 
 //MARK: - SETUP VIEW
 extension WebVC{
     private func setupView(){
+        self.title = name
         let webView = WKWebView()
         self.view.addSubview(webView)
         webView.translatesAutoresizingMaskIntoConstraints = false
@@ -45,24 +51,6 @@ extension WebVC{
             let request = URLRequest(url: url)
             webView.load(request)
         }
-        
-        let button = UIButton()
-        button.setImage(#imageLiteral(resourceName: "close"), for: .normal)
-        
-        button.tintColor = .black
-        self.view.addSubview(button)
-        button.addTarget(self, action: #selector(btnClosePressed(_:)), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            button.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 16),
-            button.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16)
-        ])
-    }
-    
-    @objc func btnClosePressed(_ sender:UIButton){
-        print("pressed")
-        self.dismiss(animated: true, completion: nil)
     }
 }
 
