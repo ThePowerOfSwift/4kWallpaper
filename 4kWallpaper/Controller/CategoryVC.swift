@@ -127,6 +127,10 @@ extension CategoryVC:UICollectionViewDelegate, UICollectionViewDataSource,UIColl
         if isSearching{
             let index = indexPath.section*kAdsDifference
             let obj = arrSearch[index + indexPath.row]
+            if showInAppOnLive, !isSubscribed, obj.type == PostType.live.rawValue{
+                self.navigationController?.pushViewController(SubscriptionVC.controller(), animated: true)
+                return
+            }
             let vc = PreviewVC.controller()
             vc.post = obj
             self.navigationController?.pushViewController(vc, animated: true)

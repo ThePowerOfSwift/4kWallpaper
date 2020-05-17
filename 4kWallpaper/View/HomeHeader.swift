@@ -180,6 +180,10 @@ extension HomeHeader:UICollectionViewDelegate,UICollectionViewDataSource, UIColl
             vc.post = missed
             self.delegate?.openController(vc: vc)
         case collectionLive:
+            if showInAppOnLive, !isSubscribed{
+                self.delegate?.openController(vc: SubscriptionVC.controller())
+                return
+            }
             let live = arrLiveWallpaper[indexPath.item]
             let vc = PreviewVC.controller()
             vc.type = PostType.live.rawValue

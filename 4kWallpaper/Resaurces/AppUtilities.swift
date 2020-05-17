@@ -13,6 +13,7 @@ import WebKit
 class AppUtilities{
     let kAppName = "4kWallpaper"
     let webviewController = UIViewController()
+    var frequencyTimer = Timer()
     
     class func shared() -> AppUtilities{
         return AppUtilities()
@@ -144,6 +145,24 @@ class AppUtilities{
     func removeNoDataLabelFrom(view:UIView)
     {
         view.viewWithTag(23)?.removeFromSuperview()
+    }
+    
+    func calculateAdFrequencyTime(){
+        if frequencyTimer.isValid{
+            frequencyTimer.invalidate()
+        }
+        var time = 0
+        frequencyTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { (timer) in
+            if time >= frequencyTime{
+                showInterstitial = true
+                timer.invalidate()
+                return
+            }
+            
+            showInterstitial = false
+            time += 1
+            print("Timer time is \(time)")
+        })
     }
     
     func isValidEmail(testStr:String) -> Bool {

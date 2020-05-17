@@ -100,6 +100,10 @@ extension SimilarCatVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
         kActivity += 1
         let index = indexPath.section*kAdsDifference
         let obj = arrTrendings[index + indexPath.row]
+        if showInAppOnLive, !isSubscribed, obj.type == PostType.live.rawValue{
+            self.navigationController?.pushViewController(SubscriptionVC.controller(), animated: true)
+            return
+        }
         let vc = PreviewVC.controller()
         vc.post = obj
         vc.type = postType.rawValue

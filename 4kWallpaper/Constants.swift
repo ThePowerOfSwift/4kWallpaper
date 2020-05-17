@@ -22,22 +22,54 @@ enum NativeAdsId:String {
     case test = "ca-app-pub-3940256099942544/3986624511"
 }
 
+/**Rewarded Ads Id**/
+enum RewardedIds:String{
+    case live = "ca-app-pub-1625565704226796/7694849234"
+    case test = "ca-app-pub-3940256099942544/1712485313"
+}
+
 let googleAdmobAppId = "ca-app-pub-1625565704226796~7216343259"
 let interstitialAddUnitId = InterstitalIds.test.rawValue
 let nativeAdUnitId = NativeAdsId.test.rawValue
+let rewardedAdUnitId = RewardedIds.test.rawValue
 
 let modelNumber = UIDevice().type
 let deviceId = UIDevice.current.identifierForVendor?.uuidString ?? ""
 let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
 let osVersion = UIDevice.current.systemVersion
+var forcefullyUpdate = false
 var userId = 0
 var kAddFrequency = 1
 var isSubscribed = false
+var frequencyTime = 0
+var totalAdsCount = 0
+var showInterstitial = true
+var interstitialCount = 0
+var adsSlot = 0
+var showInAppOnLive = false
 var kActivity = 0{
     didSet{
-        if kActivity >= kAddFrequency, !isSubscribed{
+        if !showInterstitial{
             kActivity = 0
+        }
+        if kActivity >= kAddFrequency, !isSubscribed{//Show ads after given activity
+            print("Show interstitial")
+            kActivity = 0
+            interstitialCount += 1 //Increase ads interstitial count for frequency time calculate
+            
             AppDelegate.shared.showInterstitial()
+//            if interstitialCount >= kAddFrequency{// if interestitial count match then calculate freq time
+//                interstitialCount = 0
+//                adsSlot += 1 //don't show interestitial after given slots
+//                showInterstitial = false
+//            }
+            if interstitialCount <= totalAdsCount{ //wait for frequency time for next ads slot
+                print("start timer")
+                AppUtilities.shared().calculateAdFrequencyTime()
+            }
+            else{
+                showInterstitial = false
+            }
         }
     }
 }

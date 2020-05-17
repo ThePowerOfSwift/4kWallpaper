@@ -37,6 +37,12 @@ class PreviewVC: UIViewController {
         super.viewDidLoad()
         view.layoutIfNeeded()
         setupView()
+        if !isSubscribed, !showInAppOnLive, type == PostType.live.rawValue{
+            AppDelegate.shared.showRewardVideo()
+            AppDelegate.shared.delegate = self
+            return
+        }
+        
         setupData()
         // Do any additional setup after loading the view.
     }
@@ -387,6 +393,20 @@ extension PreviewVC{
         }) {[weak self] (failer) in
             guard let vc = self else {return}
             AppUtilities.shared().showAlert(with: failer, viewController: vc)
+        }
+    }
+}
+
+//MARK: - REWARD DELEGATE
+extension PreviewVC:RewardCompletionDelegate{
+    func rewardDidDismiss(rewarded: Bool) {
+        if rewarded{
+            setupData()
+        }
+        else{
+            AppUtilities.shared().showAlert(with: "Please watch complete video to unlock this wallpaper", viewController: self){ (ok) in
+                self.navigationController?.popViewController(animated: true)
+            }
         }
     }
 }

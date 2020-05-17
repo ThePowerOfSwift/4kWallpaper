@@ -8,6 +8,7 @@
 
 import UIKit
 import WebKit
+import StoreKit
 
 class SettingsVC: UIViewController {
     @IBOutlet weak var tblSettings:UITableView!
@@ -82,8 +83,14 @@ extension SettingsVC:UITableViewDelegate,UITableViewDataSource{
             vc.isFavourite = true
             self.navigationController?.pushViewController(vc, animated: true)
         case .rateApp:
-            if let url = URL(string: appStoreLink), UIApplication.shared.canOpenURL(url){
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            
+            if #available(iOS 10.3, *) {
+                SKStoreReviewController.requestReview()
+            } else {
+                if let url = URL(string: appStoreLink), UIApplication.shared.canOpenURL(url){
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                }
+                // Fallback on earlier versions
             }
         case .sharing:
             let link = [URL(string: appStoreLink)!]

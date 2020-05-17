@@ -235,11 +235,12 @@ extension Webservices{
             if let status = response.status, status == 1, let data = response.appList{
                 
                 //Force Update
-                if let forceUpdate = data.forceUpdate, forceUpdate == "1"{
+                if let forceUpdate = data.forceUpdate, let version = data.appVersion, version != appVersion{
+                    forcefullyUpdate = forceUpdate == "1"
                     guard let window = AppUtilities.shared().getMainWindow(), let controller = window.rootViewController else {
                         return
                     }
-                    AppUtilities.shared().showAlert(with: "Please update your application to get better experience and new features", viewController: controller){(action) in
+                    AppUtilities.shared().showAlert(with: "Please update your application to get better experience and new features", isConfirmation: forceUpdate != "1", viewController: controller){(action) in
                         
                         if let url = URL(string: appStoreLink), UIApplication.shared.canOpenURL(url){
                             UIApplication.shared.open(url, options: [:], completionHandler: nil)
@@ -250,6 +251,22 @@ extension Webservices{
                 //Interstital Condition
                 if let addFrequeny = data.adFreqCount, let count = Int(addFrequeny){
                     kAddFrequency = count
+                }
+                
+                if let totalAds = data.totalAdCount, let count = Int(totalAds){
+                    totalAdsCount = count
+                }
+                
+                if let frequency = data.adFreqTime, let time = Int(frequency){
+                    frequencyTime = time/1000
+                }
+                
+                if let disableAds = data.adDisable, disableAds == "1"{
+                    isSubscribed = true
+                }
+                
+                if let inApp = data.inApp, inApp == "1"{
+                    showInAppOnLive = true
                 }
             }
             

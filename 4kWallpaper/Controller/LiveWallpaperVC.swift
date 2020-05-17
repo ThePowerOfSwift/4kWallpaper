@@ -103,6 +103,10 @@ extension LiveWallpaperVC:UICollectionViewDelegate,UICollectionViewDataSource,UI
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if showInAppOnLive, !isSubscribed{
+            self.navigationController?.pushViewController(SubscriptionVC.controller(), animated: true)
+            return
+        }
         kActivity += 1
         let index = indexPath.section*kAdsDifference
         let obj = arrWallPapers[index + indexPath.row]

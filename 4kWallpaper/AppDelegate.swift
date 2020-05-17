@@ -11,6 +11,10 @@ import Kingfisher
 import KingfisherWebP
 import GoogleMobileAds
 
+protocol RewardCompletionDelegate:AnyObject {
+    func rewardDidDismiss(rewarded:Bool)
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
@@ -26,12 +30,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var adLoader: GADAdLoader!
     var nativeAdView: GADUnifiedNativeAdView!
     var adsArr:[GADUnifiedNativeAdView] = []
+    var rewarded = false
     var totalData = 0{
         didSet{
             loadAds()
         }
     }
-    
+    weak var delegate:RewardCompletionDelegate?
+    var rewardedAd = GADRewardedAd()
     let inAppManager = InAppManager()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -68,9 +74,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Interstitial Ads Integration
         interstitial = createAndLoadInterstitial()
         
+        //Rewarded Ads
+        rewardedAd = createAndLoadRewardedAd()
+        
         //In App Purchase
         inAppManager.fetchProducts()
         return true
+    }
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        if forcefullyUpdate{
+            guard let window = AppUtilities.shared().getMainWindow(), let controller = window.rootViewController else {
+                return
+            }
+            AppUtilities.shared().showAlert(with: "Please update your application to get better experience and new features", viewController: controller){(action) in
+                
+                if let url = URL(string: appStoreLink), UIApplication.shared.canOpenURL(url){
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                }
+            }
+        }
     }
     
     func createAndLoadInterstitial() -> GADInterstitial {
@@ -90,6 +113,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.interstitial.present(fromRootViewController: controller)
         } else {
             print("Ad wasn't ready")
+        }
+    }
+    
+    func createAndLoadRewardedAd() -> GADRewardedAd {
+      rewardedAd = GADRewardedAd(adUnitID: rewardedAdUnitId)
+      rewardedAd.load(GADRequest()) { error in
+        if let error = error {
+          print("Loading failed: \(error)")
+        } else {
+          print("Loading Succeeded")
+        }
+      }
+      return rewardedAd
+    }
+    
+    func showRewardVideo(){
+        if rewardedAd.isReady{
+            guard let window = AppUtilities.shared().getMainWindow(), let controller = window.rootViewController else {return}
+            rewardedAd.present(fromRootViewController: controller, delegate: self)
         }
     }
     
@@ -240,4 +282,28 @@ extension AppDelegate : GADUnifiedNativeAdDelegate {
   func nativeAdWillLeaveApplication(_ nativeAd: GADUnifiedNativeAd) {
     print("\(#function) called")
   }
+}
+
+//MARK: - REWARD DELEGATES
+extension AppDelegate:GADRewardedAdDelegate{
+    /// Tells the delegate that the user earned a reward.
+    func rewardedAd(_ rewardedAd: GADRewardedAd, userDidEarn reward: GADAdReward) {
+        rewarded = true
+        print("Reward received with currency: \(reward.type), amount \(reward.amount).")
+    }
+    /// Tells the delegate that the rewarded ad was presented.
+    func rewardedAdDidPresent(_ rewardedAd: GADRewardedAd) {
+        rewarded = false
+        print("Rewarded ad presented.")
+    }
+    /// Tells the delegate that the rewarded ad was dismissed.
+    func rewardedAdDidDismiss(_ rewardedAd: GADRewardedAd) {
+        print("Rewarded ad dismissed.")
+        self.rewardedAd = createAndLoadRewardedAd()
+        self.delegate?.rewardDidDismiss(rewarded: rewarded)
+    }
+    /// Tells the delegate that the rewarded ad failed to present.
+    func rewardedAd(_ rewardedAd: GADRewardedAd, didFailToPresentWithError error: Error) {
+        print("Rewarded ad failed to present.")
+    }
 }

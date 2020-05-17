@@ -115,9 +115,13 @@ extension TrendingVC:UICollectionViewDelegate,UICollectionViewDataSource,UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        kActivity += 1
         let index = indexPath.section*kAdsDifference
         let obj = arrTrendings[index + indexPath.row]
+        if showInAppOnLive, !isSubscribed, obj.type == PostType.live.rawValue{
+            self.navigationController?.pushViewController(SubscriptionVC.controller(), animated: true)
+            return
+        }
+        kActivity += 1
         let vc = PreviewVC.controller()
         vc.post = obj
         self.navigationController?.pushViewController(vc, animated: true)

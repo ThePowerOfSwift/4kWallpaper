@@ -30,6 +30,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {
+        if forcefullyUpdate{
+            guard let window = AppUtilities.shared().getMainWindow(), let controller = window.rootViewController else {
+                return
+            }
+            AppUtilities.shared().showAlert(with: "Please update your application to get better experience and new features", viewController: controller){(action) in
+                
+                if let url = URL(string: appStoreLink), UIApplication.shared.canOpenURL(url){
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                }
+            }
+        }
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
     }
