@@ -29,7 +29,7 @@ enum RewardedIds:String{
 }
 
 let googleAdmobAppId = "ca-app-pub-1625565704226796~7216343259"
-let interstitialAddUnitId = InterstitalIds.test.rawValue
+let interstitialAddUnitId = InterstitalIds.live.rawValue
 let nativeAdUnitId = NativeAdsId.test.rawValue
 let rewardedAdUnitId = RewardedIds.test.rawValue
 

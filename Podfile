@@ -9,4 +9,6 @@ target '4kWallpaper' do
   pod "KingfisherWebP"
 #  pod 'FBAudienceNetwork'
   pod 'Google-Mobile-Ads-SDK'
+  pod 'GoogleMobileAdsMediationFacebook'
+  pod 'GoogleMobileAdsMediationTestSuite'
 end

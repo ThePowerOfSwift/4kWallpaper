@@ -10,6 +10,9 @@ import UIKit
 import Kingfisher
 import KingfisherWebP
 import GoogleMobileAds
+#if DEBUG
+import GoogleMobileAdsMediationTestSuite
+#endif
 
 protocol RewardCompletionDelegate:AnyObject {
     func rewardDidDismiss(rewarded:Bool)
@@ -79,6 +82,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //In App Purchase
         inAppManager.fetchProducts()
+        
+        GoogleMobileAdsMediationTestSuite.initialize()
         return true
     }
     
@@ -108,9 +113,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if isSubscribed{
             return
         }
+        
         if self.interstitial.isReady {
             guard let window = AppUtilities.shared().getMainWindow(), let controller = window.rootViewController else {return}
-            self.interstitial.present(fromRootViewController: controller)
+            #if DEBUG
+            
+            GoogleMobileAdsMediationTestSuite.present(withAppID: googleAdmobAppId, on: controller, delegate: nil)
+            #endif
+//            self.interstitial.present(fromRootViewController: controller)
         } else {
             print("Ad wasn't ready")
         }

@@ -40,6 +40,7 @@
 		1B5BDAD3245F30B200085928 /* WallpaperCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B5BDAD1245F30B200085928 /* WallpaperCell.xib */; };
 		1B5BDAD8245F3BE700085928 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5BDAD7245F3BE700085928 /* iCarousel.m */; };
 		1B5BDADC245F3D4700085928 /* WallPaperGridVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5BDADB245F3D4700085928 /* WallPaperGridVC.swift */; };
+		1B6F25F02471BE5200A95D0E /* FBAudienceNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B6F25EF2471BE5100A95D0E /* FBAudienceNetwork.framework */; };
 		1B73AF202466B43700C5E94C /* PLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B73AF1F2466B43700C5E94C /* PLView.swift */; };
 		1B73AF232466BB0000C5E94C /* JPEG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B73AF212466BB0000C5E94C /* JPEG.swift */; };
 		1B73AF242466BB0000C5E94C /* QuickTimeMov.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B73AF222466BB0000C5E94C /* QuickTimeMov.swift */; };
@@ -98,6 +99,7 @@
 		1B5BDAD6245F3BE700085928 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
 		1B5BDAD7245F3BE700085928 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
 		1B5BDADB245F3D4700085928 /* WallPaperGridVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallPaperGridVC.swift; sourceTree = "<group>"; };
+		1B6F25EF2471BE5100A95D0E /* FBAudienceNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBAudienceNetwork.framework; sourceTree = "<group>"; };
 		1B73AF1F2466B43700C5E94C /* PLView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLView.swift; sourceTree = "<group>"; };
 		1B73AF212466BB0000C5E94C /* JPEG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JPEG.swift; sourceTree = "<group>"; };
 		1B73AF222466BB0000C5E94C /* QuickTimeMov.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickTimeMov.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B6F25F02471BE5200A95D0E /* FBAudienceNetwork.framework in Frameworks */,
 				0D1EE3D3C7D2D7A1173EB51C /* Pods_4kWallpaper.framework in Frameworks */,
 				1B4B2870246ACD4500B75612 /* StoreKit.framework in Frameworks */,
 			);
@@ -183,6 +186,7 @@
 		1B5BDAB0245F218A00085928 /* 4kWallpaper */ = {
 			isa = PBXGroup;
 			children = (
+				1B6F25EF2471BE5100A95D0E /* FBAudienceNetwork.framework */,
 				1B5BDAD4245F3BD200085928 /* Resaurces */,
 				1B5BDAC7245F296700085928 /* Model */,
 				1B5BDAC8245F297000085928 /* View */,
@@ -307,6 +311,7 @@
 				1B5BDAAB245F218A00085928 /* Frameworks */,
 				1B5BDAAC245F218A00085928 /* Resources */,
 				724B9ACB9AC54224CEAC9998 /* [CP] Embed Pods Frameworks */,
+				86A63F5DD220F4EF7A694216 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -410,6 +415,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		86A63F5DD220F4EF7A694216 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-4kWallpaper/Pods-4kWallpaper-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-4kWallpaper/Pods-4kWallpaper-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-4kWallpaper/Pods-4kWallpaper-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -606,6 +628,10 @@
 				CODE_SIGN_IDENTITY = "Apple Development: Deepkumar Gajera (9GWPRRT627)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 66XLPZ4UAZ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/4kWallpaper",
+				);
 				INFOPLIST_FILE = 4kWallpaper/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -631,6 +657,10 @@
 				CODE_SIGN_IDENTITY = "Apple Distribution: Deepkumar Gajera (66XLPZ4UAZ)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 66XLPZ4UAZ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/4kWallpaper",
+				);
 				INFOPLIST_FILE = 4kWallpaper/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
