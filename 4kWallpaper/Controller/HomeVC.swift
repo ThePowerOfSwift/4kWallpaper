@@ -61,9 +61,12 @@ extension HomeVC{
         //Observers
         NotificationCenter.default.addObserver(self, selector: #selector(updatedAds), name: Notification.Name(rawValue: NotificationKeys.updatedAds), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updatedAds), name: NSNotification.Name(rawValue: NotificationKeys.purchaseSuccess), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(userIDUpdated), name: NSNotification.Name(rawValue: NotificationKeys.userIdUpdated), object: nil)
         
-        serviceForPostList()
-        serviceForInAppStatus()
+        if userId != 0{
+            serviceForPostList()
+            serviceForInAppStatus()
+        }
     }
     
     @objc fileprivate func updatedAds(){
@@ -74,6 +77,11 @@ extension HomeVC{
         currentPage = 1
         refreshController.attributedTitle = NSAttributedString(string: "Refreshing...", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
         serviceForPostList()
+    }
+    
+    @objc fileprivate func userIDUpdated(){
+        serviceForPostList()
+        serviceForInAppStatus()
     }
 }
 

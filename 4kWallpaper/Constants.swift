@@ -33,7 +33,7 @@ let interstitialAddUnitId = InterstitalIds.test.rawValue
 let nativeAdUnitId = NativeAdsId.test.rawValue
 let rewardedAdUnitId = RewardedIds.test.rawValue
 
-let modelNumber = UIDevice().type
+let modelNumber = UIDevice().type.rawValue
 let deviceId = UIDevice.current.identifierForVendor?.uuidString ?? ""
 let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
 let osVersion = UIDevice.current.systemVersion
@@ -74,8 +74,8 @@ var kActivity = 0{
     }
 }
 var kAdsDifference = 12
-var appStoreId = "284882215"
-let appStoreLink = "https://apps.apple.com/in/app/facebook/id\(appStoreId)"
+var appStoreId = "1512637571"
+let appStoreLink = "https://apps.apple.com/in/app/id\(appStoreId)"
 
 let kReportMailId = "4kwallpaper18@gmail.com"
 let kTermsUrl = "https://4kwallpaper.online/terms.html"
@@ -115,6 +115,7 @@ struct CellIdentifier {
 struct NotificationKeys {
     static let updatedAds = "UpdatedAds"
     static let purchaseSuccess = "PurchaseSuccess"
+    static let userIdUpdated = "UserIdUpdated"
 }
 
 struct ControllerIds {

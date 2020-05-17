@@ -126,7 +126,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mcc-i8-88s">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="604"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="dwj-5Y-ceY">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logosplash" translatesAutoresizingMaskIntoConstraints="NO" id="dwj-5Y-ceY">
                                                 <rect key="frame" x="110" y="20" width="100" height="100"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="dwj-5Y-ceY" secondAttribute="height" id="08k-RD-CMn"/>
@@ -139,8 +139,8 @@
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wallifly" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LLi-gn-A18">
-                                                <rect key="frame" x="137" y="137" width="46" height="24"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Walli fly" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LLi-gn-A18">
+                                                <rect key="frame" x="135" y="137" width="50" height="24"/>
                                                 <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="15"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -194,7 +194,7 @@
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y9M-k2-bAl">
                                                                 <rect key="frame" x="10" y="27" width="268" height="215"/>
-                                                                <mutableString key="text">All the wallpapers in this app are under common creative license and the credit goes to their respective owners. These images are not endorsed by any of the prospective owners. and the images are used simply for aesthetic purpose. No copyright infringement is intended, and any request to remove one of the images / logos / names will be honored. All the Images are obtained rom pexels.com as well as unsplash.com which are covered by the Creative Commons Zero license. That means all images are free for distribution and free for commercial use which also does not need any kind of attribution or credit. privacy policy Open sources</mutableString>
+                                                                <string key="text">All the wallpapers in this app are under common creative license and the credit goes to their respective owners. These images are not endorsed by any of the prospective owners. and the images are used simply for aesthetic purpose. No copyright infringement is intended, and any request to remove one of the images / logos / names will be honored. All the Images are obtained rom pexels.com as well as unsplash.com which are covered by the Creative Commons Zero license. That means all images are free for distribution and free for commercial use which also does not need any kind of attribution or credit. privacy policy Open sources</string>
                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -1489,8 +1489,9 @@ and will continue to automatically renew until you cancel</string>
         <image name="inappback" width="1080" height="1920"/>
         <image name="like" width="50" height="50"/>
         <image name="live" width="30" height="30"/>
+        <image name="logosplash" width="122.5" height="96"/>
         <image name="photo" width="20" height="20"/>
-        <image name="placeholder" width="600" height="640"/>
+        <image name="placeholder" width="226" height="415"/>
         <image name="radio_off" width="20" height="20"/>
         <image name="radio_on" width="20" height="20"/>
         <image name="report" width="20" height="20"/>

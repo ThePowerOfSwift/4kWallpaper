@@ -218,6 +218,7 @@ extension Webservices{
             if let uid = user.userId{
                 userId = uid
                 UserDefaults.standard.set(uid, forKey: DefaultKeys.userId)
+                NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationKeys.userIdUpdated), object: nil)
             }
             
         }) { (failer) in

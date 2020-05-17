@@ -84,7 +84,7 @@
 		1B4E330D24700EEA002CD349 /* WebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebVC.swift; sourceTree = "<group>"; };
 		1B572D66246093A20028566B /* CatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatCell.swift; sourceTree = "<group>"; };
 		1B572D67246093A20028566B /* CatCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CatCell.xib; sourceTree = "<group>"; };
-		1B5BDAAE245F218A00085928 /* 4kWallpaper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 4kWallpaper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B5BDAAE245F218A00085928 /* 4k wallpaper - Walli fly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "4k wallpaper - Walli fly.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B5BDAB1245F218A00085928 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1B5BDAB3245F218A00085928 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		1B5BDAB8245F218A00085928 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -175,7 +175,7 @@
 		1B5BDAAF245F218A00085928 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1B5BDAAE245F218A00085928 /* 4kWallpaper.app */,
+				1B5BDAAE245F218A00085928 /* 4k wallpaper - Walli fly.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -314,7 +314,7 @@
 			);
 			name = 4kWallpaper;
 			productName = 4kWallpaper;
-			productReference = 1B5BDAAE245F218A00085928 /* 4kWallpaper.app */;
+			productReference = 1B5BDAAE245F218A00085928 /* 4k wallpaper - Walli fly.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -613,7 +613,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = hd.4kwallpaper.livewallpaper;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "4k wallpaper - Walli fly";
 				PROVISIONING_PROFILE_SPECIFIER = 4KWallpaper_Dev;
 				SWIFT_OBJC_BRIDGING_HEADER = "$PROJECT_DIR/$PROJECT_NAME/4kWallpaper-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -638,7 +638,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = hd.4kwallpaper.livewallpaper;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "4k wallpaper - Walli fly";
 				PROVISIONING_PROFILE_SPECIFIER = 4KWallpaper_Dist;
 				SWIFT_OBJC_BRIDGING_HEADER = "$PROJECT_DIR/$PROJECT_NAME/4kWallpaper-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
