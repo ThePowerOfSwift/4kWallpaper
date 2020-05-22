@@ -209,7 +209,7 @@ extension Webservices{
         let params:[String:Any] = [
             Parameters.device_id:deviceId,
             Parameters.app_version:appVersion,
-            Parameters.fcm_id:fcmToken,
+            Parameters.fcm_id:firebaseeToken,
             Parameters.model_number:modelNumber
             
         ]
@@ -223,7 +223,7 @@ extension Webservices{
             
         }) { (failer) in
             if let vc = AppUtilities.shared().getMainWindow()?.rootViewController{
-                AppUtilities.shared().showAlert(with: failer, viewController: vc)
+                AppUtilities.shared().showAlert(with: kNoInternet, viewController: vc, hideButtons: true)
             }
             
         }
@@ -273,7 +273,7 @@ extension Webservices{
             
         }) { (failer) in
             if let vc = AppUtilities.shared().getMainWindow()?.rootViewController{
-                AppUtilities.shared().showAlert(with: failer, viewController: vc)
+                AppUtilities.shared().showAlert(with: kNoInternet, viewController: vc, hideButtons: true)
             }
             
         }

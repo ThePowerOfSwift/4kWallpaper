@@ -47,7 +47,7 @@ extension SimilarCatVC{
         serviceForTrendingList()
         
         //Refresh Controlls
-        refreshController.attributedTitle = NSAttributedString(string: "Pull To Refresh.", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
+//        refreshController.attributedTitle = NSAttributedString(string: "Pull To Refresh.", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
         refreshController.addTarget(self, action: #selector(didRefreshCollection(_:)), for: .valueChanged)
         refreshController.tintColor = .white
         self.collectionWallPapers.refreshControl = refreshController
@@ -64,7 +64,7 @@ extension SimilarCatVC{
     
     @objc fileprivate func didRefreshCollection(_ sender:UIRefreshControl){
         currentPage = 1
-        refreshController.attributedTitle = NSAttributedString(string: "Refreshing...", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
+//        refreshController.attributedTitle = NSAttributedString(string: "Refreshing...", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
         serviceForTrendingList()
     }
 }
@@ -92,8 +92,9 @@ extension SimilarCatVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = collectionView.bounds.size.width/3
-        return CGSize(width: width, height: width*1.8)
+        let width = (collectionView.bounds.size.width-40)/3
+        let height = (width*ratioHeight)/ratioWidth
+        return CGSize(width: width, height: height)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -107,6 +108,8 @@ extension SimilarCatVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
         let vc = PreviewVC.controller()
         vc.post = obj
         vc.type = postType.rawValue
+        let cell = collectionView.cellForItem(at: indexPath) as! WallpaperCell
+        vc.previewImage = cell.imgWallPaper.image
         self.navigationController?.pushViewController(vc, animated: true)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
@@ -169,15 +172,17 @@ extension SimilarCatVC{
             Parameters.category:category
         ]
         loadMore = false
-        UIView.animate(withDuration: 0.2) { [unowned self] in
-            self.viewIndicator.isHidden = false
-            self.indicator.startAnimating()
+        if currentPage != 1{
+            UIView.animate(withDuration: 0.2) { [unowned self] in
+                self.viewIndicator.isHidden = false
+                self.indicator.startAnimating()
+            }
         }
-        Webservices().request(with: params, method: .post, endPoint: postType == .live ? EndPoints.live : EndPoints.postList, type: Trending.self, loader: false, success: {[weak self] (success) in
+        Webservices().request(with: params, method: .post, endPoint: postType == .live ? EndPoints.live : EndPoints.postList, type: Trending.self, loader: currentPage == 1 ? true : false, success: {[weak self] (success) in
             AppUtilities.shared().removeNoDataLabelFrom(view: self?.view ?? UIView())
             
             self?.refreshController.endRefreshing()
-            self?.refreshController.attributedTitle = NSAttributedString(string: "Pull To Refresh.", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
+//            self?.refreshController.attributedTitle = NSAttributedString(string: "Pull To Refresh.", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
             UIView.animate(withDuration: 0.2) {
                 self?.viewIndicator.isHidden = true
                 self?.indicator.stopAnimating()
@@ -200,12 +205,13 @@ extension SimilarCatVC{
             }
             
         }) {[weak self] (failer) in
+            self?.refreshController.endRefreshing()
             UIView.animate(withDuration: 0.2) {
                 self?.viewIndicator.isHidden = true
                 self?.indicator.stopAnimating()
             }
             guard let vc = self else {return}
-            AppUtilities.shared().showAlert(with: failer, viewController: vc)
+            AppUtilities.shared().showAlert(with: kNoInternet, viewController: vc, hideButtons: true)
         }
     }
 }

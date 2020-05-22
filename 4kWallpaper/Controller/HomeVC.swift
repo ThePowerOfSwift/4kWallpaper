@@ -14,10 +14,25 @@ class HomeVC: UIViewController {
     @IBOutlet weak var collectionWallPapers:UICollectionView!
     @IBOutlet weak var viewIndicator:UIView!
     @IBOutlet weak var indicator:UIActivityIndicatorView!
+    @IBOutlet weak var viewHeader:UIView!
+    @IBOutlet weak var viewSplash:UIView!
     var arrTrendings:[Post] = []
+    var arrBanners:[Wallpaper] = []
+    var arrMissed:[Post] = []
+    var arrLiveWallpaper:[Post] = []
+    var arrLikes:[Post] = []
+    
     var currentPage = 1
     var loadMore = true
+    var dataLoaded = false
     var refreshController = UIRefreshControl()
+//    override var prefersStatusBarHidden: Bool{
+//        return true
+//    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        return .lightContent
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,8 +58,9 @@ class HomeVC: UIViewController {
 extension HomeVC{
     private func setupView(){
         //In app purchase
+        self.navigationItem.backBarButtonItem?.title = ""
         SKPaymentQueue.default().add(self)
-        
+        self.tabBarController?.tabBar.isHidden = true
         //Collection Methods
         let header = UINib(nibName: CellIdentifier.homeHeader, bundle: nil)
         self.collectionWallPapers.register(header, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CellIdentifier.homeHeader)
@@ -53,7 +69,7 @@ extension HomeVC{
         collectionWallPapers.register(nib, forCellWithReuseIdentifier: CellIdentifier.wallpaper)
         
         //Refresh Controlls
-        refreshController.attributedTitle = NSAttributedString(string: "Pull To Refresh.", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
+//        refreshController.attributedTitle = NSAttributedString(string: "Pull To Refresh.", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
         refreshController.addTarget(self, action: #selector(didRefreshCollection(_:)), for: .valueChanged)
         refreshController.tintColor = .white
         self.collectionWallPapers.refreshControl = refreshController
@@ -66,6 +82,7 @@ extension HomeVC{
         if userId != 0{
             serviceForPostList()
             serviceForInAppStatus()
+            serviceForHomeData()
         }
     }
     
@@ -75,13 +92,15 @@ extension HomeVC{
     
     @objc fileprivate func didRefreshCollection(_ sender:UIRefreshControl){
         currentPage = 1
-        refreshController.attributedTitle = NSAttributedString(string: "Refreshing...", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
+//        refreshController.attributedTitle = NSAttributedString(string: "Refreshing...", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
+        serviceForHomeData()
         serviceForPostList()
     }
     
     @objc fileprivate func userIDUpdated(){
         serviceForPostList()
         serviceForInAppStatus()
+        serviceForHomeData()
     }
 }
 
@@ -108,8 +127,9 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = collectionView.bounds.size.width/3
-        return CGSize(width: width, height: width*1.8)
+        let width = (collectionView.bounds.size.width-40)/3
+        let height = (width*ratioHeight)/ratioWidth
+        return CGSize(width: width, height: height)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -122,6 +142,8 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
         }
         let vc = PreviewVC.controller()
         vc.post = obj
+        let cell = collectionView.cellForItem(at: indexPath) as! WallpaperCell
+        vc.previewImage = cell.imgWallPaper.image
         self.navigationController?.pushViewController(vc, animated: true)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
@@ -143,6 +165,10 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
         case UICollectionView.elementKindSectionHeader:
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CellIdentifier.homeHeader, for: indexPath) as! HomeHeader
             header.delegate = self
+            header.arrLikes = self.arrLikes
+            header.arrLiveWallpaper = self.arrLiveWallpaper
+            header.arrBanners = self.arrBanners
+            header.arrMissed = self.arrMissed
             return header
             
         case UICollectionView.elementKindSectionFooter:
@@ -177,6 +203,32 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
 
 //MARK: - WEBSERVICES
 extension HomeVC{
+    fileprivate func serviceForHomeData(){
+        
+        Webservices().request(with: [:], method: .post, endPoint: EndPoints.home, type: Home.self, loader: false, success: {[weak self] (success) in
+            
+            guard let response = success as? Home else {return}
+            self?.arrLikes = response.youMayLikeWallpaper ?? []
+            self?.arrLiveWallpaper = response.livewallpaper ?? []
+            self?.arrBanners = response.banner ?? []
+            self?.arrMissed = response.youMayMisedWallpaper ?? []
+            self?.collectionWallPapers.reloadData()
+            
+            if self?.dataLoaded == true{
+                self?.tabBarController?.tabBar.isHidden = false
+                self?.viewSplash.isHidden = true
+                self?.tabBarController?.tabBar.isTranslucent = false
+            }
+            else{
+                self?.dataLoaded = true
+            }
+            
+        }) {(failer) in
+            guard let window = AppUtilities.shared().getMainWindow(), let vc = window.rootViewController else {return}
+            AppUtilities.shared().showAlert(with: kNoInternet, viewController: vc, hideButtons: true)
+        }
+    }
+    
     fileprivate func serviceForPostList(){
         let params:[String:Any] = [
             Parameters.user_id:userId,
@@ -184,14 +236,16 @@ extension HomeVC{
             Parameters.used_ids:arrTrendings.compactMap({$0.postId}).joined(separator: ",")
         ]
         loadMore = false
-        UIView.animate(withDuration: 0.2) { [unowned self] in
-            self.viewIndicator.isHidden = false
-            self.indicator.startAnimating()
+        if currentPage != 1{
+            UIView.animate(withDuration: 0.2) { [unowned self] in
+                self.viewIndicator.isHidden = false
+                self.indicator.startAnimating()
+            }
         }
-        Webservices().request(with: params, method: .post, endPoint:EndPoints.postList, type: Trending.self, loader: false, success: {[weak self] (success) in
+        Webservices().request(with: params, method: .post, endPoint:EndPoints.postList, type: Trending.self, loader: currentPage == 1 ? true : false, success: {[weak self] (success) in
             AppUtilities.shared().removeNoDataLabelFrom(view: self?.view ?? UIView())
             self?.refreshController.endRefreshing()
-            self?.refreshController.attributedTitle = NSAttributedString(string: "Pull To Refresh.", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
+//            self?.refreshController.attributedTitle = NSAttributedString(string: "Pull To Refresh.", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
             UIView.animate(withDuration: 0.2) {
                 self?.viewIndicator.isHidden = true
                 self?.indicator.stopAnimating()
@@ -210,15 +264,27 @@ extension HomeVC{
                     AppUtilities.shared().showNoDataLabelwith(message: "No Data available.", in: self?.view ?? UIView())
                 }
                 self?.collectionWallPapers.reloadData()
+                if self?.dataLoaded == true{
+                    self?.tabBarController?.tabBar.isHidden = false
+                    self?.viewSplash.isHidden = true
+                    self?.tabBarController?.tabBar.isTranslucent = false
+                }
+                else{
+                    self?.dataLoaded = true
+                }
             }
             
         }) {[weak self] (failer) in
+            self?.refreshController.endRefreshing()
             UIView.animate(withDuration: 0.2) {
                 self?.viewIndicator.isHidden = true
                 self?.indicator.stopAnimating()
             }
             guard let vc = self else {return}
-            AppUtilities.shared().showAlert(with: failer, viewController: vc)
+            self?.tabBarController?.tabBar.isHidden = false
+            self?.viewSplash.isHidden = true
+            self?.tabBarController?.tabBar.isTranslucent = false
+            AppUtilities.shared().showAlert(with: kNoInternet, viewController: vc, hideButtons: true)
         }
     }
     
@@ -238,7 +304,7 @@ extension HomeVC{
         let params:[String:Any] = [
             Parameters.user_id:userId
         ]
-        Webservices().request(with: params, method: .post, endPoint: EndPoints.inAppPurchaseStatus, type: InAppPurchase.self, success: { (success) in
+        Webservices().request(with: params, method: .post, endPoint: EndPoints.inAppPurchaseStatus, type: InAppPurchase.self, loader: false, success: { (success) in
             guard let response = success as? InAppPurchase else {return}
             if let status = response.status, status == 1, let purchase = response.inAppPurchase{
                 let time = Double(purchase.inAppPurchaseTime ?? "")
@@ -270,6 +336,7 @@ extension HomeVC{
                 currentPage += 1
                 serviceForPostList()
             }
+            viewHeader.alpha = scrollView.contentOffset.y
         }
     }
 }

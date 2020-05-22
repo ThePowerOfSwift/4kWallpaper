@@ -11,7 +11,7 @@
         <!--HomeVC-->
         <scene sceneID="TnF-yB-cdZ">
             <objects>
-                <viewController storyboardIdentifier="HomeVC" id="9mn-xi-zQu" customClass="HomeVC" customModule="_kWallpaper" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeVC" id="9mn-xi-zQu" customClass="HomeVC" customModule="_k_wallpaper___Walli_fly" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="g0V-ip-kQL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -20,13 +20,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vpd-MK-vo9">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="479"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="MoF-BS-E5h">
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="MoF-BS-E5h">
                                             <size key="itemSize" width="128" height="128"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells/>
                                         <connections>
@@ -34,8 +34,8 @@
                                             <outlet property="delegate" destination="9mn-xi-zQu" id="JjM-J0-baG"/>
                                         </connections>
                                     </collectionView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fNc-PP-xwQ">
-                                        <rect key="frame" x="0.0" y="479" width="320" height="40"/>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fNc-PP-xwQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
                                         <subviews>
                                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="LpO-yk-mlN">
                                                 <rect key="frame" x="150" y="10" width="20" height="20"/>
@@ -51,23 +51,76 @@
                                     </view>
                                 </subviews>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cnj-8N-lKd">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Walli fly" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zxQ-Af-B3X">
+                                        <rect key="frame" x="126.5" y="13" width="67" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.51532240316901412" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="zxQ-Af-B3X" firstAttribute="centerY" secondItem="cnj-8N-lKd" secondAttribute="centerY" id="8VB-HG-8Eo"/>
+                                    <constraint firstAttribute="height" constant="50" id="CS6-iG-lrJ"/>
+                                    <constraint firstItem="zxQ-Af-B3X" firstAttribute="centerX" secondItem="cnj-8N-lKd" secondAttribute="centerX" id="UNM-5B-uPW"/>
+                                </constraints>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kEu-4G-TPq">
-                                <rect key="frame" x="279" y="16" width="25" height="25"/>
+                                <rect key="frame" x="280" y="12.5" width="25" height="25"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" image="settings"/>
                                 <connections>
                                     <segue destination="CD0-ym-XfT" kind="show" id="VnG-4X-nCv"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GKK-Ji-Sv2">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backsplash" translatesAutoresizingMaskIntoConstraints="NO" id="U0v-pg-xM8">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logosplash" translatesAutoresizingMaskIntoConstraints="NO" id="hUh-nJ-vQe">
+                                        <rect key="frame" x="112.5" y="434" width="95" height="96"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Walli fly" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bBw-pl-24E">
+                                        <rect key="frame" x="135" y="536.5" width="62" height="21.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="bBw-pl-24E" firstAttribute="top" secondItem="hUh-nJ-vQe" secondAttribute="bottom" multiplier="827:817" id="3X1-3q-1Mn"/>
+                                    <constraint firstAttribute="trailing" secondItem="U0v-pg-xM8" secondAttribute="trailing" id="4tB-at-05y"/>
+                                    <constraint firstItem="U0v-pg-xM8" firstAttribute="leading" secondItem="GKK-Ji-Sv2" secondAttribute="leading" id="8fH-5e-iAQ"/>
+                                    <constraint firstItem="hUh-nJ-vQe" firstAttribute="width" secondItem="U0v-pg-xM8" secondAttribute="width" multiplier="0.296296" id="DRq-LH-5nS"/>
+                                    <constraint firstItem="hUh-nJ-vQe" firstAttribute="centerX" secondItem="GKK-Ji-Sv2" secondAttribute="centerX" id="Xez-H7-vol"/>
+                                    <constraint firstAttribute="bottom" secondItem="U0v-pg-xM8" secondAttribute="bottom" id="Yx2-C1-Bes"/>
+                                    <constraint firstItem="bBw-pl-24E" firstAttribute="centerX" secondItem="hUh-nJ-vQe" secondAttribute="centerX" constant="6" id="aNn-ga-Hf0"/>
+                                    <constraint firstAttribute="bottom" secondItem="bBw-pl-24E" secondAttribute="bottom" constant="10" id="iT7-Tn-lkg"/>
+                                    <constraint firstItem="U0v-pg-xM8" firstAttribute="top" secondItem="GKK-Ji-Sv2" secondAttribute="top" id="mQ5-r5-NgH"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="GKK-Ji-Sv2" firstAttribute="top" secondItem="8Ef-6b-mHO" secondAttribute="top" id="5Ce-Og-hv6"/>
                             <constraint firstItem="mcp-xj-2TS" firstAttribute="top" secondItem="8Ef-6b-mHO" secondAttribute="top" id="E7L-Lm-qit"/>
-                            <constraint firstItem="kEu-4G-TPq" firstAttribute="top" secondItem="8Ef-6b-mHO" secondAttribute="top" constant="16" id="I20-KT-Zha"/>
+                            <constraint firstItem="GKK-Ji-Sv2" firstAttribute="trailing" secondItem="8Ef-6b-mHO" secondAttribute="trailing" id="Oaa-vL-Mbb"/>
                             <constraint firstItem="mcp-xj-2TS" firstAttribute="trailing" secondItem="8Ef-6b-mHO" secondAttribute="trailing" id="Otu-eJ-zLb"/>
+                            <constraint firstItem="kEu-4G-TPq" firstAttribute="centerY" secondItem="cnj-8N-lKd" secondAttribute="centerY" id="Qia-MN-370"/>
+                            <constraint firstItem="GKK-Ji-Sv2" firstAttribute="leading" secondItem="8Ef-6b-mHO" secondAttribute="leading" id="QuZ-FI-J6s"/>
+                            <constraint firstAttribute="bottom" secondItem="GKK-Ji-Sv2" secondAttribute="bottom" id="T7A-u5-rOd"/>
+                            <constraint firstItem="cnj-8N-lKd" firstAttribute="top" secondItem="8Ef-6b-mHO" secondAttribute="top" id="Vbj-MS-PRE"/>
                             <constraint firstItem="8Ef-6b-mHO" firstAttribute="bottom" secondItem="mcp-xj-2TS" secondAttribute="bottom" id="auZ-bT-YMK"/>
+                            <constraint firstItem="cnj-8N-lKd" firstAttribute="trailing" secondItem="8Ef-6b-mHO" secondAttribute="trailing" id="flN-sD-cym"/>
+                            <constraint firstItem="cnj-8N-lKd" firstAttribute="leading" secondItem="8Ef-6b-mHO" secondAttribute="leading" id="jCm-AG-ys1"/>
                             <constraint firstItem="mcp-xj-2TS" firstAttribute="leading" secondItem="8Ef-6b-mHO" secondAttribute="leading" id="lsK-CM-Jul"/>
-                            <constraint firstItem="8Ef-6b-mHO" firstAttribute="trailing" secondItem="kEu-4G-TPq" secondAttribute="trailing" constant="16" id="rVs-gU-B7w"/>
+                            <constraint firstItem="8Ef-6b-mHO" firstAttribute="trailing" secondItem="kEu-4G-TPq" secondAttribute="trailing" constant="15" id="x6R-RY-15h"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8Ef-6b-mHO"/>
                     </view>
@@ -75,7 +128,9 @@
                     <connections>
                         <outlet property="collectionWallPapers" destination="vpd-MK-vo9" id="3gK-WW-4CU"/>
                         <outlet property="indicator" destination="LpO-yk-mlN" id="Q06-1F-ajL"/>
+                        <outlet property="viewHeader" destination="cnj-8N-lKd" id="KtQ-iL-BEP"/>
                         <outlet property="viewIndicator" destination="fNc-PP-xwQ" id="tLU-Ml-lhT"/>
+                        <outlet property="viewSplash" destination="GKK-Ji-Sv2" id="yes-Oe-5Na"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nyx-D1-xrx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -85,7 +140,7 @@
         <!--Wall Paper GridVC-->
         <scene sceneID="yPD-DO-cZM">
             <objects>
-                <viewController storyboardIdentifier="WallPaperGridVC" id="Rtx-LG-hsY" customClass="WallPaperGridVC" customModule="_kWallpaper" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WallPaperGridVC" id="Rtx-LG-hsY" customClass="WallPaperGridVC" customModule="_k_wallpaper___Walli_fly" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZPb-Nv-9vL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -100,7 +155,7 @@
         <!--WebVC-->
         <scene sceneID="OgT-4i-dM6">
             <objects>
-                <viewController storyboardIdentifier="WebVC" id="KIP-aw-vk9" customClass="WebVC" customModule="_kWallpaper" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WebVC" id="KIP-aw-vk9" customClass="WebVC" customModule="_k_wallpaper___Walli_fly" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MB9-O5-Kkz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -115,7 +170,7 @@
         <!--About UsVC-->
         <scene sceneID="UcI-wh-Tft">
             <objects>
-                <viewController storyboardIdentifier="AboutUsVC" id="aow-Da-jUW" customClass="AboutUsVC" customModule="_kWallpaper" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AboutUsVC" id="aow-Da-jUW" customClass="AboutUsVC" customModule="_k_wallpaper___Walli_fly" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8ZU-rc-Fbb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -286,7 +341,7 @@
         <!--Category-->
         <scene sceneID="XeR-qx-aGC">
             <objects>
-                <viewController id="Vhd-kV-HSx" customClass="CategoryVC" customModule="_kWallpaper" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Vhd-kV-HSx" customClass="CategoryVC" customModule="_k_wallpaper___Walli_fly" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8mj-ql-zUd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -307,11 +362,11 @@
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="S9N-yt-akv">
                                         <rect key="frame" x="0.0" y="50" width="320" height="469"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Ptl-Zn-TfD">
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="Ptl-Zn-TfD">
                                             <size key="itemSize" width="128" height="128"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells/>
                                         <connections>
@@ -361,7 +416,7 @@
         <!--ReportVC-->
         <scene sceneID="PLX-oj-qaN">
             <objects>
-                <viewController storyboardIdentifier="ReportVC" modalPresentationStyle="overCurrentContext" id="m9O-Zj-QcR" customClass="ReportVC" customModule="_kWallpaper" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ReportVC" modalPresentationStyle="overCurrentContext" id="m9O-Zj-QcR" customClass="ReportVC" customModule="_k_wallpaper___Walli_fly" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Iif-Az-fhD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -432,7 +487,7 @@
                                         </constraints>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="cBe-4r-t15" firstAttribute="leading" secondItem="yyN-JP-U9I" secondAttribute="leading" constant="16" id="3Vr-BF-9ff"/>
                                     <constraint firstAttribute="trailing" secondItem="cBe-4r-t15" secondAttribute="trailing" constant="16" id="Kl9-HB-EMd"/>
@@ -466,7 +521,7 @@
         <!--SubscriptionVC-->
         <scene sceneID="erK-Pq-RQ0">
             <objects>
-                <viewController storyboardIdentifier="SubscriptionVC" modalPresentationStyle="fullScreen" hidesBottomBarWhenPushed="YES" id="1kN-Aw-abT" customClass="SubscriptionVC" customModule="_kWallpaper" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SubscriptionVC" modalPresentationStyle="fullScreen" hidesBottomBarWhenPushed="YES" id="1kN-Aw-abT" customClass="SubscriptionVC" customModule="_k_wallpaper___Walli_fly" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Egm-br-hFr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -772,7 +827,7 @@ and will continue to automatically renew until you cancel</string>
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="u2B-uH-lxh" firstAttribute="bottom" secondItem="nXf-ba-Tcz" secondAttribute="bottom" id="2q3-61-yxX"/>
                             <constraint firstItem="ei2-DH-TnZ" firstAttribute="top" secondItem="nXf-ba-Tcz" secondAttribute="top" id="9gL-gf-NTI"/>
@@ -811,7 +866,7 @@ and will continue to automatically renew until you cancel</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="crS-43-h2u" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="home" id="OVW-gA-RuH"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="71F-xo-KLK">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" backIndicatorImage="arrows" id="71F-xo-KLK">
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -856,7 +911,7 @@ and will continue to automatically renew until you cancel</string>
         <!--Trending-->
         <scene sceneID="zOd-qg-qmr">
             <objects>
-                <viewController storyboardIdentifier="TrendingVC" id="VAh-14-o8M" customClass="TrendingVC" customModule="_kWallpaper" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TrendingVC" extendedLayoutIncludesOpaqueBars="YES" id="VAh-14-o8M" customClass="TrendingVC" customModule="_k_wallpaper___Walli_fly" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mWZ-Jm-Jlh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -864,14 +919,14 @@ and will continue to automatically renew until you cancel</string>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="eJZ-NS-e6M">
                                 <rect key="frame" x="0.0" y="44" width="320" height="475"/>
                                 <subviews>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cNO-Vs-psQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="435"/>
+                                    <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cNO-Vs-psQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="475"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="d0t-OH-LNS">
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="d0t-OH-LNS">
                                             <size key="itemSize" width="128" height="128"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells/>
                                         <connections>
@@ -879,8 +934,8 @@ and will continue to automatically renew until you cancel</string>
                                             <outlet property="delegate" destination="VAh-14-o8M" id="T9J-JQ-QZA"/>
                                         </connections>
                                     </collectionView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Laj-7q-RbZ">
-                                        <rect key="frame" x="0.0" y="435" width="320" height="40"/>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Laj-7q-RbZ">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
                                         <subviews>
                                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="K0j-ek-fIv">
                                                 <rect key="frame" x="150" y="10" width="20" height="20"/>
@@ -920,7 +975,7 @@ and will continue to automatically renew until you cancel</string>
         <!--PreviewVC-->
         <scene sceneID="I9G-At-HmD">
             <objects>
-                <viewController storyboardIdentifier="PreviewVC" hidesBottomBarWhenPushed="YES" id="Tfa-wz-kgo" customClass="PreviewVC" customModule="_kWallpaper" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PreviewVC" hidesBottomBarWhenPushed="YES" id="Tfa-wz-kgo" customClass="PreviewVC" customModule="_k_wallpaper___Walli_fly" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="o2k-kO-5Mc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -929,17 +984,17 @@ and will continue to automatically renew until you cancel</string>
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Hix-gb-lpQ">
-                                <rect key="frame" x="154" y="502" width="150" height="50"/>
+                                <rect key="frame" x="154" y="482" width="150" height="70"/>
                                 <subviews>
                                     <view hidden="YES" alpha="0.90000000000000002" tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xlj-6T-Xaq">
-                                        <rect key="frame" x="0.0" y="0.0" width="150" height="35"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="150" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Veg-EY-hb8">
-                                                <rect key="frame" x="105" y="0.0" width="35" height="35"/>
+                                                <rect key="frame" x="90" y="0.0" width="50" height="50"/>
                                                 <color key="backgroundColor" red="0.53413629529999995" green="0.53422963619999997" blue="0.53412312269999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="Veg-EY-hb8" secondAttribute="height" id="7aC-fC-dWG"/>
-                                                    <constraint firstAttribute="width" constant="35" id="sNz-tI-Sjs"/>
+                                                    <constraint firstAttribute="width" constant="50" id="sNz-tI-Sjs"/>
                                                 </constraints>
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" image="share">
@@ -950,10 +1005,10 @@ and will continue to automatically renew until you cancel</string>
                                                 </connections>
                                             </button>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3RO-lP-Jjg">
-                                                <rect key="frame" x="10" y="3.5" width="85" height="28"/>
+                                                <rect key="frame" x="10" y="11" width="70" height="28"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nbx-t5-zTs">
-                                                        <rect key="frame" x="5" y="5" width="75" height="18"/>
+                                                        <rect key="frame" x="5" y="5" width="60" height="18"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -979,13 +1034,13 @@ and will continue to automatically renew until you cancel</string>
                                         </constraints>
                                     </view>
                                     <view hidden="YES" alpha="0.90000000000000002" tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jdp-SB-9AO">
-                                        <rect key="frame" x="0.0" y="0.0" width="150" height="35"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="150" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ran-qB-TsM">
-                                                <rect key="frame" x="105" y="0.0" width="35" height="35"/>
+                                                <rect key="frame" x="90" y="0.0" width="50" height="50"/>
                                                 <color key="backgroundColor" red="0.53413629529999995" green="0.53422963619999997" blue="0.53412312269999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="35" id="8DV-E0-ROW"/>
+                                                    <constraint firstAttribute="width" constant="50" id="8DV-E0-ROW"/>
                                                     <constraint firstAttribute="width" secondItem="Ran-qB-TsM" secondAttribute="height" id="GiI-cM-2Vw"/>
                                                 </constraints>
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -997,10 +1052,10 @@ and will continue to automatically renew until you cancel</string>
                                                 </connections>
                                             </button>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uas-OB-whF">
-                                                <rect key="frame" x="10" y="3.5" width="85" height="28"/>
+                                                <rect key="frame" x="10" y="11" width="70" height="28"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lqN-S3-y1d">
-                                                        <rect key="frame" x="5" y="5" width="75" height="18"/>
+                                                        <rect key="frame" x="5" y="5" width="60" height="18"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -1026,13 +1081,13 @@ and will continue to automatically renew until you cancel</string>
                                         </constraints>
                                     </view>
                                     <view hidden="YES" alpha="0.90000000000000002" tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XSK-OC-8H0">
-                                        <rect key="frame" x="0.0" y="0.0" width="150" height="35"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="150" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y0I-Cg-swv">
-                                                <rect key="frame" x="105" y="0.0" width="35" height="35"/>
+                                                <rect key="frame" x="90" y="0.0" width="50" height="50"/>
                                                 <color key="backgroundColor" red="0.53413629529999995" green="0.53422963619999997" blue="0.53412312269999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="35" id="0Hz-Hm-1tc"/>
+                                                    <constraint firstAttribute="width" constant="50" id="0Hz-Hm-1tc"/>
                                                 </constraints>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" image="report">
@@ -1043,10 +1098,10 @@ and will continue to automatically renew until you cancel</string>
                                                 </connections>
                                             </button>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zl3-lF-Vt5">
-                                                <rect key="frame" x="10" y="3.5" width="85" height="28"/>
+                                                <rect key="frame" x="10" y="11" width="70" height="28"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Report" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M48-fI-RlW">
-                                                        <rect key="frame" x="5" y="5" width="75" height="18"/>
+                                                        <rect key="frame" x="5" y="5" width="60" height="18"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -1073,13 +1128,13 @@ and will continue to automatically renew until you cancel</string>
                                         </constraints>
                                     </view>
                                     <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y8K-k2-88x">
-                                        <rect key="frame" x="0.0" y="0.0" width="150" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="150" height="70"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xVr-1d-CV9">
-                                                <rect key="frame" x="100" y="0.0" width="50" height="50"/>
+                                                <rect key="frame" x="80" y="0.0" width="70" height="70"/>
                                                 <color key="backgroundColor" red="0.53413629529999995" green="0.53422963619999997" blue="0.53412312269999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="50" id="ZtG-eb-fIm"/>
+                                                    <constraint firstAttribute="width" constant="70" id="ZtG-eb-fIm"/>
                                                 </constraints>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
@@ -1103,11 +1158,11 @@ and will continue to automatically renew until you cancel</string>
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mHf-Qf-Bbf">
-                                <rect key="frame" x="16" y="502" width="50" height="50"/>
+                                <rect key="frame" x="16" y="482" width="70" height="70"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="mHf-Qf-Bbf" secondAttribute="height" multiplier="1:1" id="V4M-jz-4hL"/>
-                                    <constraint firstAttribute="width" constant="50" id="rlb-rv-Plr"/>
+                                    <constraint firstAttribute="width" constant="70" id="rlb-rv-Plr"/>
                                 </constraints>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" image="dislike"/>
@@ -1117,16 +1172,25 @@ and will continue to automatically renew until you cancel</string>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aKf-u7-EUv">
-                                <rect key="frame" x="135" y="502" width="50" height="50"/>
+                                <rect key="frame" x="125" y="482" width="70" height="70"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="9Eq-Q8-Gmd"/>
+                                    <constraint firstAttribute="width" constant="70" id="9Eq-Q8-Gmd"/>
                                     <constraint firstAttribute="width" secondItem="aKf-u7-EUv" secondAttribute="height" id="QmO-c7-O2i"/>
                                 </constraints>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" image="save"/>
                                 <connections>
                                     <action selector="btnDownload:" destination="Tfa-wz-kgo" eventType="touchUpInside" id="IIq-1A-egp"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qog-iB-TQI">
+                                <rect key="frame" x="16" y="16" width="35" height="35"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="10"/>
+                                <state key="normal" image="arrows"/>
+                                <connections>
+                                    <action selector="btnBackPressed:" destination="Tfa-wz-kgo" eventType="touchUpInside" id="gFM-0G-duh"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1139,6 +1203,8 @@ and will continue to automatically renew until you cancel</string>
                             <constraint firstItem="aom-j6-2yg" firstAttribute="bottom" secondItem="Hxc-h9-NPR" secondAttribute="bottom" id="QLd-1K-4mg"/>
                             <constraint firstItem="aom-j6-2yg" firstAttribute="bottom" secondItem="aKf-u7-EUv" secondAttribute="bottom" constant="16" id="T5a-Qb-c8g"/>
                             <constraint firstItem="Hxc-h9-NPR" firstAttribute="top" secondItem="aom-j6-2yg" secondAttribute="top" id="TxU-pK-oht"/>
+                            <constraint firstItem="Qog-iB-TQI" firstAttribute="leading" secondItem="aom-j6-2yg" secondAttribute="leading" constant="16" id="W2J-0A-Epj"/>
+                            <constraint firstItem="Qog-iB-TQI" firstAttribute="top" secondItem="aom-j6-2yg" secondAttribute="top" constant="16" id="eCd-3x-o9z"/>
                             <constraint firstItem="aom-j6-2yg" firstAttribute="trailing" secondItem="Hxc-h9-NPR" secondAttribute="trailing" id="gn2-jv-ayM"/>
                             <constraint firstItem="aom-j6-2yg" firstAttribute="bottom" secondItem="Hix-gb-lpQ" secondAttribute="bottom" constant="16" id="i4x-CX-IfO"/>
                             <constraint firstItem="aom-j6-2yg" firstAttribute="trailing" secondItem="Hix-gb-lpQ" secondAttribute="trailing" constant="16" id="jeY-Gz-PNj"/>
@@ -1166,18 +1232,186 @@ and will continue to automatically renew until you cancel</string>
             </objects>
             <point key="canvasLocation" x="2690.625" y="92.957746478873247"/>
         </scene>
+        <!--UnlockVC-->
+        <scene sceneID="G9q-DD-Xc3">
+            <objects>
+                <viewController storyboardIdentifier="UnlockVC" modalPresentationStyle="overCurrentContext" id="Zyh-K1-UJv" customClass="UnlockVC" customModule="_k_wallpaper___Walli_fly" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="xC3-hM-4lr">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WhatsApp" translatesAutoresizingMaskIntoConstraints="NO" id="kr8-fP-ggS">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N16-xr-a4C">
+                                <rect key="frame" x="64" y="106" width="192" height="242.5"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="inappback" translatesAutoresizingMaskIntoConstraints="NO" id="dxL-4I-4de">
+                                        <rect key="frame" x="0.0" y="0.0" width="192" height="242.5"/>
+                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="0xD-ss-K8R">
+                                        <rect key="frame" x="12.5" y="75.5" width="167.5" height="60.5"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Ay5-vo-9z1">
+                                                <rect key="frame" x="0.0" y="0.0" width="127" height="13.5"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="check" translatesAutoresizingMaskIntoConstraints="NO" id="QFm-Yx-ivf">
+                                                        <rect key="frame" x="0.0" y="3" width="8" height="8"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="8" id="QBN-Jh-QpF"/>
+                                                            <constraint firstAttribute="width" secondItem="QFm-Yx-ivf" secondAttribute="height" multiplier="1:1" id="bYz-hC-dP0"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unlock all wallpapers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7BS-Bj-nkP">
+                                                        <rect key="frame" x="13" y="0.0" width="114" height="13.5"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="nfc-cl-6wB">
+                                                <rect key="frame" x="0.0" y="23.5" width="78" height="13.5"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="check" translatesAutoresizingMaskIntoConstraints="NO" id="lvA-2u-7Uq">
+                                                        <rect key="frame" x="0.0" y="3" width="8" height="8"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="lvA-2u-7Uq" secondAttribute="height" multiplier="1:1" id="fzr-MC-yuO"/>
+                                                            <constraint firstAttribute="width" constant="8" id="vtU-rq-b5b"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remove ads" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Li-Tr-Tld">
+                                                        <rect key="frame" x="13" y="0.0" width="65" height="13.5"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="O0a-jp-8vC">
+                                                <rect key="frame" x="0.0" y="47" width="167.5" height="13.5"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="check" translatesAutoresizingMaskIntoConstraints="NO" id="0fK-bg-rzV">
+                                                        <rect key="frame" x="0.0" y="3" width="8" height="8"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="0fK-bg-rzV" secondAttribute="height" multiplier="1:1" id="AyR-1y-KRN"/>
+                                                            <constraint firstAttribute="width" constant="8" id="sQY-an-7DB"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get premium content update" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GlG-gG-dUn">
+                                                        <rect key="frame" x="13" y="0.0" width="154.5" height="13.5"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="unloack" translatesAutoresizingMaskIntoConstraints="NO" id="3Lc-bK-mBo">
+                                        <rect key="frame" x="76.5" y="15" width="39" height="39"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="3Lc-bK-mBo" secondAttribute="height" multiplier="1:1" id="EcX-fx-V4C"/>
+                                        </constraints>
+                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Kz8-wC-AbV">
+                                        <rect key="frame" x="19" y="149.5" width="154" height="77.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="glK-vr-cX2">
+                                                <rect key="frame" x="0.0" y="0.0" width="154" height="34"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="glK-vr-cX2" secondAttribute="height" multiplier="132:29" id="hUI-yc-6Ka"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="9"/>
+                                                <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="10" maxY="0.0"/>
+                                                <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" title="Unlock to watch video" image="video">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="btnWatchVideo:" destination="Zyh-K1-UJv" eventType="touchUpInside" id="q09-ia-nFH"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Hi-5U-zl4">
+                                                <rect key="frame" x="0.0" y="44" width="154" height="33.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="1Hi-5U-zl4" secondAttribute="height" multiplier="132:29" id="wJ6-dM-hyV"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="10"/>
+                                                <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="10" maxY="0.0"/>
+                                                <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" title="Get premium" image="permiim">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="btnPremium:" destination="Zyh-K1-UJv" eventType="touchUpInside" id="6UQ-eK-YQ6"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="1Hi-5U-zl4" firstAttribute="width" secondItem="1Hi-5U-zl4" secondAttribute="height" multiplier="132:29" id="EIa-Oe-4mV"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="Kz8-wC-AbV" firstAttribute="centerX" secondItem="N16-xr-a4C" secondAttribute="centerX" id="0j1-JL-8Qw"/>
+                                    <constraint firstItem="dxL-4I-4de" firstAttribute="leading" secondItem="N16-xr-a4C" secondAttribute="leading" id="1dk-0d-fsi"/>
+                                    <constraint firstItem="0xD-ss-K8R" firstAttribute="centerX" secondItem="N16-xr-a4C" secondAttribute="centerX" id="BBo-Lr-F7p"/>
+                                    <constraint firstItem="0xD-ss-K8R" firstAttribute="top" secondItem="3Lc-bK-mBo" secondAttribute="bottom" multiplier="74:53" id="F5n-hr-Ezh"/>
+                                    <constraint firstAttribute="bottom" secondItem="Kz8-wC-AbV" secondAttribute="bottom" multiplier="235:220" id="GCw-LM-5AE"/>
+                                    <constraint firstAttribute="trailing" secondItem="dxL-4I-4de" secondAttribute="trailing" id="JGs-FK-blY"/>
+                                    <constraint firstItem="3Lc-bK-mBo" firstAttribute="top" secondItem="N16-xr-a4C" secondAttribute="top" constant="15" id="QOJ-d4-mBI"/>
+                                    <constraint firstItem="3Lc-bK-mBo" firstAttribute="width" secondItem="dxL-4I-4de" secondAttribute="width" multiplier="0.204301" id="QOl-x3-zg1"/>
+                                    <constraint firstItem="3Lc-bK-mBo" firstAttribute="centerX" secondItem="N16-xr-a4C" secondAttribute="centerX" id="eEq-z4-JpO"/>
+                                    <constraint firstItem="Kz8-wC-AbV" firstAttribute="width" secondItem="N16-xr-a4C" secondAttribute="width" multiplier="0.8" id="fzI-q5-5fo"/>
+                                    <constraint firstAttribute="width" secondItem="N16-xr-a4C" secondAttribute="height" multiplier="186:235" id="jG3-af-kJ5"/>
+                                    <constraint firstItem="dxL-4I-4de" firstAttribute="top" secondItem="N16-xr-a4C" secondAttribute="top" id="uXt-Lo-yB0"/>
+                                    <constraint firstAttribute="bottom" secondItem="dxL-4I-4de" secondAttribute="bottom" id="vhz-78-Yyf"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.52296985035211263" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="N16-xr-a4C" firstAttribute="centerY" secondItem="xC3-hM-4lr" secondAttribute="centerY" multiplier="0.8" id="3DV-iN-iKB"/>
+                            <constraint firstItem="N16-xr-a4C" firstAttribute="centerX" secondItem="xC3-hM-4lr" secondAttribute="centerX" id="7X6-vS-SUe"/>
+                            <constraint firstItem="kr8-fP-ggS" firstAttribute="leading" secondItem="7ed-3v-5Ha" secondAttribute="leading" id="Bun-QG-9Nd"/>
+                            <constraint firstItem="N16-xr-a4C" firstAttribute="width" secondItem="kr8-fP-ggS" secondAttribute="width" multiplier="0.6" id="Sv1-jS-1Mg"/>
+                            <constraint firstItem="7ed-3v-5Ha" firstAttribute="bottom" secondItem="kr8-fP-ggS" secondAttribute="bottom" id="bYJ-kI-bIP"/>
+                            <constraint firstItem="kr8-fP-ggS" firstAttribute="top" secondItem="7ed-3v-5Ha" secondAttribute="top" id="biy-7K-RZX"/>
+                            <constraint firstItem="7ed-3v-5Ha" firstAttribute="trailing" secondItem="kr8-fP-ggS" secondAttribute="trailing" id="e5y-gp-I0o"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="7ed-3v-5Ha"/>
+                    </view>
+                    <connections>
+                        <outlet property="btnPremium" destination="1Hi-5U-zl4" id="1QL-hk-BhL"/>
+                        <outlet property="btnWatchVideo" destination="glK-vr-cX2" id="eKb-Jt-ear"/>
+                        <outlet property="imgLock" destination="3Lc-bK-mBo" id="O7q-ZO-cz3"/>
+                        <outlet property="viewBg" destination="N16-xr-a4C" id="UwI-gL-dF5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qbi-B9-GGb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3384" y="93"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="lOO-T1-Sna">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bbY-vo-b2v" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="trending" id="Ynp-zh-u8r"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="VVX-y1-Ddq">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" backIndicatorImage="arrows" id="VVX-y1-Ddq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
                     </navigationBar>
@@ -1188,7 +1422,7 @@ and will continue to automatically renew until you cancel</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n8a-O5-4Je" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="855" y="85"/>
+            <point key="canvasLocation" x="867" y="58"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ocP-4B-gBZ">
@@ -1241,7 +1475,7 @@ and will continue to automatically renew until you cancel</string>
         <!--SettingsVC-->
         <scene sceneID="vcK-6k-arX">
             <objects>
-                <viewController id="CD0-ym-XfT" customClass="SettingsVC" customModule="_kWallpaper" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="CD0-ym-XfT" customClass="SettingsVC" customModule="_k_wallpaper___Walli_fly" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="G7c-Fk-oTe">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1250,7 +1484,7 @@ and will continue to automatically renew until you cancel</string>
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsCell" id="E4Z-Xu-651" customClass="SettingsCell" customModule="_kWallpaper" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsCell" id="E4Z-Xu-651" customClass="SettingsCell" customModule="_k_wallpaper___Walli_fly" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="55.5" width="320" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="E4Z-Xu-651" id="TEJ-B6-O1E">
@@ -1258,21 +1492,21 @@ and will continue to automatically renew until you cancel</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EtO-4w-kCc">
-                                                    <rect key="frame" x="16" y="11.5" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="22" y="10.5" width="46.5" height="23"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tNp-Eg-VDh">
-                                                    <rect key="frame" x="262" y="11.5" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="257.5" y="10.5" width="46.5" height="23"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstItem="EtO-4w-kCc" firstAttribute="leading" secondItem="TEJ-B6-O1E" secondAttribute="leading" constant="16" id="3hf-Yx-AOw"/>
+                                                <constraint firstItem="EtO-4w-kCc" firstAttribute="leading" secondItem="TEJ-B6-O1E" secondAttribute="leading" constant="22" id="3hf-Yx-AOw"/>
                                                 <constraint firstItem="EtO-4w-kCc" firstAttribute="centerY" secondItem="TEJ-B6-O1E" secondAttribute="centerY" id="7gW-ui-R2V"/>
                                                 <constraint firstAttribute="trailing" secondItem="tNp-Eg-VDh" secondAttribute="trailing" constant="16" id="T7J-OP-VNv"/>
                                                 <constraint firstItem="tNp-Eg-VDh" firstAttribute="centerY" secondItem="TEJ-B6-O1E" secondAttribute="centerY" id="igO-GU-wAd"/>
@@ -1311,7 +1545,7 @@ and will continue to automatically renew until you cancel</string>
         <!--Live Wallpaper-->
         <scene sceneID="l3z-RJ-H7R">
             <objects>
-                <viewController storyboardIdentifier="LiveWallpaperVC" id="Cev-WR-gZz" customClass="LiveWallpaperVC" customModule="_kWallpaper" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LiveWallpaperVC" id="Cev-WR-gZz" customClass="LiveWallpaperVC" customModule="_k_wallpaper___Walli_fly" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yT4-Nf-vAG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1319,14 +1553,14 @@ and will continue to automatically renew until you cancel</string>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="8f9-zj-W70">
                                 <rect key="frame" x="0.0" y="44" width="320" height="475"/>
                                 <subviews>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zUS-wY-EKx">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="435"/>
+                                    <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zUS-wY-EKx">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="475"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="r8U-hS-vDR">
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="r8U-hS-vDR">
                                             <size key="itemSize" width="128" height="128"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells/>
                                         <connections>
@@ -1334,8 +1568,8 @@ and will continue to automatically renew until you cancel</string>
                                             <outlet property="delegate" destination="Cev-WR-gZz" id="QxK-9Z-rjE"/>
                                         </connections>
                                     </collectionView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K9M-nY-NNV">
-                                        <rect key="frame" x="0.0" y="435" width="320" height="40"/>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K9M-nY-NNV">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
                                         <subviews>
                                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="gNL-pX-uy4">
                                                 <rect key="frame" x="150" y="10" width="20" height="20"/>
@@ -1375,7 +1609,7 @@ and will continue to automatically renew until you cancel</string>
         <!--Similar CatVC-->
         <scene sceneID="Zxc-Um-2Gu">
             <objects>
-                <viewController storyboardIdentifier="SimilarCatVC" id="0Wh-ut-bPP" customClass="SimilarCatVC" customModule="_kWallpaper" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SimilarCatVC" id="0Wh-ut-bPP" customClass="SimilarCatVC" customModule="_k_wallpaper___Walli_fly" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aNs-eY-1vj">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1383,14 +1617,14 @@ and will continue to automatically renew until you cancel</string>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bzn-EO-Ptj">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="51c-jW-zDQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="528"/>
+                                    <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="51c-jW-zDQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Aep-tL-tqf">
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Aep-tL-tqf">
                                             <size key="itemSize" width="128" height="128"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells/>
                                         <connections>
@@ -1398,8 +1632,8 @@ and will continue to automatically renew until you cancel</string>
                                             <outlet property="delegate" destination="0Wh-ut-bPP" id="zL5-yM-dDS"/>
                                         </connections>
                                     </collectionView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I2T-1p-Dw9">
-                                        <rect key="frame" x="0.0" y="528" width="320" height="40"/>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I2T-1p-Dw9">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
                                         <subviews>
                                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Vgx-X2-EwQ">
                                                 <rect key="frame" x="150" y="10" width="20" height="20"/>
@@ -1439,7 +1673,7 @@ and will continue to automatically renew until you cancel</string>
         <!--All CategoryVC-->
         <scene sceneID="GWQ-24-Vys">
             <objects>
-                <viewController storyboardIdentifier="AllCategoryVC" id="WIC-yl-nOv" customClass="AllCategoryVC" customModule="_kWallpaper" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AllCategoryVC" id="WIC-yl-nOv" customClass="AllCategoryVC" customModule="_k_wallpaper___Walli_fly" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gM4-Nx-hNx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1480,25 +1714,31 @@ and will continue to automatically renew until you cancel</string>
         </scene>
     </scenes>
     <resources>
+        <image name="WhatsApp" width="720" height="1280"/>
         <image name="add" width="30" height="30"/>
+        <image name="arrows" width="25" height="25"/>
+        <image name="backsplash" width="414" height="896"/>
         <image name="check" width="15" height="15"/>
         <image name="close" width="20" height="20"/>
         <image name="crown" width="80" height="80"/>
-        <image name="dislike" width="50" height="50"/>
-        <image name="home" width="30" height="30"/>
+        <image name="dislike" width="70" height="70"/>
+        <image name="home" width="25" height="25"/>
         <image name="inappback" width="1080" height="1920"/>
-        <image name="like" width="50" height="50"/>
-        <image name="live" width="30" height="30"/>
+        <image name="like" width="70" height="70"/>
+        <image name="live" width="25" height="25"/>
         <image name="logosplash" width="122.5" height="96"/>
+        <image name="permiim" width="20" height="20"/>
         <image name="photo" width="20" height="20"/>
         <image name="placeholder" width="226" height="415"/>
         <image name="radio_off" width="20" height="20"/>
         <image name="radio_on" width="20" height="20"/>
         <image name="report" width="20" height="20"/>
-        <image name="save" width="50" height="50"/>
-        <image name="serach" width="30" height="30"/>
+        <image name="save" width="70" height="70"/>
+        <image name="serach" width="25" height="25"/>
         <image name="settings" width="25" height="25"/>
         <image name="share" width="15" height="15"/>
-        <image name="trending" width="30" height="30"/>
+        <image name="trending" width="25" height="25"/>
+        <image name="unloack" width="50" height="50"/>
+        <image name="video" width="20" height="20"/>
     </resources>
 </document>

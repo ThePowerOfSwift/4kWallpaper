@@ -18,6 +18,7 @@ class HomeHeader: UICollectionReusableView {
     @IBOutlet weak var collectionLive:UICollectionView!
     @IBOutlet weak var collectionLike:UICollectionView!
     @IBOutlet weak var pageController:UIPageControl!
+    @IBOutlet weak var nslcLiveHeight:NSLayoutConstraint!
     
     weak var delegate:HomeHeaderDelegate?
     var timer = Timer()
@@ -70,9 +71,6 @@ class HomeHeader: UICollectionReusableView {
         let like = UINib(nibName: CellIdentifier.categoryCell, bundle: nil)
         collectionLike.register(like, forCellWithReuseIdentifier: CellIdentifier.categoryCell)
         // Initialization code
-        if arrBanners.count == 0, arrLiveWallpaper.count == 0{
-            serviceForHomeData()
-        }
     }
 }
 
@@ -112,6 +110,7 @@ extension HomeHeader:UICollectionViewDelegate,UICollectionViewDataSource, UIColl
             let wallpaper = arrMissed[indexPath.item]
             cell.lblName.text = ""
             if let str = wallpaper.smallWebp, let url = URL(string:str){
+                
                 cell.imgWallpaper.kf.setImage(with: url)
             }
             DispatchQueue.main.async {
@@ -141,8 +140,8 @@ extension HomeHeader:UICollectionViewDelegate,UICollectionViewDataSource, UIColl
             DispatchQueue.main.async {
                 cell.layoutIfNeeded()
                 cell.viewBg.setRounded()
-                cell.viewBg.setBorder(with: UIColor.white, width: 1.0)
-                cell.viewGradient.applyGradient(location: [0.0, 1.0], startPoint: CGPoint(x: 0.0, y: 0.0), endPoint: CGPoint(x: 0.0, y: 1.0), colors: [UIColor.clear.cgColor, UIColor.black.cgColor])
+                cell.viewBg.setBorder(with: UIColor(red: 61.0/255.0, green: 60.0/255.0, blue: 60.0/255.0, alpha: 1.0), width: 1.0)
+                cell.viewGradient.applyGradient(location: [0.0, 1.0], startPoint: CGPoint(x: 0.0, y: 0.0), endPoint: CGPoint(x: 0.0, y: 0.6), colors: [UIColor.clear.cgColor, UIColor.black.cgColor])
             }
             return cell
         default:
@@ -158,7 +157,11 @@ extension HomeHeader:UICollectionViewDelegate,UICollectionViewDataSource, UIColl
         case collectionMissed:
             return CGSize(width: collectionView.bounds.size.height*0.9, height: collectionView.bounds.size.height)
         case collectionLive:
-            return CGSize(width: collectionView.bounds.size.height*0.8, height: collectionView.bounds.size.height)
+            let width = (collectionView.bounds.size.width-10)/3
+            let height = (width*ratioHeight)/ratioWidth
+            nslcLiveHeight.constant = height
+            
+            return CGSize(width: width, height: height)
         case collectionLike:
             return CGSize(width: collectionView.bounds.size.height, height: collectionView.bounds.size.height)
         default:
@@ -176,8 +179,11 @@ extension HomeHeader:UICollectionViewDelegate,UICollectionViewDataSource, UIColl
         case collectionMissed:
             let missed = arrMissed[indexPath.item]
             let vc = PreviewVC.controller()
+            let cell = collectionView.cellForItem(at: indexPath) as! CatCell
+            vc.previewImage = cell.imgWallpaper.image
             vc.type = PostType.wallpaper.rawValue
             vc.post = missed
+            
             self.delegate?.openController(vc: vc)
         case collectionLive:
             if showInAppOnLive, !isSubscribed{
@@ -186,12 +192,16 @@ extension HomeHeader:UICollectionViewDelegate,UICollectionViewDataSource, UIColl
             }
             let live = arrLiveWallpaper[indexPath.item]
             let vc = PreviewVC.controller()
+            let cell = collectionView.cellForItem(at: indexPath) as! CatCell
+            vc.previewImage = cell.imgWallpaper.image
             vc.type = PostType.live.rawValue
             vc.post = live
             self.delegate?.openController(vc: vc)
         case collectionLike:
             let like = arrLikes[indexPath.item]
             let vc = PreviewVC.controller()
+            let cell = collectionView.cellForItem(at: indexPath) as! CatCell
+            vc.previewImage = cell.imgWallpaper.image
             vc.type = PostType.wallpaper.rawValue
             vc.post = like
             self.delegate?.openController(vc: vc)
@@ -216,25 +226,6 @@ extension HomeHeader{
         if scrollView == collectionBanner {
             let offset = scrollView.contentOffset.x/scrollView.bounds.size.width
             pageController.currentPage = Int(offset)
-        }
-    }
-}
-
-//MARK: - WEBSERVICE
-extension HomeHeader{
-    fileprivate func serviceForHomeData(){
-        
-        Webservices().request(with: [:], method: .post, endPoint: EndPoints.home, type: Home.self, loader: true, success: {[weak self] (success) in
-            
-            guard let response = success as? Home else {return}
-            self?.arrLikes = response.youMayLikeWallpaper ?? []
-            self?.arrLiveWallpaper = response.livewallpaper ?? []
-            self?.arrBanners = response.banner ?? []
-            self?.arrMissed = response.youMayMisedWallpaper ?? []
-            
-        }) {(failer) in
-            guard let window = AppUtilities.shared().getMainWindow(), let vc = window.rootViewController else {return}
-            AppUtilities.shared().showAlert(with: failer, viewController: vc)
         }
     }
 }

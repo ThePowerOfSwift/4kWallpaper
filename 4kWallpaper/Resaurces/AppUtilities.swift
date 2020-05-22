@@ -19,24 +19,30 @@ class AppUtilities{
         return AppUtilities()
     }
     
-    func showAlert(with message:String, okTitle:String = "OK", isConfirmation:Bool = false, viewController:UIViewController,okAction:((UIAlertAction) -> Void)? = nil)
+    func showAlert(with message:String, okTitle:String = "OK", isConfirmation:Bool = false, viewController:UIViewController,hideButtons:Bool = false, okAction:((UIAlertAction) -> Void)? = nil)
     {
         
-        let alert = UIAlertController(title: kAppName, message: message, preferredStyle: .alert)
-        let ok = UIAlertAction(title: okTitle, style: .default) { (action) in
-            if let ok = okAction{
-                ok(action)
+        let alert = UIAlertController(title: hideButtons ? nil : kAppName, message: message, preferredStyle: .alert)
+        if !hideButtons{
+            let ok = UIAlertAction(title: okTitle, style: .default) { (action) in
+                if let ok = okAction{
+                    ok(action)
+                }
+                
             }
-            
+            alert.addAction(ok)
+            if isConfirmation
+            {
+                let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                alert.addAction(cancel)
+            }
         }
-        alert.addAction(ok)
-        if isConfirmation
-        {
-            let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            alert.addAction(cancel)
-        }
-        
         viewController.present(alert, animated: true, completion: nil)
+        if hideButtons{
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+                alert.dismiss(animated: true, completion: nil)
+            }
+        }
     }
     
     func addLoaderView(view:UIView){

@@ -10,16 +10,15 @@ import UIKit
 import Kingfisher
 import KingfisherWebP
 import GoogleMobileAds
-#if DEBUG
-import GoogleMobileAdsMediationTestSuite
-#endif
+import Firebase
+import FirebaseMessaging
 
 protocol RewardCompletionDelegate:AnyObject {
     func rewardDidDismiss(rewarded:Bool)
 }
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
     var window: UIWindow?
     
     class var shared:AppDelegate{
@@ -47,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         manageNavigationBar()
         
-        
+        UIBarButtonItem.appearance().setBackButtonBackgroundImage(#imageLiteral(resourceName: "arrows"), for: .normal, barMetrics: .default)
         KingfisherManager.shared.defaultOptions += [
             .processor(WebPProcessor.default),
             .cacheSerializer(WebPSerializer.default)
@@ -83,8 +82,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //In App Purchase
         inAppManager.fetchProducts()
         
-        GoogleMobileAdsMediationTestSuite.initialize()
+        //NavigationBar setup
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+        // Sets shadow (line below the bar) to a blank image
+        UINavigationBar.appearance().shadowImage = UIImage()
+        // Sets the translucent background color
+        UINavigationBar.appearance().backgroundColor = .clear
+        // Set translucent. (Default value is already true, so this can be removed if desired.)
+        UINavigationBar.appearance().isTranslucent = true
+        FirebaseApp.configure()
+        
+        UNUserNotificationCenter.current().delegate = self
+
+        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+        UNUserNotificationCenter.current().requestAuthorization(
+          options: authOptions,
+          completionHandler: {_, _ in })
+        
+        application.registerForRemoteNotifications()
+        Messaging.messaging().delegate = self
         return true
+    }
+    
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+      print("Firebase registration token: \(fcmToken)")
+      firebaseeToken = fcmToken
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -116,11 +138,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if self.interstitial.isReady {
             guard let window = AppUtilities.shared().getMainWindow(), let controller = window.rootViewController else {return}
-            #if DEBUG
-            
-            GoogleMobileAdsMediationTestSuite.present(withAppID: googleAdmobAppId, on: controller, delegate: nil)
-            #endif
-//            self.interstitial.present(fromRootViewController: controller)
+            self.interstitial.present(fromRootViewController: controller)
         } else {
             print("Ad wasn't ready")
         }
@@ -171,8 +189,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if #available(iOS 13.0, *){
             
             let navBarAppearance = UINavigationBarAppearance()
-            navBarAppearance.configureWithOpaqueBackground()
-            navBarAppearance.backgroundColor = .black
+            navBarAppearance.configureWithTransparentBackground()
+            navBarAppearance.backgroundColor = UIColor.black.withAlphaComponent(0.7)
             navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
             navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
             UINavigationBar.appearance(whenContainedInInstancesOf: [UINavigationController.self]).standardAppearance = navBarAppearance
@@ -208,7 +226,7 @@ extension AppDelegate:GADInterstitialDelegate
     }
     
     func interstitialDidReceiveAd(_ ad: GADInterstitial) {
-      print("interstitialDidReceiveAd")
+        print("interstitialDidReceiveAd \(String(describing: ad.responseInfo?.adNetworkClassName ?? ""))")
     }
 
     /// Tells the delegate an ad request failed.
@@ -315,5 +333,31 @@ extension AppDelegate:GADRewardedAdDelegate{
     /// Tells the delegate that the rewarded ad failed to present.
     func rewardedAd(_ rewardedAd: GADRewardedAd, didFailToPresentWithError error: Error) {
         print("Rewarded ad failed to present.")
+    }
+}
+
+//MARK: - PUSH NOTIFICATION DELEGATE
+extension AppDelegate{
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+      withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+      let userInfo = notification.request.content.userInfo
+
+      // Print full message.
+      print(userInfo)
+
+      // Change this to your preferred presentation option
+      completionHandler([[.alert, .sound]])
+    }
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+      let userInfo = response.notification.request.content.userInfo
+
+      // Print full message.
+      print(userInfo)
+
+      completionHandler()
     }
 }

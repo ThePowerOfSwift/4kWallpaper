@@ -33,7 +33,7 @@ class TrendingVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        navigationController?.setNavigationBarHidden(false, animated: true)
+        //navigationController?.setNavigationBarHidden(false, animated: true)
     }
 }
 
@@ -43,7 +43,6 @@ extension TrendingVC{
         if isFavourite{
             self.title = "Favourites"
         }
-        
         //Collection Methods
         self.collectionWallPapers.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "Header")
         self.collectionWallPapers.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "Footer")
@@ -54,7 +53,7 @@ extension TrendingVC{
         serviceForTrendingList()
         
         //Refresh Controlls
-        refreshController.attributedTitle = NSAttributedString(string: "Pull To Refresh.", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
+//        refreshController.attributedTitle = NSAttributedString(string: "Pull To Refresh.", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
         refreshController.addTarget(self, action: #selector(didRefreshCollection(_:)), for: .valueChanged)
         refreshController.tintColor = .white
         self.collectionWallPapers.refreshControl = refreshController
@@ -62,6 +61,13 @@ extension TrendingVC{
         //Observers
         NotificationCenter.default.addObserver(self, selector: #selector(updatedAds), name: Notification.Name(rawValue: NotificationKeys.updatedAds), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updatedAds), name: NSNotification.Name(rawValue: NotificationKeys.purchaseSuccess), object: nil)
+        
+        
+//        self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
+//        self.navigationController!.navigationBar.shadowImage = UIImage()
+//        self.navigationController!.navigationBar.isTranslucent = true
+             
+        
     }
     
     
@@ -71,7 +77,7 @@ extension TrendingVC{
     
     @objc fileprivate func didRefreshCollection(_ sender:UIRefreshControl){
         currentPage = 1
-        refreshController.attributedTitle = NSAttributedString(string: "Refreshing...", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
+//        refreshController.attributedTitle = NSAttributedString(string: "Refreshing...", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
         serviceForTrendingList()
     }
     
@@ -110,11 +116,13 @@ extension TrendingVC:UICollectionViewDelegate,UICollectionViewDataSource,UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = collectionView.bounds.size.width/3
-        return CGSize(width: width, height: width*1.8)
+        let width = (collectionView.bounds.size.width-40)/3
+        let height = (width*ratioHeight)/ratioWidth
+        return CGSize(width: width, height: height)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! WallpaperCell
         let index = indexPath.section*kAdsDifference
         let obj = arrTrendings[index + indexPath.row]
         if showInAppOnLive, !isSubscribed, obj.type == PostType.live.rawValue{
@@ -124,6 +132,7 @@ extension TrendingVC:UICollectionViewDelegate,UICollectionViewDataSource,UIColle
         kActivity += 1
         let vc = PreviewVC.controller()
         vc.post = obj
+        vc.previewImage = cell.imgWallPaper.image
         self.navigationController?.pushViewController(vc, animated: true)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
@@ -183,14 +192,16 @@ extension TrendingVC{
             Parameters.page:currentPage
         ]
         loadMore = false
-        UIView.animate(withDuration: 0.2) { [unowned self] in
-            self.viewIndicator.isHidden = false
-            self.indicator.startAnimating()
+        if currentPage != 1{
+            UIView.animate(withDuration: 0.2) { [unowned self] in
+                self.viewIndicator.isHidden = false
+                self.indicator.startAnimating()
+            }
         }
-        Webservices().request(with: params, method: .post, endPoint:isFavourite ? EndPoints.favourite : EndPoints.trending, type: Trending.self, loader: false, success: {[weak self] (success) in
+        Webservices().request(with: params, method: .post, endPoint:isFavourite ? EndPoints.favourite : EndPoints.trending, type: Trending.self, loader: currentPage == 1 ? true : false, success: {[weak self] (success) in
             AppUtilities.shared().removeNoDataLabelFrom(view: self?.view ?? UIView())
             self?.refreshController.endRefreshing()
-            self?.refreshController.attributedTitle = NSAttributedString(string: "Pull To Refresh.", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
+//            self?.refreshController.attributedTitle = NSAttributedString(string: "Pull To Refresh.", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
             UIView.animate(withDuration: 0.2) {
                 self?.viewIndicator.isHidden = true
                 self?.indicator.stopAnimating()
@@ -213,12 +224,13 @@ extension TrendingVC{
             }
             
         }) {[weak self] (failer) in
+            self?.refreshController.endRefreshing()
             UIView.animate(withDuration: 0.2) {
                 self?.viewIndicator.isHidden = true
                 self?.indicator.stopAnimating()
             }
             guard let vc = self else {return}
-            AppUtilities.shared().showAlert(with: failer, viewController: vc)
+            AppUtilities.shared().showAlert(with: kNoInternet, viewController: vc, hideButtons: true)
         }
     }
 }

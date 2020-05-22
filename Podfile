@@ -7,8 +7,12 @@ target '4kWallpaper' do
 
   pod 'Alamofire'
   pod "KingfisherWebP"
+  pod 'Firebase/Analytics'
+  # Add the pod for Firebase Cloud Messaging
+  pod 'Firebase/Messaging'
+  
 #  pod 'FBAudienceNetwork'
   pod 'Google-Mobile-Ads-SDK'
   pod 'GoogleMobileAdsMediationFacebook'
-  pod 'GoogleMobileAdsMediationTestSuite'
+#  pod 'GoogleMobileAdsMediationTestSuite'
 end

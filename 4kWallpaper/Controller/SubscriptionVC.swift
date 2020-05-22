@@ -30,6 +30,10 @@ class SubscriptionVC: UIViewController {
     let selectedColor = UIColor(red: 251.0/255.0, green: 210.0/255.0, blue: 19.0/255.0, alpha: 1.0)
     var selectedPackage = ""
     
+    override var prefersStatusBarHidden: Bool{
+        return true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()

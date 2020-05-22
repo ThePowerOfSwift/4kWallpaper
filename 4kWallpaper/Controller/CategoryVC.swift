@@ -47,7 +47,7 @@ extension CategoryVC{
         collectionCategory.register(nib, forCellWithReuseIdentifier: CellIdentifier.wallpaper)
         
         //Refresh Controlls
-        refreshController.attributedTitle = NSAttributedString(string: "Pull To Refresh.", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
+//        refreshController.attributedTitle = NSAttributedString(string: "Pull To Refresh.", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
         refreshController.addTarget(self, action: #selector(didRefreshCollection(_:)), for: .valueChanged)
         refreshController.tintColor = .white
         self.collectionCategory.refreshControl = refreshController
@@ -65,7 +65,7 @@ extension CategoryVC{
     
     @objc fileprivate func didRefreshCollection(_ sender:UIRefreshControl){
         
-        refreshController.attributedTitle = NSAttributedString(string: "Refreshing...", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
+//        refreshController.attributedTitle = NSAttributedString(string: "Refreshing...", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
         serviceForCategory()
     }
 }
@@ -115,10 +115,11 @@ extension CategoryVC:UICollectionViewDelegate, UICollectionViewDataSource,UIColl
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if isSearching{
-            let width = collectionView.bounds.size.width/3
-            return CGSize(width: width, height: width*1.8)
+            let width = (collectionView.bounds.size.width-30)/3
+            let height = (width*ratioHeight)/ratioWidth
+            return CGSize(width: width, height: height)
         }
-        let width = collectionView.bounds.size.width/2
+        let width = (collectionView.bounds.size.width-30)/2
         return CGSize(width: width, height: width)
     }
     
@@ -133,6 +134,8 @@ extension CategoryVC:UICollectionViewDelegate, UICollectionViewDataSource,UIColl
             }
             let vc = PreviewVC.controller()
             vc.post = obj
+            let cell = collectionView.cellForItem(at: indexPath) as! CatCell
+            vc.previewImage = cell.imgWallpaper.image
             self.navigationController?.pushViewController(vc, animated: true)
             return
         }
@@ -206,7 +209,7 @@ extension CategoryVC{
         
         Webservices().request(with: [:], method: .post, endPoint: EndPoints.categoryList, type: Category.self, loader: true, success: {[weak self] (success) in
             self?.refreshController.endRefreshing()
-            self?.refreshController.attributedTitle = NSAttributedString(string: "Pull To Refresh.", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
+//            self?.refreshController.attributedTitle = NSAttributedString(string: "Pull To Refresh.", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
             
             guard let response = success as? Category else {return}
             if let data = response.data{
@@ -218,8 +221,9 @@ extension CategoryVC{
             }
             
         }) {[weak self] (failer) in
+            self?.refreshController.endRefreshing()
             guard let vc = self else {return}
-            AppUtilities.shared().showAlert(with: failer, viewController: vc)
+            AppUtilities.shared().showAlert(with: kNoInternet, viewController: vc, hideButtons: true)
         }
     }
     
@@ -230,14 +234,16 @@ extension CategoryVC{
             Parameters.search:searchBar.text!
         ]
         loadMore = false
-        UIView.animate(withDuration: 0.2) { [unowned self] in
-            self.viewIndicator.isHidden = false
-            self.indicator.startAnimating()
+        if currentPage != 1{
+            UIView.animate(withDuration: 0.2) { [unowned self] in
+                self.viewIndicator.isHidden = false
+                self.indicator.startAnimating()
+            }
         }
-        Webservices().request(with: params, method: .post, endPoint: EndPoints.search, type: Trending.self, loader: false, success: {[weak self] (success) in
+        Webservices().request(with: params, method: .post, endPoint: EndPoints.search, type: Trending.self, loader: currentPage == 1 ? true : false, success: {[weak self] (success) in
             AppUtilities.shared().removeNoDataLabelFrom(view: self?.view ?? UIView())
             self?.refreshController.endRefreshing()
-            self?.refreshController.attributedTitle = NSAttributedString(string: "Pull To Refresh.", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
+//            self?.refreshController.attributedTitle = NSAttributedString(string: "Pull To Refresh.", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
             UIView.animate(withDuration: 0.2) {
                 self?.viewIndicator.isHidden = true
                 self?.indicator.stopAnimating()
@@ -260,12 +266,13 @@ extension CategoryVC{
             }
             
         }) {[weak self] (failer) in
+            self?.refreshController.endRefreshing()
             UIView.animate(withDuration: 0.2) {
                 self?.viewIndicator.isHidden = true
                 self?.indicator.stopAnimating()
             }
             guard let vc = self else {return}
-            AppUtilities.shared().showAlert(with: failer, viewController: vc)
+            AppUtilities.shared().showAlert(with: kNoInternet, viewController: vc, hideButtons: true)
         }
     }
 }
@@ -285,6 +292,7 @@ extension CategoryVC:CategoryHeaderDelegate{
     func openCategory(category: String) {
         let vc = SimilarCatVC.controller()
         vc.category = category
+        vc.postType = .live
         navigationController?.pushViewController(vc, animated: true)
     }
 }

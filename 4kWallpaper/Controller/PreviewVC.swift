@@ -32,17 +32,14 @@ class PreviewVC: UIViewController {
     
     var post:Post?
     var type:String = ""
+    var previewImage:UIImage?
+    var hdSize:String = "0"
+    var uHdSize:String = "0"
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.layoutIfNeeded()
         setupView()
-        if !isSubscribed, !showInAppOnLive, type == PostType.live.rawValue{
-            AppDelegate.shared.showRewardVideo()
-            AppDelegate.shared.delegate = self
-            return
-        }
-        
         setupData()
         // Do any additional setup after loading the view.
     }
@@ -52,6 +49,13 @@ class PreviewVC: UIViewController {
         return story.instantiateViewController(withIdentifier: ControllerIds.previewVC) as! PreviewVC
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
 }
 
 //MARK: - CUSTOM METHODS
@@ -68,6 +72,19 @@ extension PreviewVC{
         viewShare.layer.cornerRadius = 5.0
         if let type = post?.type{
             self.type = type
+        }
+        self.imgWallpaper.image = previewImage
+        
+        if let wall = post, let hd = URL(string: wall.hd ?? ""), let uhd = URL(string: wall.uhd ?? ""), type != PostType.live.rawValue{
+            self.getDownloadSize(url: hd) { (size, error) in
+                if error != nil {return}
+                self.hdSize = AppUtilities.shared().getSizeText(size: Double(size))
+            }
+            
+            self.getDownloadSize(url: uhd) { (size, error) in
+                if error != nil {return}
+                self.uHdSize = AppUtilities.shared().getSizeText(size: Double(size))//String(format: "%.f", size/1048576)
+            }
         }
     }
     
@@ -145,12 +162,16 @@ extension PreviewVC{
     }
     
     func showLivePhoto(videoURL:URL){
-        let asset = AVURLAsset(url: videoURL)
-        let generator = AVAssetImageGenerator(asset: asset)
-        generator.appliesPreferredTrackTransform = true
-        let time = NSValue(time: CMTimeMakeWithSeconds(CMTimeGetSeconds(asset.duration)/2, preferredTimescale: asset.duration.timescale))
-        generator.generateCGImagesAsynchronously(forTimes: [time]) { [weak self] _, image, _, _, _ in
-            if let image = image, let data = UIImage(cgImage: image).pngData() {
+//        let asset = AVURLAsset(url: videoURL)
+//        let generator = AVAssetImageGenerator(asset: asset)
+//        generator.appliesPreferredTrackTransform = true
+//        let time = NSValue(time: CMTimeMakeWithSeconds(CMTimeGetSeconds(asset.duration)/2, preferredTimescale: asset.duration.timescale))
+//        generator.generateCGImagesAsynchronously(forTimes: [time]) {[weak self] (cmtime, image, cmtime1, result, error) in
+//            if let error = error{
+//                print("Live wallpaper error : \(error)")
+//                return
+//            }
+        if let image = imgWallpaper.image, let data = image.pngData() {
                 let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
                 let imageURL = urls[0].appendingPathComponent("image.jpg")
                 try? data.write(to: imageURL, options: [.atomic])
@@ -171,13 +192,13 @@ extension PreviewVC{
                                         assetIdentifier: assetIdentifier)
                 QuickTimeMov(path: mov).write(output + "/IMG.MOV",
                                               assetIdentifier: assetIdentifier)
-                DispatchQueue.main.async{
-                    guard let view = self?.view else {return}
+//                DispatchQueue.main.async{
+                    guard let view = self.view else {return}
                     AppUtilities.shared().setLoaderProgress(view: view, downloaded: 1.0, total: 1.0, isProgress:true)
-                }
+//                }
                 
-                _ = DispatchQueue.main.sync {
-                    guard let view = self?.view else {return}
+//                _ = DispatchQueue.main.sync {
+//                    guard let view = self.view else {return}
                     PHLivePhoto.request(withResourceFileURLs: [ URL(fileURLWithPath: FilePaths.VidToLive.livePath + "/IMG.MOV"), URL(fileURLWithPath: FilePaths.VidToLive.livePath + "/IMG.JPG")],
                                         placeholderImage: nil,
                                         targetSize: view.bounds.size,
@@ -185,16 +206,16 @@ extension PreviewVC{
                                         resultHandler: { (livePhoto, info) -> Void in
                                             
                                             AppUtilities.shared().removeLoaderView(view: view)
-                                            let livePhotoView = PHLivePhotoView(frame: self?.imgWallpaper.bounds ?? CGRect.zero)
-                                            self?.imgWallpaper.addSubview(livePhotoView)
-                                            self?.imgWallpaper.isUserInteractionEnabled = true
+                                            let livePhotoView = PHLivePhotoView(frame: self.imgWallpaper.bounds)
+                                            self.imgWallpaper.addSubview(livePhotoView)
+                                            self.imgWallpaper.isUserInteractionEnabled = true
                                             livePhotoView.livePhoto = livePhoto
                                             livePhotoView.startPlayback(with: .full)
                                             
                     })
-                }
+//                }
             }
-        }
+//        }
     }
     
     func exportLivePhoto () {
@@ -287,14 +308,27 @@ extension PreviewVC{
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
+    @IBAction func btnBackPressed(_ sender:UIButton){
+        navigationController?.popViewController(animated: true)
+    }
+    
     @IBAction func btnDownload(_ sender:UIButton){
         if self.type == PostType.live.rawValue{
-            self.exportLivePhoto()
-            self.serviceForAddAll(key: Parameters.live_w_download)
-            return
+            if !isSubscribed, type == PostType.live.rawValue{
+                if showInAppOnLive{
+                    let vc = SubscriptionVC.controller()
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+                else{
+                    let vc = UnlockVC.controller()
+                    vc.delegate = self
+                    self.present(vc, animated: true, completion: nil)
+                }
+                return
+            }
         }
         let controller = UIAlertController(title: "Select quality of image to download", message: nil, preferredStyle: .actionSheet)
-        controller.addAction(UIAlertAction(title: "HD", style: .default, handler: { (hd) in
+        controller.addAction(UIAlertAction(title: "HD: \(hdSize)", style: .default, handler: { (hd) in
             if let wallpaper = self.post{
                 AppUtilities.shared().addLoaderView(view: self.view)
                 if let strUrl = wallpaper.hd, let url = URL(string: strUrl){
@@ -316,7 +350,7 @@ extension PreviewVC{
             
         }))
         
-        controller.addAction(UIAlertAction(title: "Ultra HD", style: .default, handler: { (hd) in
+        controller.addAction(UIAlertAction(title: "Ultra HD: \(uHdSize)", style: .default, handler: { (hd) in
             if let wallpaper = self.post{
                 AppUtilities.shared().addLoaderView(view: self.view)
                 if let strUrl = wallpaper.uhd, let url = URL(string: strUrl){
@@ -338,6 +372,18 @@ extension PreviewVC{
         }))
         controller.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(controller, animated: true, completion: nil)
+    }
+    
+    func getDownloadSize(url: URL, completion: @escaping (Int64, Error?) -> Void) {
+        let timeoutInterval = 5.0
+        var request = URLRequest(url: url,
+                                 cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
+                                 timeoutInterval: timeoutInterval)
+        request.httpMethod = "HEAD"
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            let contentLength = response?.expectedContentLength ?? NSURLSessionTransferSizeUnknown
+            completion(contentLength, error)
+        }.resume()
     }
 }
 
@@ -392,7 +438,7 @@ extension PreviewVC{
             
         }) {[weak self] (failer) in
             guard let vc = self else {return}
-            AppUtilities.shared().showAlert(with: failer, viewController: vc)
+            AppUtilities.shared().showAlert(with: kNoInternet, viewController: vc, hideButtons: true)
         }
     }
 }
@@ -401,12 +447,23 @@ extension PreviewVC{
 extension PreviewVC:RewardCompletionDelegate{
     func rewardDidDismiss(rewarded: Bool) {
         if rewarded{
-            setupData()
+            self.exportLivePhoto()
+            self.serviceForAddAll(key: Parameters.live_w_download)
         }
         else{
-            AppUtilities.shared().showAlert(with: "Please watch complete video to unlock this wallpaper", viewController: self){ (ok) in
-                self.navigationController?.popViewController(animated: true)
-            }
+            AppUtilities.shared().showAlert(with: "Please watch complete video to unlock this wallpaper", viewController: self)
         }
+    }
+}
+
+//MARK: - UNLOCK WALLPAPER DELEGATE
+extension PreviewVC:UnlockDelegate{
+    func btnPremiumPressed() {
+        navigationController?.pushViewController(SubscriptionVC.controller(), animated: true)
+    }
+    
+    func btnVideoPressed() {
+        AppDelegate.shared.showRewardVideo()
+        AppDelegate.shared.delegate = self
     }
 }

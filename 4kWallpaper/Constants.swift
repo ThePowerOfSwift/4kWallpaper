@@ -8,7 +8,7 @@
 
 import Foundation
 
-var fcmToken = ""
+var firebaseeToken = ""
 
 /**Interstitial Ads Id**/
 enum InterstitalIds:String{
@@ -28,8 +28,13 @@ enum RewardedIds:String{
     case test = "ca-app-pub-3940256099942544/1712485313"
 }
 
+let kNoInternet = "No Internet connection detected. Please ensure you are connected to internet and try again."
+
+let ratioHeight = CGFloat(7.0)
+let ratioWidth = CGFloat(4.0)
+
 let googleAdmobAppId = "ca-app-pub-1625565704226796~7216343259"
-let interstitialAddUnitId = InterstitalIds.live.rawValue
+let interstitialAddUnitId = InterstitalIds.test.rawValue
 let nativeAdUnitId = NativeAdsId.test.rawValue
 let rewardedAdUnitId = RewardedIds.test.rawValue
 
@@ -128,6 +133,7 @@ struct ControllerIds {
     static let subscription = "SubscriptionVC"
     static let webvVC = "WebVC"
     static let about = "AboutUsVC"
+    static let unlock = "UnlockVC"
 }
 
 struct StoryboardIds {

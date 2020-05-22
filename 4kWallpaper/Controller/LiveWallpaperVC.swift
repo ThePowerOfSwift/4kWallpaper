@@ -42,7 +42,7 @@ extension LiveWallpaperVC{
         serviceForLiveList()
         
         //Refresh Controlls
-        refreshController.attributedTitle = NSAttributedString(string: "Pull To Refresh.", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
+//        refreshController.attributedTitle = NSAttributedString(string: "Pull To Refresh.", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
         refreshController.addTarget(self, action: #selector(didRefreshCollection(_:)), for: .valueChanged)
         refreshController.tintColor = .white
         self.collectionWallPapers.refreshControl = refreshController
@@ -59,7 +59,7 @@ extension LiveWallpaperVC{
     
     @objc fileprivate func didRefreshCollection(_ sender:UIRefreshControl){
         currentPage = 1
-        refreshController.attributedTitle = NSAttributedString(string: "Refreshing...", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
+//        refreshController.attributedTitle = NSAttributedString(string: "Refreshing...", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
         serviceForLiveList()
     }
     
@@ -98,8 +98,9 @@ extension LiveWallpaperVC:UICollectionViewDelegate,UICollectionViewDataSource,UI
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = collectionView.bounds.size.width/3
-        return CGSize(width: width, height: width*1.8)
+        let width = (collectionView.bounds.size.width-40)/3
+        let height = (width*ratioHeight)/ratioWidth
+        return CGSize(width: width, height: height)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -107,12 +108,15 @@ extension LiveWallpaperVC:UICollectionViewDelegate,UICollectionViewDataSource,UI
             self.navigationController?.pushViewController(SubscriptionVC.controller(), animated: true)
             return
         }
+        
         kActivity += 1
         let index = indexPath.section*kAdsDifference
         let obj = arrWallPapers[index + indexPath.row]
         let vc = PreviewVC.controller()
         vc.type = PostType.live.rawValue
         vc.post = obj
+        let cell = collectionView.cellForItem(at: indexPath) as! WallpaperCell
+        vc.previewImage = cell.imgWallPaper.image
         self.navigationController?.pushViewController(vc, animated: true)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
@@ -171,13 +175,15 @@ extension LiveWallpaperVC{
             Parameters.used_ids:arrWallPapers.compactMap({$0.postId}).joined(separator: ",")
         ]
         loadMore = false
-        UIView.animate(withDuration: 0.2) { [unowned self] in
-            self.viewIndicator.isHidden = false
-            self.indicator.startAnimating()
+        if currentPage != 1{
+            UIView.animate(withDuration: 0.2) { [unowned self] in
+                self.viewIndicator.isHidden = false
+                self.indicator.startAnimating()
+            }
         }
-        Webservices().request(with: params, method: .post, endPoint: EndPoints.live, type: Trending.self, loader: false, success: {[weak self] (success) in
+        Webservices().request(with: params, method: .post, endPoint: EndPoints.live, type: Trending.self, loader: currentPage == 1 ? true : false, success: {[weak self] (success) in
             self?.refreshController.endRefreshing()
-            self?.refreshController.attributedTitle = NSAttributedString(string: "Pull To Refresh.", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
+//            self?.refreshController.attributedTitle = NSAttributedString(string: "Pull To Refresh.", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
             UIView.animate(withDuration: 0.2) {
                 self?.viewIndicator.isHidden = true
                 self?.indicator.stopAnimating()
@@ -197,12 +203,13 @@ extension LiveWallpaperVC{
             }
             
         }) {[weak self] (failer) in
+            self?.refreshController.endRefreshing()
             UIView.animate(withDuration: 0.2) {
                 self?.viewIndicator.isHidden = true
                 self?.indicator.stopAnimating()
             }
             guard let vc = self else {return}
-            AppUtilities.shared().showAlert(with: failer, viewController: vc)
+            AppUtilities.shared().showAlert(with: kNoInternet, viewController: vc, hideButtons: true)
         }
     }
 }

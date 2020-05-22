@@ -144,7 +144,7 @@ extension SettingsVC:UITableViewDelegate,UITableViewDataSource{
         }
         guard let tableViewHeaderFooterView = view as? UITableViewHeaderFooterView
           else { return }
-        tableViewHeaderFooterView.textLabel?.font = UIFont.systemFont(ofSize: 18.0)
+        tableViewHeaderFooterView.textLabel?.font = UIFont.systemFont(ofSize: 17.0)
         tableViewHeaderFooterView.textLabel?.text = title
     }
 }
