@@ -156,7 +156,7 @@ extension TrendingVC:UICollectionViewDelegate,UICollectionViewDataSource,UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        if isSubscribed{
+        if isSubscribed || section == numberOfSections(in: collectionView)-1{
             return CGSize.zero
         }
         return CGSize(width: collectionView.frame.size.width, height: 200)
@@ -173,22 +173,22 @@ extension TrendingVC:UICollectionViewDelegate,UICollectionViewDataSource,UIColle
             if isSubscribed{
                 return footerView
             }
-            footerView.clipsToBounds = true
-            if AppDelegate.shared.adsArr.count > indexPath.section
-            {
-                footerView.viewWithTag(25)?.removeFromSuperview()
-                let add = AppDelegate.shared.adsArr[indexPath.section]
-                add.tag = 25
-                footerView.addSubview(add)
-                add.clipsToBounds = true
-                add.translatesAutoresizingMaskIntoConstraints = false
-                NSLayoutConstraint.activate([
-                    add.leadingAnchor.constraint(equalTo: footerView.leadingAnchor, constant: 0),
-                    add.trailingAnchor.constraint(equalTo: footerView.trailingAnchor, constant: 0),
-                    add.topAnchor.constraint(equalTo: footerView.topAnchor, constant: 10),
-                    add.bottomAnchor.constraint(equalTo: footerView.bottomAnchor, constant: -10)
-                ])
-            }
+//            footerView.clipsToBounds = true
+//            if AppDelegate.shared.adsArr.count > indexPath.section, indexPath.section < collectionView.numberOfSections
+//            {
+//                footerView.viewWithTag(25)?.removeFromSuperview()
+//                let add = AppDelegate.shared.adsArr[indexPath.section]
+//                add.tag = 25
+//                footerView.addSubview(add)
+//                add.clipsToBounds = true
+//                add.translatesAutoresizingMaskIntoConstraints = false
+//                NSLayoutConstraint.activate([
+//                    add.leadingAnchor.constraint(equalTo: footerView.leadingAnchor, constant: 0),
+//                    add.trailingAnchor.constraint(equalTo: footerView.trailingAnchor, constant: 0),
+//                    add.topAnchor.constraint(equalTo: footerView.topAnchor, constant: 10),
+//                    add.bottomAnchor.constraint(equalTo: footerView.bottomAnchor, constant: -10)
+//                ])
+//            }
             return footerView
             
         default:
@@ -235,7 +235,40 @@ extension TrendingVC{
                 if self?.arrTrendings.count == 0{
                     AppUtilities.shared().showNoDataLabelwith(message: "No Data available.", in: self?.view ?? UIView())
                 }
-                self?.collectionWallPapers.reloadData()
+                if self?.currentPage == 1{
+                    self?.collectionWallPapers.reloadData()
+                    return
+                }
+                let lastSection = self?.collectionWallPapers.numberOfSections ?? 0
+                let itemsInLastSection = self?.collectionWallPapers.numberOfItems(inSection: lastSection-1) ?? 0
+                
+                var section = lastSection
+                var index = itemsInLastSection
+                var indexPaths:[IndexPath] = []
+                var store = true
+                var sections:[Int] = []
+                for _ in 0..<trendings.count{
+                    if index >= kAdsDifference{
+                        sections.append(section)//add sections for insert new
+                        section += 1
+                        index = 0
+                        store = false
+                    }
+                    if store == true {//store indexpath for last section remaining indexes
+                        indexPaths.append(IndexPath(item: index, section: section-1))
+                    }
+                    index += 1
+                }
+                
+                let indexSet = IndexSet(sections)
+                self?.collectionWallPapers.performBatchUpdates({
+                    self?.collectionWallPapers.insertItems(at: indexPaths)
+                    self?.collectionWallPapers.insertSections(indexSet)
+                }, completion: nil)
+                
+                
+                
+//
                 
             }
             

@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var rewarded = false
     var totalData = 0{
         didSet{
-            loadAds()
+//            loadAds()
         }
     }
     weak var delegate:RewardCompletionDelegate?

@@ -26,7 +26,7 @@
                                             <size key="itemSize" width="128" height="128"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                                            <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                                         </collectionViewFlowLayout>
                                         <cells/>
                                         <connections>
@@ -124,7 +124,7 @@
                             <constraint firstItem="mcp-xj-2TS" firstAttribute="trailing" secondItem="8Ef-6b-mHO" secondAttribute="trailing" id="Otu-eJ-zLb"/>
                             <constraint firstItem="kEu-4G-TPq" firstAttribute="centerY" secondItem="cnj-8N-lKd" secondAttribute="centerY" id="Qia-MN-370"/>
                             <constraint firstItem="GKK-Ji-Sv2" firstAttribute="leading" secondItem="8Ef-6b-mHO" secondAttribute="leading" id="QuZ-FI-J6s"/>
-                            <constraint firstAttribute="bottom" secondItem="GKK-Ji-Sv2" secondAttribute="bottom" id="T7A-u5-rOd"/>
+                            <constraint firstItem="8Ef-6b-mHO" firstAttribute="bottom" secondItem="GKK-Ji-Sv2" secondAttribute="bottom" constant="-49" id="T7A-u5-rOd"/>
                             <constraint firstItem="cnj-8N-lKd" firstAttribute="top" secondItem="8Ef-6b-mHO" secondAttribute="top" id="Vbj-MS-PRE"/>
                             <constraint firstItem="8Ef-6b-mHO" firstAttribute="bottom" secondItem="mcp-xj-2TS" secondAttribute="bottom" id="auZ-bT-YMK"/>
                             <constraint firstItem="cnj-8N-lKd" firstAttribute="trailing" secondItem="8Ef-6b-mHO" secondAttribute="trailing" id="flN-sD-cym"/>
@@ -945,7 +945,7 @@ and will continue to automatically renew until you cancel</string>
                                             <size key="itemSize" width="128" height="128"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                                            <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                                         </collectionViewFlowLayout>
                                         <cells/>
                                         <connections>
@@ -1615,7 +1615,7 @@ and will continue to automatically renew until you cancel</string>
                                             <size key="itemSize" width="128" height="128"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                                            <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                                         </collectionViewFlowLayout>
                                         <cells/>
                                         <connections>
@@ -1687,7 +1687,7 @@ and will continue to automatically renew until you cancel</string>
                                             <size key="itemSize" width="128" height="128"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                                            <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                                         </collectionViewFlowLayout>
                                         <cells/>
                                         <connections>
