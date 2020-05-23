@@ -9,10 +9,10 @@
 import Foundation
 import UIKit
 import WebKit
+import GoogleMobileAds
 
 class AppUtilities{
     let kAppName = "4kWallpaper"
-    let webviewController = UIViewController()
     var frequencyTimer = Timer()
     
     class func shared() -> AppUtilities{
@@ -59,19 +59,33 @@ class AppUtilities{
         ])
     }
     
+    func loadBannerAd(in bannerView:GADBannerView, view:UIView) {
+      // Step 2 - Determine the view width to use for the ad width.
+      
+
+      // Step 3 - Get Adaptive GADAdSize and set the ad view.
+      // Here the current interface orientation is used. If the ad is being preloaded
+      // for a future orientation change or different orientation, the function for the
+      // relevant orientation should be used.
+        bannerView.adSize = GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(UIScreen.main.bounds.size.width)
+
+      // Step 4 - Create an ad request and load the adaptive banner ad.
+      bannerView.load(GADRequest())
+    }
+    
     func setLoaderProgress(view:UIView, downloaded:Double, total:Double, isProgress:Bool = false){
         guard let loading = view.viewWithTag(10) as? LoadingView else {return}
         
         if !isProgress{
             let progress = (downloaded*100)/total
-            loading.lblPercentage.text = String(format: "%.1f", progress)
+            loading.lblPercentage.text = String(format: "%.1f", progress) + "%"
             loading.progress.progress = Float(progress/100)
             
             loading.lblSize.text = getSizeText(size: downloaded) + "/" + getSizeText(size: total)
         }
         else{
             let progress = downloaded/total
-            loading.lblPercentage.text = String(format: "%.1f", progress)
+            loading.lblPercentage.text = String(format: "%.1f", progress*100) + "%"
             loading.progress.progress = Float(progress)
             loading.lblSize.text = ""
         }
@@ -91,10 +105,6 @@ class AppUtilities{
     
     func removeLoaderView(view:UIView){
         view.viewWithTag(10)?.removeFromSuperview()
-    }
-    
-    
-    func resetAllValues(){
     }
     
     func compressedImageData(image:UIImage, compression:CGFloat = 1.0) -> Data?{
@@ -157,16 +167,28 @@ class AppUtilities{
         if frequencyTimer.isValid{
             frequencyTimer.invalidate()
         }
+        let label = UILabel(frame: CGRect(x: 50, y: 50, width: 50, height: 50))
+        label.backgroundColor = UIColor.black
+        label.textColor = .white
+        label.layer.cornerRadius = 25.0
+        label.layer.masksToBounds = true
+        label.textAlignment = .center
+        if let window = self.getMainWindow(){
+            window.addSubview(label)
+        }
+        
         var time = 0
         frequencyTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { (timer) in
             if time >= frequencyTime{
                 showInterstitial = true
                 timer.invalidate()
+                label.removeFromSuperview()
                 return
             }
             
             showInterstitial = false
             time += 1
+            label.text = "\(time)"
             print("Timer time is \(time)")
         })
     }

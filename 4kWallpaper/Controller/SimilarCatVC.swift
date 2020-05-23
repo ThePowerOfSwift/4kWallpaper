@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 class SimilarCatVC: UIViewController {
     @IBOutlet weak var collectionWallPapers:UICollectionView!
     @IBOutlet weak var viewIndicator:UIView!
     @IBOutlet weak var indicator:UIActivityIndicatorView!
+    @IBOutlet weak var bannerView:GADBannerView!
     
     var arrTrendings:[Post] = []
     var currentPage = 1
@@ -31,6 +33,23 @@ class SimilarCatVC: UIViewController {
         return story.instantiateViewController(withIdentifier: ControllerIds.similarCategory) as! SimilarCatVC
     }
 
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if isSubscribed{
+            bannerView.isHidden = true
+        }
+        else{
+            AppUtilities.shared().loadBannerAd(in: self.bannerView, view: self.view)
+        }
+        //navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to:size, with:coordinator)
+        coordinator.animate(alongsideTransition: { _ in
+            AppUtilities.shared().loadBannerAd(in: self.bannerView, view: self.view)
+        })
+    }
 }
 
 //MARK: - CUSTOM METHODS
@@ -55,6 +74,9 @@ extension SimilarCatVC{
         //Observers
         NotificationCenter.default.addObserver(self, selector: #selector(updatedAds), name: Notification.Name(rawValue: NotificationKeys.updatedAds), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updatedAds), name: NSNotification.Name(rawValue: NotificationKeys.purchaseSuccess), object: nil)
+        
+        bannerView.adUnitID = bannerAdUnitId
+        bannerView.rootViewController = self
     }
     
     
@@ -92,7 +114,7 @@ extension SimilarCatVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (collectionView.bounds.size.width-40)/3
+        let width = (collectionView.bounds.size.width-45)/3
         let height = (width*ratioHeight)/ratioWidth
         return CGSize(width: width, height: height)
     }

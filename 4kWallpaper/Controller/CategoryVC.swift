@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 class CategoryVC: UIViewController {
     @IBOutlet weak var collectionCategory:UICollectionView!
     @IBOutlet weak var searchBar:UISearchBar!
     @IBOutlet weak var viewIndicator:UIView!
     @IBOutlet weak var indicator:UIActivityIndicatorView!
+    @IBOutlet weak var bannerView:GADBannerView!
     
     var arrWallPapers:[Wallpaper] = []
     var arrBanners:[Wallpaper] = []
@@ -29,10 +31,19 @@ class CategoryVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
+        if isSubscribed{
+            bannerView.isHidden = true
+        }
+        else{
+            AppUtilities.shared().loadBannerAd(in: self.bannerView, view: self.view)
+        }
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to:size, with:coordinator)
+        coordinator.animate(alongsideTransition: { _ in
+            AppUtilities.shared().loadBannerAd(in: self.bannerView, view: self.view)
+        })
     }
 }
 
@@ -57,6 +68,9 @@ extension CategoryVC{
         NotificationCenter.default.addObserver(self, selector: #selector(updatedAds), name: NSNotification.Name(rawValue: NotificationKeys.purchaseSuccess), object: nil)
         
         serviceForCategory()
+        
+        bannerView.adUnitID = bannerAdUnitId
+        bannerView.rootViewController = self
     }
     
     @objc fileprivate func updatedAds(){

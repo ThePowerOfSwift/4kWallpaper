@@ -9,6 +9,7 @@
 import UIKit
 import StoreKit
 import Kingfisher
+import GoogleMobileAds
 
 class HomeVC: UIViewController {
     @IBOutlet weak var collectionWallPapers:UICollectionView!
@@ -16,6 +17,8 @@ class HomeVC: UIViewController {
     @IBOutlet weak var indicator:UIActivityIndicatorView!
     @IBOutlet weak var viewHeader:UIView!
     @IBOutlet weak var viewSplash:UIView!
+    @IBOutlet weak var bannerView:GADBannerView!
+    
     var arrTrendings:[Post] = []
     var arrBanners:[Wallpaper] = []
     var arrMissed:[Post] = []
@@ -41,7 +44,20 @@ class HomeVC: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        if isSubscribed{
+            bannerView.isHidden = true
+        }
+        else{
+            AppUtilities.shared().loadBannerAd(in: self.bannerView, view: self.view)
+        }
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to:size, with:coordinator)
+        coordinator.animate(alongsideTransition: { _ in
+            AppUtilities.shared().loadBannerAd(in: self.bannerView, view: self.view)
+        })
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -84,6 +100,9 @@ extension HomeVC{
             serviceForInAppStatus()
             serviceForHomeData()
         }
+        
+        bannerView.adUnitID = bannerAdUnitId
+        bannerView.rootViewController = self
     }
     
     @objc fileprivate func updatedAds(){
@@ -127,7 +146,7 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (collectionView.bounds.size.width-40)/3
+        let width = (collectionView.bounds.size.width-45)/3
         let height = (width*ratioHeight)/ratioWidth
         return CGSize(width: width, height: height)
     }
@@ -307,8 +326,8 @@ extension HomeVC{
         Webservices().request(with: params, method: .post, endPoint: EndPoints.inAppPurchaseStatus, type: InAppPurchase.self, loader: false, success: { (success) in
             guard let response = success as? InAppPurchase else {return}
             if let status = response.status, status == 1, let purchase = response.inAppPurchase{
-                let time = Double(purchase.inAppPurchaseTime ?? "")
-                let date = Date().addingTimeInterval(time ?? 0.0)
+                let time = Double(purchase.inAppPurchaseTime ?? "") ?? 0.0
+                let date = Date(timeIntervalSince1970: (time / 1000.0))
                 print(date.toDate(format: "dd-MM-yyyy"))
                 if purchase.inAppPurchase == "1"{
                     isSubscribed = true

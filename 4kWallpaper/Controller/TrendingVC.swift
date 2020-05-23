@@ -8,12 +8,14 @@
 
 import UIKit
 import KingfisherWebP
+import GoogleMobileAds
 //import FBAudienceNetwork
 
 class TrendingVC: UIViewController {
     @IBOutlet weak var collectionWallPapers:UICollectionView!
     @IBOutlet weak var viewIndicator:UIView!
     @IBOutlet weak var indicator:UIActivityIndicatorView!
+    @IBOutlet weak var bannerView:GADBannerView!
     
     var arrTrendings:[Post] = []
     var currentPage = 1
@@ -33,7 +35,20 @@ class TrendingVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        if isSubscribed{
+            bannerView.isHidden = true
+        }
+        else{
+            AppUtilities.shared().loadBannerAd(in: self.bannerView, view: self.view)
+        }
         //navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to:size, with:coordinator)
+        coordinator.animate(alongsideTransition: { _ in
+            AppUtilities.shared().loadBannerAd(in: self.bannerView, view: self.view)
+        })
     }
 }
 
@@ -66,7 +81,8 @@ extension TrendingVC{
 //        self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
 //        self.navigationController!.navigationBar.shadowImage = UIImage()
 //        self.navigationController!.navigationBar.isTranslucent = true
-             
+        bannerView.adUnitID = bannerAdUnitId
+        bannerView.rootViewController = self
         
     }
     
@@ -116,7 +132,7 @@ extension TrendingVC:UICollectionViewDelegate,UICollectionViewDataSource,UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (collectionView.bounds.size.width-40)/3
+        let width = (collectionView.bounds.size.width-45)/3
         let height = (width*ratioHeight)/ratioWidth
         return CGSize(width: width, height: height)
     }

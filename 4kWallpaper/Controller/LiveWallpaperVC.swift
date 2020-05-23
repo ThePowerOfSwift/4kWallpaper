@@ -8,11 +8,13 @@
 
 import UIKit
 import KingfisherWebP
+import GoogleMobileAds
 
 class LiveWallpaperVC: UIViewController {
     @IBOutlet weak var collectionWallPapers:UICollectionView!
     @IBOutlet weak var viewIndicator:UIView!
     @IBOutlet weak var indicator:UIActivityIndicatorView!
+    @IBOutlet weak var bannerView:GADBannerView!
     
     var arrWallPapers:[Post] = []
     var currentPage = 1
@@ -25,7 +27,21 @@ class LiveWallpaperVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        if isSubscribed{
+            bannerView.isHidden = true
+        }
+        else{
+            AppUtilities.shared().loadBannerAd(in: self.bannerView, view: self.view)
+        }
+    }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to:size, with:coordinator)
+        coordinator.animate(alongsideTransition: { _ in
+            AppUtilities.shared().loadBannerAd(in: self.bannerView, view: self.view)
+        })
+    }
 
 }
 
@@ -50,6 +66,9 @@ extension LiveWallpaperVC{
         //Observers
         NotificationCenter.default.addObserver(self, selector: #selector(updatedAds), name: Notification.Name(rawValue: NotificationKeys.updatedAds), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updatedAds), name: NSNotification.Name(rawValue: NotificationKeys.purchaseSuccess), object: nil)
+        
+        bannerView.adUnitID = bannerAdUnitId
+        bannerView.rootViewController = self
     }
     
     
@@ -98,7 +117,7 @@ extension LiveWallpaperVC:UICollectionViewDelegate,UICollectionViewDataSource,UI
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (collectionView.bounds.size.width-40)/3
+        let width = (collectionView.bounds.size.width-45)/3
         let height = (width*ratioHeight)/ratioWidth
         return CGSize(width: width, height: height)
     }

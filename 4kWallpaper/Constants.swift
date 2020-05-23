@@ -28,6 +28,12 @@ enum RewardedIds:String{
     case test = "ca-app-pub-3940256099942544/1712485313"
 }
 
+/**Rewarded Ads Id**/
+enum BannerAdIds:String{
+    case live = "ca-app-pub-1625565704226796/2542093895"
+    case test = "ca-app-pub-3940256099942544/2435281174"
+}
+
 let kNoInternet = "No Internet connection detected. Please ensure you are connected to internet and try again."
 
 let ratioHeight = CGFloat(7.0)
@@ -37,6 +43,7 @@ let googleAdmobAppId = "ca-app-pub-1625565704226796~7216343259"
 let interstitialAddUnitId = InterstitalIds.test.rawValue
 let nativeAdUnitId = NativeAdsId.test.rawValue
 let rewardedAdUnitId = RewardedIds.test.rawValue
+let bannerAdUnitId = BannerAdIds.test.rawValue
 
 let modelNumber = UIDevice().type.rawValue
 let deviceId = UIDevice.current.identifierForVendor?.uuidString ?? ""
@@ -50,7 +57,6 @@ var frequencyTime = 0
 var totalAdsCount = 0
 var showInterstitial = true
 var interstitialCount = 0
-var adsSlot = 0
 var showInAppOnLive = false
 var kActivity = 0{
     didSet{
@@ -63,18 +69,12 @@ var kActivity = 0{
             interstitialCount += 1 //Increase ads interstitial count for frequency time calculate
             
             AppDelegate.shared.showInterstitial()
-//            if interstitialCount >= kAddFrequency{// if interestitial count match then calculate freq time
-//                interstitialCount = 0
-//                adsSlot += 1 //don't show interestitial after given slots
-//                showInterstitial = false
-//            }
-            if interstitialCount <= totalAdsCount{ //wait for frequency time for next ads slot
-                print("start timer")
+            if interstitialCount >= totalAdsCount{// if interestitial count match then calculate freq time
+                interstitialCount = 0
+                showInterstitial = false
                 AppUtilities.shared().calculateAdFrequencyTime()
             }
-            else{
-                showInterstitial = false
-            }
+            
         }
     }
 }

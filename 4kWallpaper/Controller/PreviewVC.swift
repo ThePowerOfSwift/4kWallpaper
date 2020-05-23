@@ -11,6 +11,7 @@ import Kingfisher
 import Photos
 import PhotosUI
 import AVFoundation
+import GoogleMobileAds
 import MessageUI
 
 class PreviewVC: UIViewController {
@@ -28,6 +29,7 @@ class PreviewVC: UIViewController {
     @IBOutlet weak var viewReport:UIView!
     @IBOutlet weak var stackMore:UIStackView!
     @IBOutlet weak var livePhotos:PHLivePhotoView!
+    @IBOutlet weak var bannerView:GADBannerView!
     var player: AVPlayer?
     
     var post:Post?
@@ -48,9 +50,22 @@ class PreviewVC: UIViewController {
         let story = UIStoryboard(name: StoryboardIds.main, bundle: nil)
         return story.instantiateViewController(withIdentifier: ControllerIds.previewVC) as! PreviewVC
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
+        if isSubscribed{
+            bannerView.isHidden = true
+        }
+        else{
+            AppUtilities.shared().loadBannerAd(in: self.bannerView, view: self.view)
+        }
         navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to:size, with:coordinator)
+        coordinator.animate(alongsideTransition: { _ in
+            AppUtilities.shared().loadBannerAd(in: self.bannerView, view: self.view)
+        })
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -86,6 +101,9 @@ extension PreviewVC{
                 self.uHdSize = AppUtilities.shared().getSizeText(size: Double(size))//String(format: "%.f", size/1048576)
             }
         }
+        
+        bannerView.adUnitID = bannerAdUnitId
+        bannerView.rootViewController = self
     }
     
     @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
