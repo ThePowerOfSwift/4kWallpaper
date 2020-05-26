@@ -78,14 +78,14 @@ class AppUtilities{
         
         if !isProgress{
             let progress = (downloaded*100)/total
-            loading.lblPercentage.text = String(format: "%.1f", progress) + "%"
+            loading.lblPercentage.text = String(format: "%.0f", progress) + "%"
             loading.progress.progress = Float(progress/100)
             
             loading.lblSize.text = getSizeText(size: downloaded) + "/" + getSizeText(size: total)
         }
         else{
             let progress = downloaded/total
-            loading.lblPercentage.text = String(format: "%.1f", progress*100) + "%"
+            loading.lblPercentage.text = String(format: "%.0f", progress*100) + "%"
             loading.progress.progress = Float(progress)
             loading.lblSize.text = ""
         }

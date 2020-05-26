@@ -12,6 +12,7 @@ import KingfisherWebP
 import GoogleMobileAds
 import Firebase
 import FirebaseMessaging
+import FBAudienceNetwork
 
 protocol RewardCompletionDelegate:AnyObject {
     func rewardDidDismiss(rewarded:Bool)
@@ -35,12 +36,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var rewarded = false
     var totalData = 0{
         didSet{
-//            loadAds()
+            
         }
     }
     weak var delegate:RewardCompletionDelegate?
     var rewardedAd = GADRewardedAd()
     let inAppManager = InAppManager()
+    
+    var adsManager: FBNativeAdsManager!
+     
+    var adsCellProvider: FBNativeAdCollectionViewAdProvider!
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -64,7 +69,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             // ... other options
         ]
         
-        //Innitial Webservices
         if let id = UserDefaults.standard.value(forKey: DefaultKeys.userId) as? Int{
             userId = id
         }
@@ -101,12 +105,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         application.registerForRemoteNotifications()
         Messaging.messaging().delegate = self
+        
+        configureAdManagerAndLoadAds()
         return true
     }
     
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
       print("Firebase registration token: \(fcmToken)")
       firebaseeToken = fcmToken
+        //Innitial Webservices
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -129,6 +136,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         interstitial.delegate = self
         interstitial.load(GADRequest())
         return interstitial
+    }
+    
+    func configureAdManagerAndLoadAds() {
+        if isSubscribed{
+            return
+        }
+        
+        if adsManager == nil {
+            adsManager = FBNativeAdsManager(placementID: "3724765017594437_3733872490017023", forNumAdsRequested: 50)
+            adsManager.delegate = self
+            
+            adsManager.loadAds()
+        }
     }
     
     func showInterstitial(){
@@ -362,5 +382,22 @@ extension AppDelegate{
       print(userInfo)
 
       completionHandler()
+    }
+}
+
+//MARK: - FBNativeAdsManagerDelegate
+extension AppDelegate:FBNativeAdsManagerDelegate, FBNativeAdDelegate{
+    func nativeAdsFailedToLoadWithError(_ error: Error) {
+        print("error is \(error)")
+    }
+    
+    func nativeAdsLoaded() {
+        adsCellProvider = FBNativeAdCollectionViewAdProvider(manager: adsManager)//FBNativeAdTableViewCellProvider(manager: adsManager, forType: FBNativeAdViewType.GenericHeight120)
+           adsCellProvider.delegate = self
+        NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationKeys.updatedAds), object: nil)
+    }
+    
+    func nativeAdDidClick(_ nativeAd: FBNativeAd) {
+        print("Ad tapped: \(nativeAd)")
     }
 }

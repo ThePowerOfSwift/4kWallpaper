@@ -180,16 +180,18 @@ extension PreviewVC{
     }
     
     func showLivePhoto(videoURL:URL){
-//        let asset = AVURLAsset(url: videoURL)
-//        let generator = AVAssetImageGenerator(asset: asset)
-//        generator.appliesPreferredTrackTransform = true
-//        let time = NSValue(time: CMTimeMakeWithSeconds(CMTimeGetSeconds(asset.duration)/2, preferredTimescale: asset.duration.timescale))
-//        generator.generateCGImagesAsynchronously(forTimes: [time]) {[weak self] (cmtime, image, cmtime1, result, error) in
-//            if let error = error{
-//                print("Live wallpaper error : \(error)")
-//                return
-//            }
-        if let image = imgWallpaper.image, let data = image.pngData() {
+        let asset = AVURLAsset(url: videoURL)
+        let generator = AVAssetImageGenerator(asset: asset)
+        generator.appliesPreferredTrackTransform = true
+        let time = NSValue(time: CMTimeMakeWithSeconds(CMTimeGetSeconds(asset.duration)/2, preferredTimescale: asset.duration.timescale))
+        generator.generateCGImagesAsynchronously(forTimes: [time]) {[weak self] (cmtime, image, cmtime1, result, error) in
+            guard let self = self else {return}
+            
+            if let error = error{
+                print("Live wallpaper error : \(error)")
+                return
+            }
+            if let image = image, let data = UIImage(cgImage: image).pngData() {
                 let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
                 let imageURL = urls[0].appendingPathComponent("image.jpg")
                 try? data.write(to: imageURL, options: [.atomic])
@@ -210,13 +212,13 @@ extension PreviewVC{
                                         assetIdentifier: assetIdentifier)
                 QuickTimeMov(path: mov).write(output + "/IMG.MOV",
                                               assetIdentifier: assetIdentifier)
-//                DispatchQueue.main.async{
+                DispatchQueue.main.async{
                     guard let view = self.view else {return}
                     AppUtilities.shared().setLoaderProgress(view: view, downloaded: 1.0, total: 1.0, isProgress:true)
-//                }
+                }
                 
-//                _ = DispatchQueue.main.sync {
-//                    guard let view = self.view else {return}
+                _ = DispatchQueue.main.sync {
+                    guard let view = self.view else {return}
                     PHLivePhoto.request(withResourceFileURLs: [ URL(fileURLWithPath: FilePaths.VidToLive.livePath + "/IMG.MOV"), URL(fileURLWithPath: FilePaths.VidToLive.livePath + "/IMG.JPG")],
                                         placeholderImage: nil,
                                         targetSize: view.bounds.size,
@@ -231,9 +233,9 @@ extension PreviewVC{
                                             livePhotoView.startPlayback(with: .full)
                                             
                     })
-//                }
+                }
             }
-//        }
+        }
     }
     
     func exportLivePhoto () {

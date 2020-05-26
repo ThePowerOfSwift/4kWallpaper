@@ -18,6 +18,7 @@ class HomeVC: UIViewController {
     @IBOutlet weak var viewHeader:UIView!
     @IBOutlet weak var viewSplash:UIView!
     @IBOutlet weak var bannerView:GADBannerView!
+    @IBOutlet weak var nslcBottomConstraint:NSLayoutConstraint!
     
     var arrTrendings:[Post] = []
     var arrBanners:[Wallpaper] = []
@@ -26,7 +27,7 @@ class HomeVC: UIViewController {
     var arrLikes:[Post] = []
     
     var currentPage = 1
-    var loadMore = true
+    var loadMore = false
     var dataLoaded = false
     var refreshController = UIRefreshControl()
 //    override var prefersStatusBarHidden: Bool{
@@ -44,15 +45,17 @@ class HomeVC: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        view.layoutIfNeeded()
+        navigationController?.setNavigationBarHidden(true, animated: true)
         if isSubscribed{
             bannerView.isHidden = true
         }
         else{
             AppUtilities.shared().loadBannerAd(in: self.bannerView, view: self.view)
         }
-        navigationController?.setNavigationBarHidden(true, animated: true)
     }
-    
+
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to:size, with:coordinator)
         coordinator.animate(alongsideTransition: { _ in
@@ -76,11 +79,12 @@ extension HomeVC{
         //In app purchase
         self.navigationItem.backBarButtonItem?.title = ""
         SKPaymentQueue.default().add(self)
-        self.tabBarController?.tabBar.isHidden = true
+        tabBarController?.setTabBarVisible(visible: false, duration: 0.1, animated: true)
         //Collection Methods
         let header = UINib(nibName: CellIdentifier.homeHeader, bundle: nil)
         self.collectionWallPapers.register(header, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CellIdentifier.homeHeader)
-        self.collectionWallPapers.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "Footer")
+        let adNib = UINib(nibName: "adUIView", bundle: nil)
+        collectionWallPapers.register(adNib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "adUIView")
         let nib = UINib(nibName: CellIdentifier.wallpaper, bundle: nil)
         collectionWallPapers.register(nib, forCellWithReuseIdentifier: CellIdentifier.wallpaper)
         
@@ -108,6 +112,7 @@ extension HomeVC{
     @objc fileprivate func updatedAds(){
         if isSubscribed{
             self.bannerView.isHidden = true
+            self.nslcBottomConstraint.constant = 0
         }
         self.collectionWallPapers.reloadData()
     }
@@ -179,7 +184,15 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
         if isSubscribed || section == numberOfSections(in: collectionView)-1{
             return CGSize.zero
         }
-        return CGSize(width: collectionView.frame.size.width, height: 200)
+        if let adsCellProvider = AppDelegate.shared.adsCellProvider, adsCellProvider.isAdCell(at: IndexPath(item: section, section: section), forStride: 1){
+            let ad = adsCellProvider.collectionView(collectionView, nativeAdForRowAt: IndexPath(item: section, section: section))
+            let actual = ad.aspectRatio
+            
+            let height = (collectionView.bounds.size.width-20)/actual
+//            print("Height of ad is \(height)")
+            return CGSize(width: collectionView.bounds.size.width, height: height + 135)
+        }
+        return CGSize.zero
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -194,26 +207,27 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
             return header
             
         case UICollectionView.elementKindSectionFooter:
-            let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Footer", for: indexPath)
+            let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "adUIView", for: indexPath) as! adUIView
             if isSubscribed{
                 return footerView
             }
-//            footerView.clipsToBounds = true
-//            if AppDelegate.shared.adsArr.count > indexPath.section, indexPath.section < numberOfSections(in: collectionView)
-//            {
-//                footerView.viewWithTag(25)?.removeFromSuperview()
-//                let add = AppDelegate.shared.adsArr[indexPath.section]
-//                add.tag = 25
-//                footerView.addSubview(add)
-//                add.clipsToBounds = true
-//                add.translatesAutoresizingMaskIntoConstraints = false
-//                NSLayoutConstraint.activate([
-//                    add.leadingAnchor.constraint(equalTo: footerView.leadingAnchor, constant: 0),
-//                    add.trailingAnchor.constraint(equalTo: footerView.trailingAnchor, constant: 0),
-//                    add.topAnchor.constraint(equalTo: footerView.topAnchor, constant: 10),
-//                    add.bottomAnchor.constraint(equalTo: footerView.bottomAnchor, constant: -10)
-//                ])
-//            }
+            if let adsCellProvider = AppDelegate.shared.adsCellProvider, adsCellProvider.isAdCell(at: IndexPath(item: indexPath.section, section: indexPath.section), forStride: 1){
+                let nativeAd = /*adsManager.nextNativeAd else {return footerView}*/adsCellProvider.collectionView(collectionView, nativeAdForRowAt: IndexPath(item: indexPath.section, section: indexPath.section))
+                nativeAd.unregisterView()
+                
+                // Wire up UIView with the native ad; only call to action button and media view will be clickable.
+                nativeAd.registerView(forInteraction: footerView, mediaView: footerView.adCoverMediaView, iconView: footerView.adIconImageView, viewController: self,clickableViews: [footerView.adCallToActionButton, footerView.adCoverMediaView])
+                //                footerView.adCoverMediaView.delegate = self
+                // Render native ads onto UIView
+                footerView.adTitleLabel.text = nativeAd.advertiserName
+                footerView.adBodyLabel.text = nativeAd.bodyText
+                footerView.adSocialContext.text = nativeAd.socialContext
+                footerView.sponsoredLabel.text = nativeAd.sponsoredTranslation
+                footerView.adCallToActionButton.setTitle(
+                    nativeAd.callToAction,
+                    for: .normal)
+                footerView.adOptionsView.nativeAd = nativeAd
+            }
             return footerView
             
         default:
@@ -237,9 +251,10 @@ extension HomeVC{
             self?.collectionWallPapers.reloadData()
             
             if self?.dataLoaded == true{
-                self?.tabBarController?.tabBar.isHidden = false
+                self?.tabBarController?.setTabBarVisible(visible: true, duration: 0.1, animated: true)
                 self?.viewSplash.isHidden = true
                 self?.tabBarController?.tabBar.isTranslucent = false
+                self?.view.setNeedsLayout()
             }
             else{
                 self?.dataLoaded = true
@@ -285,20 +300,21 @@ extension HomeVC{
                 if self?.arrTrendings.count == 0{
                     AppUtilities.shared().showNoDataLabelwith(message: "No Data available.", in: self?.view ?? UIView())
                 }
+                if self?.dataLoaded == true{
+                    self?.tabBarController?.setTabBarVisible(visible: true, duration: 0.1, animated: true)
+                    self?.viewSplash.isHidden = true
+                    self?.tabBarController?.tabBar.isTranslucent = false
+                    self?.view.setNeedsLayout()
+                }
+                else{
+                    self?.dataLoaded = true
+                }
                 if self?.currentPage == 1{
                     self?.collectionWallPapers.reloadData()
-                    
-                    if self?.dataLoaded == true{
-                        self?.tabBarController?.tabBar.isHidden = false
-                        self?.viewSplash.isHidden = true
-                        self?.tabBarController?.tabBar.isTranslucent = false
-                    }
-                    else{
-                        self?.dataLoaded = true
-                    }
                     return
                 }
                 let lastSection = self?.collectionWallPapers.numberOfSections ?? 0
+                
                 let itemsInLastSection = self?.collectionWallPapers.numberOfItems(inSection: lastSection-1) ?? 0
                 
                 var section = lastSection
@@ -335,9 +351,10 @@ extension HomeVC{
                 self?.indicator.stopAnimating()
             }
             guard let vc = self else {return}
-            self?.tabBarController?.tabBar.isHidden = false
+            self?.tabBarController?.setTabBarVisible(visible: true, duration: 0.1, animated: true)
             self?.viewSplash.isHidden = true
             self?.tabBarController?.tabBar.isTranslucent = false
+            self?.view.setNeedsLayout()
             AppUtilities.shared().showAlert(with: kNoInternet, viewController: vc, hideButtons: true)
         }
     }

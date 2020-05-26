@@ -53,13 +53,10 @@
                                         <rect key="frame" x="0.0" y="469" width="320" height="50"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="uEo-Nj-bdy" secondAttribute="height" multiplier="32:5" id="Ksl-Du-Obb"/>
+                                            <constraint firstAttribute="width" secondItem="uEo-Nj-bdy" secondAttribute="height" multiplier="32:5" id="BhS-3W-AIH"/>
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstItem="uEo-Nj-bdy" firstAttribute="width" secondItem="uEo-Nj-bdy" secondAttribute="height" multiplier="32:5" id="2Wz-MP-ATs"/>
-                                </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cnj-8N-lKd">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
@@ -87,16 +84,16 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GKK-Ji-Sv2">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backsplash" translatesAutoresizingMaskIntoConstraints="NO" id="U0v-pg-xM8">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logosplash" translatesAutoresizingMaskIntoConstraints="NO" id="hUh-nJ-vQe">
-                                        <rect key="frame" x="112.5" y="434" width="95" height="96"/>
+                                        <rect key="frame" x="112.5" y="385.5" width="95" height="96"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Walli fly" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bBw-pl-24E">
-                                        <rect key="frame" x="135" y="536.5" width="62" height="21.5"/>
+                                        <rect key="frame" x="135" y="487.5" width="62" height="21.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -124,7 +121,7 @@
                             <constraint firstItem="mcp-xj-2TS" firstAttribute="trailing" secondItem="8Ef-6b-mHO" secondAttribute="trailing" id="Otu-eJ-zLb"/>
                             <constraint firstItem="kEu-4G-TPq" firstAttribute="centerY" secondItem="cnj-8N-lKd" secondAttribute="centerY" id="Qia-MN-370"/>
                             <constraint firstItem="GKK-Ji-Sv2" firstAttribute="leading" secondItem="8Ef-6b-mHO" secondAttribute="leading" id="QuZ-FI-J6s"/>
-                            <constraint firstItem="8Ef-6b-mHO" firstAttribute="bottom" secondItem="GKK-Ji-Sv2" secondAttribute="bottom" constant="-49" id="T7A-u5-rOd"/>
+                            <constraint firstItem="8Ef-6b-mHO" firstAttribute="bottom" secondItem="GKK-Ji-Sv2" secondAttribute="bottom" id="T7A-u5-rOd"/>
                             <constraint firstItem="cnj-8N-lKd" firstAttribute="top" secondItem="8Ef-6b-mHO" secondAttribute="top" id="Vbj-MS-PRE"/>
                             <constraint firstItem="8Ef-6b-mHO" firstAttribute="bottom" secondItem="mcp-xj-2TS" secondAttribute="bottom" id="auZ-bT-YMK"/>
                             <constraint firstItem="cnj-8N-lKd" firstAttribute="trailing" secondItem="8Ef-6b-mHO" secondAttribute="trailing" id="flN-sD-cym"/>
@@ -139,6 +136,7 @@
                         <outlet property="bannerView" destination="uEo-Nj-bdy" id="P4j-WO-psZ"/>
                         <outlet property="collectionWallPapers" destination="vpd-MK-vo9" id="3gK-WW-4CU"/>
                         <outlet property="indicator" destination="LpO-yk-mlN" id="Q06-1F-ajL"/>
+                        <outlet property="nslcBottomConstraint" destination="auZ-bT-YMK" id="k69-Cs-jmA"/>
                         <outlet property="viewHeader" destination="cnj-8N-lKd" id="KtQ-iL-BEP"/>
                         <outlet property="viewIndicator" destination="fNc-PP-xwQ" id="tLU-Ml-lhT"/>
                         <outlet property="viewSplash" destination="GKK-Ji-Sv2" id="yes-Oe-5Na"/>
@@ -1010,11 +1008,11 @@ and will continue to automatically renew until you cancel</string>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Hxc-h9-NPR">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="qTk-6n-j01">
-                                <rect key="frame" x="0.0" y="438" width="320" height="130"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="qTk-6n-j01">
+                                <rect key="frame" x="0.0" y="433" width="320" height="135"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Whc-Pu-gCE">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Hix-gb-lpQ">
                                                 <rect key="frame" x="154" y="0.0" width="150" height="70"/>
@@ -1226,11 +1224,11 @@ and will continue to automatically renew until you cancel</string>
                                             <constraint firstItem="aKf-u7-EUv" firstAttribute="centerX" secondItem="Whc-Pu-gCE" secondAttribute="centerX" id="lNT-Ou-G1g"/>
                                             <constraint firstAttribute="trailing" secondItem="Hix-gb-lpQ" secondAttribute="trailing" constant="16" id="tW9-hK-IYs"/>
                                             <constraint firstItem="aKf-u7-EUv" firstAttribute="bottom" secondItem="Hix-gb-lpQ" secondAttribute="bottom" id="tfF-JA-dA5"/>
-                                            <constraint firstAttribute="bottom" secondItem="Hix-gb-lpQ" secondAttribute="bottom" id="u3l-Me-F9L"/>
+                                            <constraint firstAttribute="bottom" secondItem="Hix-gb-lpQ" secondAttribute="bottom" constant="15" id="u3l-Me-F9L"/>
                                         </constraints>
                                     </view>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wo5-ot-SRO" customClass="GADBannerView">
-                                        <rect key="frame" x="0.0" y="80" width="320" height="50"/>
+                                        <rect key="frame" x="0.0" y="85" width="320" height="50"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Wo5-ot-SRO" secondAttribute="height" multiplier="32:5" id="cqC-aN-ygk"/>
@@ -1245,7 +1243,7 @@ and will continue to automatically renew until you cancel</string>
                                 <rect key="frame" x="16" y="16" width="35" height="35"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="10"/>
-                                <state key="normal" image="arrows"/>
+                                <state key="normal" image="back"/>
                                 <connections>
                                     <action selector="btnBackPressed:" destination="Tfa-wz-kgo" eventType="touchUpInside" id="gFM-0G-duh"/>
                                 </connections>
@@ -1305,57 +1303,57 @@ and will continue to automatically renew until you cancel</string>
                                         <rect key="frame" x="0.0" y="0.0" width="192" height="242.5"/>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="0xD-ss-K8R">
-                                        <rect key="frame" x="12.5" y="75.5" width="167.5" height="60.5"/>
+                                        <rect key="frame" x="6.5" y="75.5" width="179.5" height="63.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Ay5-vo-9z1">
-                                                <rect key="frame" x="0.0" y="0.0" width="127" height="13.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="135.5" height="14.5"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="check" translatesAutoresizingMaskIntoConstraints="NO" id="QFm-Yx-ivf">
-                                                        <rect key="frame" x="0.0" y="3" width="8" height="8"/>
+                                                        <rect key="frame" x="0.0" y="3.5" width="8" height="8"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="8" id="QBN-Jh-QpF"/>
                                                             <constraint firstAttribute="width" secondItem="QFm-Yx-ivf" secondAttribute="height" multiplier="1:1" id="bYz-hC-dP0"/>
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unlock all wallpapers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7BS-Bj-nkP">
-                                                        <rect key="frame" x="13" y="0.0" width="114" height="13.5"/>
-                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
+                                                        <rect key="frame" x="13" y="0.0" width="122.5" height="14.5"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="nfc-cl-6wB">
-                                                <rect key="frame" x="0.0" y="23.5" width="78" height="13.5"/>
+                                                <rect key="frame" x="0.0" y="24.5" width="83" height="14.5"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="check" translatesAutoresizingMaskIntoConstraints="NO" id="lvA-2u-7Uq">
-                                                        <rect key="frame" x="0.0" y="3" width="8" height="8"/>
+                                                        <rect key="frame" x="0.0" y="3.5" width="8" height="8"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="lvA-2u-7Uq" secondAttribute="height" multiplier="1:1" id="fzr-MC-yuO"/>
                                                             <constraint firstAttribute="width" constant="8" id="vtU-rq-b5b"/>
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remove ads" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Li-Tr-Tld">
-                                                        <rect key="frame" x="13" y="0.0" width="65" height="13.5"/>
-                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
+                                                        <rect key="frame" x="13" y="0.0" width="70" height="14.5"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="O0a-jp-8vC">
-                                                <rect key="frame" x="0.0" y="47" width="167.5" height="13.5"/>
+                                                <rect key="frame" x="0.0" y="49" width="179.5" height="14.5"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="check" translatesAutoresizingMaskIntoConstraints="NO" id="0fK-bg-rzV">
-                                                        <rect key="frame" x="0.0" y="3" width="8" height="8"/>
+                                                        <rect key="frame" x="0.0" y="3.5" width="8" height="8"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="0fK-bg-rzV" secondAttribute="height" multiplier="1:1" id="AyR-1y-KRN"/>
                                                             <constraint firstAttribute="width" constant="8" id="sQY-an-7DB"/>
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get premium content update" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GlG-gG-dUn">
-                                                        <rect key="frame" x="13" y="0.0" width="154.5" height="13.5"/>
-                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
+                                                        <rect key="frame" x="13" y="0.0" width="166.5" height="14.5"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -1372,14 +1370,14 @@ and will continue to automatically renew until you cancel</string>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Kz8-wC-AbV">
                                         <rect key="frame" x="19" y="149.5" width="154" height="77.5"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="glK-vr-cX2">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="glK-vr-cX2">
                                                 <rect key="frame" x="0.0" y="0.0" width="154" height="34"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="glK-vr-cX2" secondAttribute="height" multiplier="132:29" id="hUI-yc-6Ka"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="9"/>
-                                                <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="10" maxY="0.0"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="10"/>
+                                                <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="5" maxY="0.0"/>
                                                 <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 <state key="normal" title="Unlock to watch video" image="video">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1788,6 +1786,7 @@ and will continue to automatically renew until you cancel</string>
         <image name="WhatsApp" width="720" height="1280"/>
         <image name="add" width="30" height="30"/>
         <image name="arrows" width="25" height="25"/>
+        <image name="back" width="25" height="25"/>
         <image name="backsplash" width="414" height="896"/>
         <image name="check" width="15" height="15"/>
         <image name="close" width="20" height="20"/>

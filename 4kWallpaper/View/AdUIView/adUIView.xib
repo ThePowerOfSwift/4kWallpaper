@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="adUIView" id="U6b-Vx-4bR" customClass="adUIView" customModule="_k_wallpaper___Walli_fly" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="347" height="277"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a1C-DQ-sP9">
+                    <rect key="frame" x="70" y="10" width="49.5" height="24"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zwb-Qf-iyE">
+                    <rect key="frame" x="70" y="39" width="39" height="18"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rTb-ms-pOO" customClass="FBAdOptionsView">
+                    <rect key="frame" x="284" y="5" width="63" height="21"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="63" id="Vq7-gi-e6G"/>
+                        <constraint firstAttribute="height" constant="21" id="ap4-nW-uBo"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zln-E5-iS7" customClass="FBMediaView">
+                    <rect key="frame" x="10" y="70" width="327" height="144.5"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4mM-us-1E2">
+                    <rect key="frame" x="10" y="216.5" width="27" height="12"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="10"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xbj-20-U5M">
+                    <rect key="frame" x="10" y="233.5" width="256" height="33.5"/>
+                    <string key="text">Label
+Label</string>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yAL-6s-gZY">
+                    <rect key="frame" x="271" y="239" width="66" height="28"/>
+                    <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <inset key="contentEdgeInsets" minX="10" minY="5" maxX="10" maxY="5"/>
+                    <state key="normal" title="Button">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7yb-d5-ewy" customClass="FBMediaView">
+                    <rect key="frame" x="10" y="10" width="50" height="50"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="7yb-d5-ewy" secondAttribute="height" id="9OF-2b-h9J"/>
+                        <constraint firstAttribute="width" constant="50" id="kSi-bh-wCn"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="rTb-ms-pOO" secondAttribute="trailing" id="0s2-fi-DDp"/>
+                <constraint firstItem="rTb-ms-pOO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="a1C-DQ-sP9" secondAttribute="trailing" constant="5" id="33X-Gw-NyC"/>
+                <constraint firstItem="Zwb-Qf-iyE" firstAttribute="leading" secondItem="a1C-DQ-sP9" secondAttribute="leading" id="6Zt-wh-nsY"/>
+                <constraint firstItem="Zwb-Qf-iyE" firstAttribute="top" secondItem="a1C-DQ-sP9" secondAttribute="bottom" constant="5" id="8RF-xX-fwN"/>
+                <constraint firstItem="VXr-Tz-HHm" firstAttribute="bottom" secondItem="yAL-6s-gZY" secondAttribute="bottom" constant="10" id="9ZH-X5-h7u"/>
+                <constraint firstItem="rTb-ms-pOO" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" constant="5" id="Eg5-eA-nta"/>
+                <constraint firstItem="xbj-20-U5M" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" constant="10" id="G2q-Y9-Des"/>
+                <constraint firstItem="a1C-DQ-sP9" firstAttribute="leading" secondItem="7yb-d5-ewy" secondAttribute="trailing" constant="10" id="b4f-X4-Ngb"/>
+                <constraint firstItem="7yb-d5-ewy" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" constant="10" id="bMo-Bm-aJb"/>
+                <constraint firstItem="4mM-us-1E2" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" constant="10" id="bzf-3m-S6i"/>
+                <constraint firstItem="Zln-E5-iS7" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" constant="10" id="e73-ZA-Cmc"/>
+                <constraint firstItem="a1C-DQ-sP9" firstAttribute="top" secondItem="7yb-d5-ewy" secondAttribute="top" id="hVJ-pA-E5T"/>
+                <constraint firstItem="VXr-Tz-HHm" firstAttribute="trailing" secondItem="yAL-6s-gZY" secondAttribute="trailing" constant="10" id="i1b-j9-EMB"/>
+                <constraint firstItem="Zln-E5-iS7" firstAttribute="top" secondItem="7yb-d5-ewy" secondAttribute="bottom" constant="10" id="lBV-Xw-54d"/>
+                <constraint firstItem="7yb-d5-ewy" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" constant="10" id="mPS-82-vvU"/>
+                <constraint firstItem="VXr-Tz-HHm" firstAttribute="trailing" secondItem="Zln-E5-iS7" secondAttribute="trailing" constant="10" id="pBE-AR-OfJ"/>
+                <constraint firstItem="xbj-20-U5M" firstAttribute="top" secondItem="4mM-us-1E2" secondAttribute="bottom" constant="5" id="qn4-2Q-gAn"/>
+                <constraint firstItem="4mM-us-1E2" firstAttribute="top" secondItem="Zln-E5-iS7" secondAttribute="bottom" constant="2" id="rMK-TP-rxc"/>
+                <constraint firstItem="VXr-Tz-HHm" firstAttribute="bottom" secondItem="xbj-20-U5M" secondAttribute="bottom" constant="10" id="sdA-S4-hCR"/>
+                <constraint firstItem="yAL-6s-gZY" firstAttribute="leading" secondItem="xbj-20-U5M" secondAttribute="trailing" constant="5" id="yvf-RY-wwX"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
+            <connections>
+                <outlet property="adBodyLabel" destination="xbj-20-U5M" id="rpT-Sc-8qg"/>
+                <outlet property="adCallToActionButton" destination="yAL-6s-gZY" id="KB4-SK-mjr"/>
+                <outlet property="adCoverMediaView" destination="Zln-E5-iS7" id="UMF-3w-Keb"/>
+                <outlet property="adIconImageView" destination="7yb-d5-ewy" id="yDr-Yw-xmW"/>
+                <outlet property="adOptionsView" destination="rTb-ms-pOO" id="F5B-ZB-0DR"/>
+                <outlet property="adSocialContext" destination="4mM-us-1E2" id="nht-Si-2pt"/>
+                <outlet property="adTitleLabel" destination="a1C-DQ-sP9" id="eHo-ym-hFX"/>
+                <outlet property="sponsoredLabel" destination="Zwb-Qf-iyE" id="zVY-ig-orK"/>
+            </connections>
+            <point key="canvasLocation" x="151.44927536231884" y="229.35267857142856"/>
+        </collectionReusableView>
+    </objects>
+</document>

@@ -142,7 +142,7 @@ class QuickTimeMov {
                         }
                     } else {
                         input.markAsFinished()
-                        if reader.status == .completed && aAudioAsset.tracks.count > 1 {
+                        /*if reader.status == .completed && aAudioAsset.tracks.count > 1 {
                             audioReader?.startReading()
                             writer.startSession(atSourceTime: CMTime.zero)
                             let media_queue = DispatchQueue(label: "assetAudioWriterQueue", attributes: [])
@@ -168,7 +168,7 @@ class QuickTimeMov {
                                 }
                             }
                         }
-                        else {
+                        else {*/
                             print("Video Reader not completed")
                             writer.finishWriting() {
                                 if let e = writer.error {
@@ -177,7 +177,7 @@ class QuickTimeMov {
                                     print("finish writing.")
                                 }
                             }
-                        }
+//                        }
                     }
                 }
             }

@@ -60,7 +60,8 @@ extension TrendingVC{
         }
         //Collection Methods
         self.collectionWallPapers.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "Header")
-        self.collectionWallPapers.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "Footer")
+        let adNib = UINib(nibName: "adUIView", bundle: nil)
+        collectionWallPapers.register(adNib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "adUIView")
         let nib = UINib(nibName: CellIdentifier.wallpaper, bundle: nil)
         collectionWallPapers.register(nib, forCellWithReuseIdentifier: CellIdentifier.wallpaper)
         
@@ -159,7 +160,14 @@ extension TrendingVC:UICollectionViewDelegate,UICollectionViewDataSource,UIColle
         if isSubscribed || section == numberOfSections(in: collectionView)-1{
             return CGSize.zero
         }
-        return CGSize(width: collectionView.frame.size.width, height: 200)
+        if let adsCellProvider = AppDelegate.shared.adsCellProvider, adsCellProvider.isAdCell(at: IndexPath(item: section, section: section), forStride: 1){
+            let ad = adsCellProvider.collectionView(collectionView, nativeAdForRowAt: IndexPath(item: section, section: section))
+            let actual = ad.aspectRatio
+            
+            let height = (collectionView.bounds.size.width-20)/actual
+            return CGSize(width: collectionView.bounds.size.width, height: height + 135)
+        }
+        return CGSize.zero
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -169,26 +177,27 @@ extension TrendingVC:UICollectionViewDelegate,UICollectionViewDataSource,UIColle
             return header
             
         case UICollectionView.elementKindSectionFooter:
-            let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Footer", for: indexPath)
+            let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "adUIView", for: indexPath) as! adUIView
             if isSubscribed{
                 return footerView
             }
-//            footerView.clipsToBounds = true
-//            if AppDelegate.shared.adsArr.count > indexPath.section, indexPath.section < collectionView.numberOfSections
-//            {
-//                footerView.viewWithTag(25)?.removeFromSuperview()
-//                let add = AppDelegate.shared.adsArr[indexPath.section]
-//                add.tag = 25
-//                footerView.addSubview(add)
-//                add.clipsToBounds = true
-//                add.translatesAutoresizingMaskIntoConstraints = false
-//                NSLayoutConstraint.activate([
-//                    add.leadingAnchor.constraint(equalTo: footerView.leadingAnchor, constant: 0),
-//                    add.trailingAnchor.constraint(equalTo: footerView.trailingAnchor, constant: 0),
-//                    add.topAnchor.constraint(equalTo: footerView.topAnchor, constant: 10),
-//                    add.bottomAnchor.constraint(equalTo: footerView.bottomAnchor, constant: -10)
-//                ])
-//            }
+            if let adsCellProvider = AppDelegate.shared.adsCellProvider, adsCellProvider.isAdCell(at: IndexPath(item: indexPath.section, section: indexPath.section), forStride: 1){
+                let nativeAd = /*adsManager.nextNativeAd else {return footerView}*/adsCellProvider.collectionView(collectionView, nativeAdForRowAt: IndexPath(item: indexPath.section, section: indexPath.section))
+                nativeAd.unregisterView()
+                
+                // Wire up UIView with the native ad; only call to action button and media view will be clickable.
+                nativeAd.registerView(forInteraction: footerView, mediaView: footerView.adCoverMediaView, iconView: footerView.adIconImageView, viewController: self,clickableViews: [footerView.adCallToActionButton, footerView.adCoverMediaView])
+                //                footerView.adCoverMediaView.delegate = self
+                // Render native ads onto UIView
+                footerView.adTitleLabel.text = nativeAd.advertiserName
+                footerView.adBodyLabel.text = nativeAd.bodyText
+                footerView.adSocialContext.text = nativeAd.socialContext
+                footerView.sponsoredLabel.text = nativeAd.sponsoredTranslation
+                footerView.adCallToActionButton.setTitle(
+                    nativeAd.callToAction,
+                    for: .normal)
+                footerView.adOptionsView.nativeAd = nativeAd
+            }
             return footerView
             
         default:

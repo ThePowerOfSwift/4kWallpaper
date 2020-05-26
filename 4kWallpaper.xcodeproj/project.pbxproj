@@ -30,6 +30,8 @@
 		1B4E330E24700EEA002CD349 /* WebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4E330D24700EEA002CD349 /* WebVC.swift */; };
 		1B572D68246093A20028566B /* CatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B572D66246093A20028566B /* CatCell.swift */; };
 		1B572D69246093A20028566B /* CatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B572D67246093A20028566B /* CatCell.xib */; };
+		1B5B1261247C434F00BE95BA /* adUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5B125F247C434E00BE95BA /* adUIView.swift */; };
+		1B5B1262247C434F00BE95BA /* adUIView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B5B1260247C434F00BE95BA /* adUIView.xib */; };
 		1B5BDAB2245F218A00085928 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5BDAB1245F218A00085928 /* AppDelegate.swift */; };
 		1B5BDAB4245F218A00085928 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5BDAB3245F218A00085928 /* SceneDelegate.swift */; };
 		1B5BDAB9245F218A00085928 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B5BDAB7245F218A00085928 /* Main.storyboard */; };
@@ -86,6 +88,8 @@
 		1B4E330D24700EEA002CD349 /* WebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebVC.swift; sourceTree = "<group>"; };
 		1B572D66246093A20028566B /* CatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatCell.swift; sourceTree = "<group>"; };
 		1B572D67246093A20028566B /* CatCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CatCell.xib; sourceTree = "<group>"; };
+		1B5B125F247C434E00BE95BA /* adUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = adUIView.swift; sourceTree = "<group>"; };
+		1B5B1260247C434F00BE95BA /* adUIView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = adUIView.xib; sourceTree = "<group>"; };
 		1B5BDAAE245F218A00085928 /* 4k wallpaper - Walli fly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "4k wallpaper - Walli fly.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B5BDAB1245F218A00085928 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1B5BDAB3245F218A00085928 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -166,6 +170,15 @@
 			path = VerticalCategory;
 			sourceTree = "<group>";
 		};
+		1B5B125E247C434000BE95BA /* AdUIView */ = {
+			isa = PBXGroup;
+			children = (
+				1B5B125F247C434E00BE95BA /* adUIView.swift */,
+				1B5B1260247C434F00BE95BA /* adUIView.xib */,
+			);
+			path = AdUIView;
+			sourceTree = "<group>";
+		};
 		1B5BDAA5245F218A00085928 = {
 			isa = PBXGroup;
 			children = (
@@ -220,6 +233,7 @@
 		1B5BDAC8245F297000085928 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1B5B125E247C434000BE95BA /* AdUIView */,
 				1B48962B2467DE5B0056CD5F /* UnifiedNativeAdView.xib */,
 				1B572D6E24609A050028566B /* VerticalCategory */,
 				1B572D5F246092ED0028566B /* Category */,
@@ -373,6 +387,7 @@
 				1B5BDAB9245F218A00085928 /* Main.storyboard in Resources */,
 				1B5BDAD3245F30B200085928 /* WallpaperCell.xib in Resources */,
 				1B7F40C324647C6800C8BEC8 /* LoadingView.xib in Resources */,
+				1B5B1262247C434F00BE95BA /* adUIView.xib in Resources */,
 				1B7E6025246F055C00A1319B /* HomeHeader.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -466,6 +481,7 @@
 				1B2277672460865E00036212 /* BannerCell.swift in Sources */,
 				1B441B22247061E2005717AF /* AboutUsVC.swift in Sources */,
 				1B242BF2246C605D008D942E /* AllCategoryVC.swift in Sources */,
+				1B5B1261247C434F00BE95BA /* adUIView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
