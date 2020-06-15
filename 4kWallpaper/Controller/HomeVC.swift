@@ -77,9 +77,13 @@ class HomeVC: UIViewController {
 extension HomeVC{
     private func setupView(){
         //In app purchase
+        collectionWallPapers.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        view.layoutIfNeeded()
+        view.setNeedsLayout()
+        
         self.navigationItem.backBarButtonItem?.title = ""
         SKPaymentQueue.default().add(self)
-        tabBarController?.setTabBarVisible(visible: false, duration: 0.1, animated: true)
+//        tabBarController?.setTabBarVisible(visible: false, duration: 0.1, animated: true)
         //Collection Methods
         let header = UINib(nibName: CellIdentifier.homeHeader, bundle: nil)
         self.collectionWallPapers.register(header, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CellIdentifier.homeHeader)
@@ -154,7 +158,7 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (collectionView.bounds.size.width-45)/3
+        let width = ((collectionView.bounds.size.width-1)-40)/3
         let height = (width*ratioHeight)/ratioWidth
         return CGSize(width: width, height: height)
     }

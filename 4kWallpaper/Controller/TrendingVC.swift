@@ -133,7 +133,7 @@ extension TrendingVC:UICollectionViewDelegate,UICollectionViewDataSource,UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (collectionView.bounds.size.width-45)/3
+        let width = ((collectionView.bounds.size.width-1)-40)/3
         let height = (width*ratioHeight)/ratioWidth
         return CGSize(width: width, height: height)
     }

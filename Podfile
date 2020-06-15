@@ -11,7 +11,7 @@ target '4kWallpaper' do
   # Add the pod for Firebase Cloud Messaging
   pod 'Firebase/Messaging'
   
-#  pod 'FBAudienceNetwork'
+  pod 'FBAudienceNetwork'
   pod 'Google-Mobile-Ads-SDK'
   pod 'GoogleMobileAdsMediationFacebook'
 #  pod 'GoogleMobileAdsMediationTestSuite'
